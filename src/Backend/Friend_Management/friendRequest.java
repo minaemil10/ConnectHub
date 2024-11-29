@@ -8,7 +8,7 @@ private String senderID;
 private String receiverID;
 private Relation status;
 
-    public friendRequest(String senderID, String receiverID, String status) {
+    public friendRequest(String senderID, String receiverID) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.status = new Relation();
@@ -23,4 +23,5 @@ private Relation status;
     public void decline(){
         status.setCanceled();
     }
+
 }
