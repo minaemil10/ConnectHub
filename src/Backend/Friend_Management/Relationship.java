@@ -20,6 +20,7 @@ public class Relationship {
     public String getRelation() {
         return relation.getRelation();
     }
+    public String getUserID(){return  userID;}
 
     public String relationWithID() {
         return userID;
