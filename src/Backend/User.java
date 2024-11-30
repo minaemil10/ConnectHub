@@ -118,6 +118,7 @@ public class User {
 
     public void setMyPosts(ArrayList<String> myPosts) {
         this.myPosts = myPosts;
+
     }
     
 }
