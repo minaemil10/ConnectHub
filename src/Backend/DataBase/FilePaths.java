@@ -11,4 +11,5 @@ package Backend.DataBase;
 public interface FilePaths {
     String userDataBase = "C:\\Users\\Mnw Emile\\Desktop\\Prog_Labs\\prog2_lab8_socialApp\\ConnectHub\\src\\Backend\\DataBase\\users.json";
     String contentDataBase = "C:\\Users\\Mnw Emile\\Desktop\\Prog_Labs\\prog2_lab8_socialApp\\ConnectHub\\src\\Backend\\DataBase\\content.json";
+    String requestsDataBase = "C:\\Users\\Mnw Emile\\Desktop\\Prog_Labs\\prog2_lab8_socialApp\\ConnectHub\\src\\Backend\\DataBase\\friendRequests.json";
 }

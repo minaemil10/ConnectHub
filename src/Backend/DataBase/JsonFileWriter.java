@@ -7,6 +7,7 @@ package Backend.DataBase;
 import Backend.Content;
 import Backend.Friend_Management.Relation;
 import Backend.Friend_Management.Relationship;
+import Backend.Friend_Management.friendRequest;
 import Backend.Post;
 import Backend.Story;
 import Backend.User;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author Mnw Emile
  */
-public class JsonFileWriter implements FilePaths{
+public class JsonFileWriter implements FilePaths {
 
     private String filePath;
 
@@ -36,12 +37,14 @@ public class JsonFileWriter implements FilePaths{
         for (User user : users) {
             ArrayList<Relationship> relations = user.getFriends();
             if (relations != null) {
+                ArrayList<Relationship> tempRel = new ArrayList<>(); 
                 for (Relationship rel : relations) {
-                    if (rel.getRelation().equals("Cancel"))
-                    {
-                        System.out.println(rel.getRelation());
-                        user.deleteRelation(rel);
+                    if (rel.getRelation().equals("Cancel")) {
+                        tempRel.add(rel);
                     }
+                }
+                for(Relationship rel : tempRel){
+                user.deleteRelation(rel);
                 }
             }
         }
@@ -53,8 +56,8 @@ public class JsonFileWriter implements FilePaths{
             e.printStackTrace();
         }
     }
-    
-     public void writeAllContent(ArrayList<Content> contents) {
+
+    public void writeAllContent(ArrayList<Content> contents) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
         //write user to file
         String json = gson.toJson(contents);
@@ -65,7 +68,22 @@ public class JsonFileWriter implements FilePaths{
         }
     }
 
+    public void writeAllFriendRequests(ArrayList<friendRequest> requests) {
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        //write user to file
+        String json = gson.toJson(requests);
+        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+            fileWriter.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    //main to test methods
     public static void main(String[] args) {
+        
+        //create user1
         LocalDate date1 = LocalDate.of(2004, Month.OCTOBER, 26);
         User user1 = new User("U1", "mina@gmail.com", "Mina Emile", "123456", date1);
         user1.setBio("I am an Engineer");
@@ -74,39 +92,39 @@ public class JsonFileWriter implements FilePaths{
         ArrayList<Relationship> relationships = new ArrayList<>();
         user1.setFriends(relationships);
         
-        Relation rel2 = new Relation();
-        rel2.setBlock();
-        Relationship relation2 = new Relationship("U3", rel2);
-        user1.addRelation(relation2);
-        
-        Relation rel1 = new Relation();
-        rel1.setFriend();
-        Relationship relation1 = new Relationship("U2", rel1);
-        user1.addRelation(relation1);
-      
-        
-        
+        //create user2
         LocalDate date2 = LocalDate.of(2001, Month.JANUARY, 15);
         User user2 = new User("U2", "john@example.com", "John Doe", "password", date2);
         user2.setBio("I am a Developer");
         user2.setCoverPhoto("src\\John.png");
         user2.setStatus(Boolean.FALSE);
+        ArrayList<Relationship> relationships2 = new ArrayList<>();
+        user2.setFriends(relationships2);
+        //create user Array
         ArrayList<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
-        JsonFileWriter userWriter = new JsonFileWriter(userDataBase);
-        userWriter.writeAllUsers(users);
         
-        
-        
+        //create content
         Content c1 = new Story(userDataBase, contentDataBase, userDataBase, userDataBase);
         Content c2 = new Post(contentDataBase, userDataBase, userDataBase);
         ArrayList<Content> cont = new ArrayList<>();
         cont.add(c1);
         cont.add(c2);
         JsonFileWriter contetWriter = new JsonFileWriter(contentDataBase);
-       contetWriter.writeAllContent(cont);
+        contetWriter.writeAllContent(cont);//write cont
+        //create friendRequest
+        friendRequest r1 = new friendRequest("U1", "U2", "friend");
+        r1.make(user1, user2);
+        r1.accept();
+        ArrayList<friendRequest> req = new ArrayList<>();
+        req.add(r1);
+        JsonFileWriter requestWriter = new JsonFileWriter(requestsDataBase);
+        requestWriter.writeAllFriendRequests(req);
         
+        JsonFileWriter userWriter = new JsonFileWriter(userDataBase);
+        userWriter.writeAllUsers(users);
+
     }
 
 }

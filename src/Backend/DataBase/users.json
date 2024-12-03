@@ -10,12 +10,6 @@
     "bio": "I am an Engineer",
     "friends": [
       {
-        "userID": "U3",
-        "relation": {
-          "relation": "Block"
-        }
-      },
-      {
         "userID": "U2",
         "relation": {
           "relation": "Friend"
@@ -31,6 +25,14 @@
     "DateOfBirth": "15,01,2001",
     "status": false,
     "coverPhoto": "src\\John.png",
-    "bio": "I am a Developer"
+    "bio": "I am a Developer",
+    "friends": [
+      {
+        "userID": "U1",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ]
   }
 ]
