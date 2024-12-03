@@ -4,8 +4,11 @@
  */
 package Backend.DataBase;
 
+import Backend.Content;
 import Backend.Friend_Management.Relation;
 import Backend.Friend_Management.Relationship;
+import Backend.Post;
+import Backend.Story;
 import Backend.User;
 import com.google.gson.*;
 import java.io.FileWriter;
@@ -50,6 +53,17 @@ public class JsonFileWriter implements FilePaths{
             e.printStackTrace();
         }
     }
+    
+     public void writeAllContent(ArrayList<Content> contents) {
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        //write user to file
+        String json = gson.toJson(contents);
+        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+            fileWriter.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         LocalDate date1 = LocalDate.of(2004, Month.OCTOBER, 26);
@@ -80,8 +94,19 @@ public class JsonFileWriter implements FilePaths{
         ArrayList<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
-        JsonFileWriter writer = new JsonFileWriter(userDataBase);
-        writer.writeAllUsers(users);
+        JsonFileWriter userWriter = new JsonFileWriter(userDataBase);
+        userWriter.writeAllUsers(users);
+        
+        
+        
+        Content c1 = new Story(userDataBase, contentDataBase, userDataBase, userDataBase);
+        Content c2 = new Post(contentDataBase, userDataBase, userDataBase);
+        ArrayList<Content> cont = new ArrayList<>();
+        cont.add(c1);
+        cont.add(c2);
+        JsonFileWriter contetWriter = new JsonFileWriter(contentDataBase);
+       contetWriter.writeAllContent(cont);
+        
     }
 
 }
