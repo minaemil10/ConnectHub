@@ -50,5 +50,13 @@ public class Validator {
         return true;
     }
     
+    public static boolean isPassword(String password){
+       if(password == null || password.isEmpty()){
+           return false;
+       }
+       
+       return true;
+    }
+    
 }
 
