@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author carls
  */
 public class User {
-    private String userId;
+    private static String userId;
     private String email;
     private String userName;
     private String password;
