@@ -38,9 +38,8 @@ public class JsonFileWriter {
 
         String json = gson.toJson(user);
         
-        try (FileWriter fileWriter = new FileWriter("person.json")) {
+        try (FileWriter fileWriter = new FileWriter("C:\\Users\\Mnw Emile\\Desktop\\Prog_Labs\\prog2_lab8_socialApp\\ConnectHub\\src\\Backend\\DataBase\\users.json",false)) {
             fileWriter.write(json);
-            fileWriter.flush();
             System.out.println("Successfully wrote JSON object to file.");
         } catch (IOException e) {
             e.printStackTrace();
