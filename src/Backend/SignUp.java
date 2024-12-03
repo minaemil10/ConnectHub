@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class SignUp {
     
     
-    public User addUser (String userId ,String email, String password, String userName,LocalDate regestrationTime,Boolean status, ArrayList <User> users ){
+    public User addUser (int counter ,String email, String password, String userName,LocalDate dateOfBirth,Boolean status, ArrayList <User> users ){
         Validator v = new Validator();
         // Checking if the email is already signed
         for(User u : users){
@@ -25,7 +25,8 @@ public class SignUp {
            }
             // Validation of password and EMAIL
            if(v.isEmail(email) && v.isPassword(password)){
-               User user = new User(userId, email, userName, password, regestrationTime);
+               counter++;
+               User user = new User("U"+counter, email, userName, password, dateOfBirth);
                return user;
            }
            else
