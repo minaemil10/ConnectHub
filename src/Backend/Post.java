@@ -10,8 +10,8 @@ package Backend;
  */
 public class Post extends Content{
 
-    public Post(String photo, String contentID, String authorID, String text) {
-        super(photo, contentID, authorID, text);
+    public Post(String contentID, String authorID, String text) {//optional photo
+        super(null, contentID, authorID, text);
     }
     
 }

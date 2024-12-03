@@ -13,6 +13,9 @@ public class Relation {
     public void setBlock() {
         this.relation = "Block";
     }
+    public void setCanceled() {
+        this.relation = "Cancel";
+    }
     public String getRelation() {
         return relation;
     }

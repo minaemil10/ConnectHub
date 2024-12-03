@@ -10,4 +10,9 @@ package Backend;
  */
 public class Logout {
     
+    public boolean logout (User user){
+        user.setStatus(false);
+        return user.getStatus();
+    }
+    
 }

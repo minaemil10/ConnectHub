@@ -1,5 +1,7 @@
 package Backend.Friend_Management;
 
+import Backend.User;
+
 public class friendRequest {
 private String senderID;
 private String receiverID;
@@ -10,16 +12,14 @@ private Relation status;
         this.receiverID = receiverID;
         this.status = new Relation();
     }
-    public void make(){
-        /*arraylist of sender.add(new Relationship(receiver,status))*/
-        /*arraylist of receiver.add(new Relationship(sender,status))*/
+    public void make(User sender,User receiver){
+        sender.addRelation(new Relationship(receiverID,status));
+        receiver.addRelation(new Relationship(senderID,status));
     }
     public void accept(){
         status.setFriend();
     }
     public void decline(){
-        /*remove the friend request from the arraylist of both*/
+        status.setCanceled();
     }
-
-
 }
