@@ -9,5 +9,9 @@ package Backend;
  * @author Mnw Emile
  */
 public class Post extends Content{
+
+    public Post(String photo, String contentID, String authorID, String text) {
+        super(photo, contentID, authorID, text);
+    }
     
 }
