@@ -4,6 +4,8 @@
  */
 package Backend;
 
+import Validation.Validator;
+
 /**
  *
  * @author carls
@@ -15,15 +17,19 @@ public class ProfileManger {
         this.user = user;
     }
     public void changeEmail (String email){
-        // isvaild checker
+        boolean isVaildEmail = Validator.isEmail(email);
+        if(isVaildEmail){
         user.setEmail(email);
+        }
     }
     public void changeUserName (String userName){
         user.setUserName(userName);
     }
     public void changePassword(String password){
-        // is vaild checker
+        boolean isValidPassword = Validator.isPassword(password);
+        if(isValidPassword){
         user.setPassword(password);
+        }
     }
     public void changeProfilePhoto(String profilePhoto){
         user.setProfilePhoto(profilePhoto);

@@ -6,6 +6,7 @@ package Backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import Backend.Friend_Management.Relationship;
 
 /**
  *
@@ -21,7 +22,7 @@ public class User {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
-    private ArrayList<String> friends;
+    private ArrayList<Relationship> friends;
     private ArrayList<String> myPosts;
 
     public User(String userId, String email, String userName, String password, LocalDate DateOfBirth) {
@@ -104,13 +105,15 @@ public class User {
         this.bio = bio;
     }
 
-    public ArrayList<String> getFriends() {
+    public ArrayList<Relationship> getFriends() {
         return friends;
     }
 
-    public void setFriends(ArrayList<String> friends) {
+    public void setFriends(ArrayList<Relationship> friends) {
         this.friends = friends;
     }
+
+   
 
     public ArrayList<String> getMyPosts() {
         return myPosts;
@@ -118,6 +121,12 @@ public class User {
 
     public void setMyPosts(ArrayList<String> myPosts) {
         this.myPosts = myPosts;
+
     }
-    
+    public void addRelation ( Relationship relationship){
+        friends.add(relationship);
+    }
+    public void deleteRelation (Relationship relationship){
+        friends.remove(relationship);
+    }
 }
