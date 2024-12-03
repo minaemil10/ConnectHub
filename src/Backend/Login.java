@@ -15,7 +15,8 @@ public class Login {
   
     public User accessUser (String email, String Password, ArrayList<User> users ){
         for(User u : users){
-            if(u.getPassword().equals(Password) && u.getEmail().equals(email)){
+            if(u.checkPassword(Password) && u.getEmail().equals(email)){
+                u.setStatus(true);
                 return u;
             }
         }
