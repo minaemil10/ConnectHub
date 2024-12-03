@@ -7,7 +7,8 @@ package Backend;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import Backend.Friend_Management.Relationship;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author carls
@@ -29,7 +30,7 @@ public class User {
         this.userId = userId;
         this.email = email;
         this.userName = userName;
-        this.password = password;
+        this.setPassword(password);
         this.DateOfBirth = DateOfBirth;
     }
 
@@ -57,12 +58,28 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean checkPassword(String password) {
+        return this.password.equals(hashPassword(password));
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = hashPassword(password);
+    }
+    
+     private String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = digest.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashedBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
     }
 
     public LocalDate getDateOfBirth() {
