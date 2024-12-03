@@ -7,7 +7,7 @@ package Backend.DataBase;
 import Backend.Friend_Management.Relation;
 import Backend.Friend_Management.Relationship;
 import Backend.User;
-import com.google.gson.Gson;
+import com.google.gson.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class JsonFileWriter {
 
     public static void main(String[] args) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()) .setPrettyPrinting() .create();
         LocalDate date = LocalDate.of(2004, Month.OCTOBER, 26);
         User user = new User("U1", "mina@gmail.com", "Mina Emile", "123456", date);
         user.setBio("I am an Engineer");
@@ -40,6 +40,7 @@ public class JsonFileWriter {
         
         try (FileWriter fileWriter = new FileWriter("person.json")) {
             fileWriter.write(json);
+            fileWriter.flush();
             System.out.println("Successfully wrote JSON object to file.");
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,0 +1,24 @@
+{
+  "userId": "U1",
+  "email": "mina@gmail.com",
+  "userName": "Mina Emile",
+  "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+  "DateOfBirth": "26,10,2004",
+  "status": true,
+  "coverPhoto": "src\\Mina.png",
+  "bio": "I am an Engineer",
+  "friends": [
+    {
+      "userID": "U3",
+      "relation": {
+        "relation": "Block"
+      }
+    },
+    {
+      "userID": "U2",
+      "relation": {
+        "relation": "Friend"
+      }
+    }
+  ]
+}
