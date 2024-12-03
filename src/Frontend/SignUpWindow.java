@@ -26,21 +26,234 @@ public class SignUpWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        username = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
+        username3 = new javax.swing.JTextField();
+        birthday = new javax.swing.JTextField();
+        jUsernameField = new javax.swing.JTextField();
+        jEmailField = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jConfirmPasswordField = new javax.swing.JPasswordField();
+        jCalendarPanel1 = new de.wannawork.jcalendar.JCalendarPanel();
+        profilePhoto = new javax.swing.JTextField();
+        UploadProfilePhoto = new javax.swing.JButton();
+        UploadCoverPhoto1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jSignUpButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        username.setEditable(false);
+        username.setBackground(new java.awt.Color(0, 153, 255));
+        username.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username.setText("Username");
+
+        email.setEditable(false);
+        email.setBackground(new java.awt.Color(0, 153, 255));
+        email.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        email.setText("Email");
+
+        password.setEditable(false);
+        password.setBackground(new java.awt.Color(0, 153, 255));
+        password.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        password.setText("Password");
+
+        username3.setEditable(false);
+        username3.setBackground(new java.awt.Color(0, 153, 255));
+        username3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        username3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username3.setText("Confirm Password");
+
+        birthday.setEditable(false);
+        birthday.setBackground(new java.awt.Color(0, 153, 255));
+        birthday.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        birthday.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        birthday.setText("Birthday");
+
+        jUsernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUsernameFieldActionPerformed(evt);
+            }
+        });
+
+        jEmailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEmailFieldActionPerformed(evt);
+            }
+        });
+
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jConfirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConfirmPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jCalendarPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jCalendarPanel1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        profilePhoto.setEditable(false);
+        profilePhoto.setBackground(new java.awt.Color(0, 153, 255));
+        profilePhoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        profilePhoto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        profilePhoto.setText("profile photo");
+
+        UploadProfilePhoto.setBackground(new java.awt.Color(0, 153, 255));
+        UploadProfilePhoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UploadProfilePhoto.setForeground(new java.awt.Color(255, 255, 255));
+        UploadProfilePhoto.setText("Upload photo");
+        UploadProfilePhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadProfilePhotoActionPerformed(evt);
+            }
+        });
+
+        UploadCoverPhoto1.setBackground(new java.awt.Color(0, 153, 255));
+        UploadCoverPhoto1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UploadCoverPhoto1.setForeground(new java.awt.Color(255, 255, 255));
+        UploadCoverPhoto1.setText("Upload photo");
+        UploadCoverPhoto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadCoverPhoto1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(0, 153, 255));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("Cover photo");
+
+        jSignUpButton.setBackground(new java.awt.Color(0, 153, 255));
+        jSignUpButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jSignUpButton.setForeground(new java.awt.Color(255, 255, 255));
+        jSignUpButton.setText("SignUp");
+        jSignUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSignUpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(email)
+                    .addComponent(password)
+                    .addComponent(username3)
+                    .addComponent(username))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jUsernameField)
+                    .addComponent(jEmailField)
+                    .addComponent(jPasswordField)
+                    .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                .addGap(139, 139, 139)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(114, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(318, 318, 318)
+                .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27)
+                .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jUsernameFieldActionPerformed
+
+    private void jEmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEmailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jEmailFieldActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jConfirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jConfirmPasswordFieldActionPerformed
+
+    private void UploadProfilePhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadProfilePhotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UploadProfilePhotoActionPerformed
+
+    private void jCalendarPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jCalendarPanel1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCalendarPanel1AncestorAdded
+
+    private void UploadCoverPhoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadCoverPhoto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UploadCoverPhoto1ActionPerformed
+
+    private void jSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSignUpButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +291,20 @@ public class SignUpWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton UploadCoverPhoto1;
+    private javax.swing.JButton UploadProfilePhoto;
+    private javax.swing.JTextField birthday;
+    private javax.swing.JTextField email;
+    private de.wannawork.jcalendar.JCalendarPanel jCalendarPanel1;
+    private javax.swing.JPasswordField jConfirmPasswordField;
+    private javax.swing.JTextField jEmailField;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JButton jSignUpButton;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jUsernameField;
+    private javax.swing.JTextField password;
+    private javax.swing.JTextField profilePhoto;
+    private javax.swing.JTextField username;
+    private javax.swing.JTextField username3;
     // End of variables declaration//GEN-END:variables
 }
