@@ -13,7 +13,7 @@ import Backend.Friend_Management.Relationship;
  * @author carls
  */
 public class User {
-    private static String userId;
+    private String userId;
     private String email;
     private String userName;
     private String password;
