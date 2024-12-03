@@ -55,7 +55,7 @@ public class Validator {
            return false;
        }
        
-       re
+       return true;
     }
     
 }
