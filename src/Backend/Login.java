@@ -4,17 +4,22 @@
  */
 package Backend;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
 public class Login {
-    private User user;
 
-    public Login(User user) {
-        this.user = user;
+  
+    public User accessUser (String email, String Password, ArrayList<User> users ){
+        for(User u : users){
+            if(u.getPassword().equals(Password) && u.getEmail().equals(email)){
+                return u;
+            }
+        }
+        return null;
     }
-    public User accessUser (String Email, String Password){
-        return user;
-    }
+   
 }
