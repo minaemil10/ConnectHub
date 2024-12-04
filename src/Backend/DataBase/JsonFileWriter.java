@@ -26,6 +26,10 @@ public abstract class JsonFileWriter<T extends DataBaseOBJ> implements FilePaths
 
     private String filePath;
 
+    public String getFilePath() {
+        return filePath;
+    }
+
     public JsonFileWriter(String filePath) {
         this.filePath = filePath;
     }

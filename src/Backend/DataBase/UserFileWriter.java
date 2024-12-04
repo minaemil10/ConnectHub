@@ -5,6 +5,8 @@ import Backend.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,6 +32,13 @@ public class UserFileWriter extends JsonFileWriter<User> {
                     user.deleteRelation(rel);
                 }
             }
+        }
+        //write user to file
+        String json = gson.toJson(users);
+        try (FileWriter fileWriter = new FileWriter(getFilePath(), false)) {
+            fileWriter.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
