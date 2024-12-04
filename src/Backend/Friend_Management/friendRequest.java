@@ -1,8 +1,9 @@
 package Backend.Friend_Management;
 
+import Backend.DataBase.DataBaseOBJ;
 import Backend.User;
 
-public class friendRequest {
+public class friendRequest implements DataBaseOBJ {
 private String senderID;
 private String receiverID;
 private Relation status;

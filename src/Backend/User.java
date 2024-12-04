@@ -6,6 +6,8 @@ package Backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import Backend.DataBase.DataBaseOBJ;
 import Backend.Friend_Management.Relationship;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author carls
  */
-public class User {
+public class User implements DataBaseOBJ {
     private String userId;
     private String email;
     private String userName;
