@@ -104,13 +104,4 @@ public class JsonFileReader implements FilePaths {
         post.setPhoto(con.getPhoto());
         return post;
     }
-
-    public static void main(String[] args) {
-        JsonFileReader reader = new JsonFileReader(userDataBase);
-        reader.readAllUsers();
-        JsonFileReader reader2 = new JsonFileReader(requestsDataBase);
-        reader2.readAllRequests();
-        JsonFileReader reader3 = new JsonFileReader(contentDataBase);
-        reader3.readAllPosts();
-    }
 }
