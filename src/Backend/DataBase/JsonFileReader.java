@@ -4,31 +4,57 @@
  */
 package Backend.DataBase;
 
-import Backend.Friend_Management.Relationship;
 import Backend.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 
 /**
- *
  * @author Mnw Emile
  */
-public class JsonFileReader implements FilePaths{
+public class JsonFileReader implements FilePaths {
     private String filePath;
 
     public JsonFileReader(String filePath) {
         this.filePath = filePath;
     }
-    
+
+    public ArrayList<User> readAllUsers(){
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        ArrayList<User> users = new ArrayList<>();
+        try (FileReader fileReader = new FileReader(filePath)) {
+            Type userListType = new TypeToken<ArrayList<User>>() {
+            }.getType();
+            users = gson.fromJson(fileReader, userListType);
+            System.out.println(users);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public ArrayList<User> readAllContent(){
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        ArrayList<User> users = new ArrayList<>();
+        try (FileReader fileReader = new FileReader(filePath)) {
+            Type userListType = new TypeToken<ArrayList<User>>() {
+            }.getType();
+            users = gson.fromJson(fileReader, userListType);
+            System.out.println(users);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     public static void main(String[] args) {
-        LocalDate date1 = LocalDate.of(2004, Month.OCTOBER, 26);
-        User user1 = new User("U1", "mina@gmail.com", "Mina Emile", "123456", date1);
-        user1.setBio("I am an Engineer");
-        user1.setCoverPhoto("src\\Mina.png");
-        user1.setStatus(Boolean.TRUE);
-        ArrayList<Relationship> relationships = new ArrayList<>();
-        user1.setFriends(relationships);
+        JsonFileReader reader = new JsonFileReader(userDataBase);
+        reader.readAllUsers();
     }
 }
