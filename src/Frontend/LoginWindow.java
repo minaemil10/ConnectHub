@@ -126,7 +126,7 @@ public class LoginWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
          String email = jEmailField.getText().trim();
          String password = new String(jPasswordField1.getPassword()).trim();
-        ArrayList<User> users = Appmanger.getUsers();
+        ArrayList<User> users = AppManger.getUsers();
         if(email.equals("") || password.equals("")){
         JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
