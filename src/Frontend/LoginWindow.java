@@ -125,7 +125,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-         String email = jEmailField.getText().trim();
+       /*  String email = jEmailField.getText().trim();
          String password = new String(jPasswordField1.getPassword()).trim();
         ArrayList<User> users = AppManger.getUsers();
         if(email.isEmpty() || password.isEmpty()){
@@ -143,7 +143,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
             else{
         JOptionPane.showMessageDialog(null, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+            }*/
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
