@@ -4,13 +4,15 @@
  */
 package Backend;
 
+import Backend.DataBase.DataBaseOBJ;
+
 import java.time.LocalDate;
 
 /**
  *
  * @author Mnw Emile
  */
-public class Content {
+public class Content implements DataBaseOBJ {
 
     private String photo;
     private String contentID;

@@ -22,62 +22,68 @@ import java.util.ArrayList;
  *
  * @author Mnw Emile
  */
-public class JsonFileWriter implements FilePaths {
+public abstract class JsonFileWriter<T extends DataBaseOBJ> implements FilePaths {
 
     private String filePath;
+
+    public String getFilePath() {
+        return filePath;
+    }
 
     public JsonFileWriter(String filePath) {
         this.filePath = filePath;
     }
 
-    public void writeAllUsers(ArrayList<User> users) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+    public abstract void writeAll(ArrayList<T> data);
+}
+//    public void writeAllUsers(ArrayList<User> users) {
+//        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+//
+//        //check for rlations set to "cancel" and remove them
+//        for (User user : users) {
+//            ArrayList<Relationship> relations = user.getFriends();
+//            if (relations != null) {
+//                ArrayList<Relationship> tempRel = new ArrayList<>();
+//                for (Relationship rel : relations) {
+//                    if (rel.getRelation().equals("Cancel")) {
+//                        tempRel.add(rel);
+//                    }
+//                }
+//                for(Relationship rel : tempRel){
+//                user.deleteRelation(rel);
+//                }
+//            }
+//        }
+//        //write user to file
+//        String json = gson.toJson(users);
+//        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+//            fileWriter.write(json);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void writeAllContent(ArrayList<Content> contents) {
+//        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+//        //write content to file
+//        String json = gson.toJson(contents);
+//        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+//            fileWriter.write(json);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void writeAllFriendRequests(ArrayList<friendRequest> requests) {
+//        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+//        //write request to file
+//        String json = gson.toJson(requests);
+//        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+//            fileWriter.write(json);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        //check for rlations set to "cancel" and remove them
-        for (User user : users) {
-            ArrayList<Relationship> relations = user.getFriends();
-            if (relations != null) {
-                ArrayList<Relationship> tempRel = new ArrayList<>(); 
-                for (Relationship rel : relations) {
-                    if (rel.getRelation().equals("Cancel")) {
-                        tempRel.add(rel);
-                    }
-                }
-                for(Relationship rel : tempRel){
-                user.deleteRelation(rel);
-                }
-            }
-        }
-        //write user to file
-        String json = gson.toJson(users);
-        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void writeAllContent(ArrayList<Content> contents) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        //write content to file
-        String json = gson.toJson(contents);
-        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void writeAllFriendRequests(ArrayList<friendRequest> requests) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        //write request to file
-        String json = gson.toJson(requests);
-        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     
     //main to test methods
@@ -127,4 +133,4 @@ public class JsonFileWriter implements FilePaths {
 
     }*/
 
-}
+
