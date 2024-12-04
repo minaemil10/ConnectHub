@@ -5,6 +5,7 @@
 package Frontend;
 
 import Backend.User;
+import Backend.Login;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -127,18 +128,22 @@ public class LoginWindow extends javax.swing.JFrame {
          String email = jEmailField.getText().trim();
          String password = new String(jPasswordField1.getPassword()).trim();
         ArrayList<User> users = AppManger.getUsers();
-        if(email.equals("") || password.equals("")){
+        if(email.isEmpty() || password.isEmpty()){
         JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
         }
-        for(User u : users){
-            if(u.checkPassword(password) && u.getEmail().equals(email)){
+        Login login = new Login();
+        User user = login.accessUser(email , password , users);
+        
+            if(user!=null){
                 JOptionPane.showMessageDialog(this, "login Successfully");
                 NewsfeedWindow newsfeed =  new NewsfeedWindow();
                 newsfeed.setVisible(true);
                 this.dispose();
             }
-        }
+            else{
         JOptionPane.showMessageDialog(null, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
