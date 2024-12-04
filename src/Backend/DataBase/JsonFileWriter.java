@@ -59,7 +59,7 @@ public class JsonFileWriter implements FilePaths {
 
     public void writeAllContent(ArrayList<Content> contents) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        //write user to file
+        //write content to file
         String json = gson.toJson(contents);
         try (FileWriter fileWriter = new FileWriter(filePath, false)) {
             fileWriter.write(json);
@@ -70,7 +70,7 @@ public class JsonFileWriter implements FilePaths {
 
     public void writeAllFriendRequests(ArrayList<friendRequest> requests) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        //write user to file
+        //write request to file
         String json = gson.toJson(requests);
         try (FileWriter fileWriter = new FileWriter(filePath, false)) {
             fileWriter.write(json);
@@ -81,7 +81,7 @@ public class JsonFileWriter implements FilePaths {
 
     
     //main to test methods
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         
         //create user1
         LocalDate date1 = LocalDate.of(2004, Month.OCTOBER, 26);
@@ -112,7 +112,7 @@ public class JsonFileWriter implements FilePaths {
         cont.add(c1);
         cont.add(c2);
         JsonFileWriter contetWriter = new JsonFileWriter(contentDataBase);
-        contetWriter.writeAllContent(cont);//write cont
+        contetWriter.writeAllContent(cont);//write content
         //create friendRequest
         friendRequest r1 = new friendRequest("U1", "U2", "friend");
         r1.make(user1, user2);
@@ -120,11 +120,11 @@ public class JsonFileWriter implements FilePaths {
         ArrayList<friendRequest> req = new ArrayList<>();
         req.add(r1);
         JsonFileWriter requestWriter = new JsonFileWriter(requestsDataBase);
-        requestWriter.writeAllFriendRequests(req);
+        requestWriter.writeAllFriendRequests(req);//write requests
         
         JsonFileWriter userWriter = new JsonFileWriter(userDataBase);
-        userWriter.writeAllUsers(users);
+        userWriter.writeAllUsers(users);//write users
 
-    }
+    }*/
 
 }
