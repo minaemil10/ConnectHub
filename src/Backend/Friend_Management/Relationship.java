@@ -1,11 +1,13 @@
 package Backend.Friend_Management;
 
 public class Relationship {
-    private String userID;
+    private String senderID;
+    private String receiverID;
     private Relation relation;
 
-    public Relationship(String userID, Relation relation) {
-        this.userID = userID;
+    public Relationship(String senderID, Relation relation,String receiverID) {
+        this.senderID = senderID;
+        this.receiverID = receiverID;
         this.relation = relation;
     }
     public void setFriend() {
@@ -20,8 +22,16 @@ public class Relationship {
     public String getRelation() {
         return relation.getRelation();
     }
-
-    public String relationWithID() {
-        return userID;
+    public void setBlockAndSetReceiver() {
+        String temp=senderID;
+        relation.setBlock();
+        senderID=receiverID;
+        receiverID=temp;
+    }
+    public String getReceiverID() {
+        return receiverID;
+    }
+    public String getSenderID() {
+        return senderID;
     }
 }
