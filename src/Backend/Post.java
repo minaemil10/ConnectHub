@@ -11,6 +11,7 @@ package Backend;
 public class Post extends Content{
 
     public Post(String contentID, String authorID, String text) {//optional photo
+        /*null should be sent from the front end*/
         super(null, contentID, authorID, text);
     }
     
