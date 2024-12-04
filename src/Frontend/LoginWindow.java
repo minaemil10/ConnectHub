@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.User;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author carls
@@ -27,7 +31,7 @@ public class LoginWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jUserNameField = new javax.swing.JTextField();
+        jEmailField = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         Email = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
@@ -36,18 +40,6 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jUserNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jUserNameFieldActionPerformed(evt);
-            }
-        });
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
 
         Email.setEditable(false);
         Email.setBackground(new java.awt.Color(0, 153, 255));
@@ -97,7 +89,7 @@ public class LoginWindow extends javax.swing.JFrame {
                             .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jUserNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(jEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addComponent(jPasswordField1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(356, 356, 356)
@@ -112,7 +104,7 @@ public class LoginWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(154, 154, 154)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jUserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -130,21 +122,30 @@ public class LoginWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jUserNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jUserNameFieldActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
+         String email = jEmailField.getText().trim();
+         String password = new String(jPasswordField1.getPassword()).trim();
+        ArrayList<User> users = Appmanger.getUsers();
+        if(email.equals("") || password.equals("")){
+        JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        for(User u : users){
+            if(u.checkPassword(password) && u.getEmail().equals(email)){
+                JOptionPane.showMessageDialog(this, "login Successfully");
+                NewsfeedWindow newsfeed =  new NewsfeedWindow();
+                newsfeed.setVisible(true);
+                this.dispose();
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
         // TODO add your handling code here:
+        SignUpWindow signup = new SignUpWindow();
+        signup.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SignUpButtonActionPerformed
 
     /**
@@ -186,9 +187,9 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JTextField Email;
     private javax.swing.JButton LoginButton;
     private javax.swing.JButton SignUpButton;
+    private javax.swing.JTextField jEmailField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jUserNameField;
     private javax.swing.JTextField password;
     // End of variables declaration//GEN-END:variables
 }
