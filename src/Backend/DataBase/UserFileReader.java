@@ -20,11 +20,11 @@ public class UserFileReader extends JsonFileReader{
     @Override
     public ArrayList<User> readAll() {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        ArrayList<User> users = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>(); //create users array
         try (FileReader fileReader = new FileReader(getFilePath())) {
-            Type userListType = new TypeToken<ArrayList<User>>() {
+            Type userListType = new TypeToken<ArrayList<User>>() { //create typetoken to be used in reading
             }.getType();
-            users = gson.fromJson(fileReader, userListType);
+            users = gson.fromJson(fileReader, userListType);//read and make the required arraylist
         } catch (IOException e) {
             e.printStackTrace();
         }

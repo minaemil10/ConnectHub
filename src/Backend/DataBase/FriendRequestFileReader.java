@@ -20,12 +20,11 @@ public class FriendRequestFileReader extends JsonFileReader{
     @Override
     public ArrayList<friendRequest> readAll() {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        ArrayList<friendRequest> req = new ArrayList<>();
+        ArrayList<friendRequest> req = new ArrayList<>(); //arraylist creation
         try (FileReader fileReader = new FileReader(getFilePath())) {
-            Type reqListType = new TypeToken<ArrayList<friendRequest>>() {
+            Type reqListType = new TypeToken<ArrayList<friendRequest>>() { //create type token
             }.getType();
-            req = gson.fromJson(fileReader, reqListType);
-
+            req = gson.fromJson(fileReader, reqListType); //createArray from file
         } catch (IOException e) {
             e.printStackTrace();
         }
