@@ -4,6 +4,7 @@
  */
 package Backend.DataBase;
 
+import Backend.Friend_Management.friendRequest;
 import Backend.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,22 +40,24 @@ public class JsonFileReader implements FilePaths {
         return users;
     }
 
-    public ArrayList<User> readAllContent(){
+    public ArrayList<friendRequest> readAllRequests(){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        ArrayList<User> users = new ArrayList<>();
+        ArrayList<friendRequest> req = new ArrayList<>();
         try (FileReader fileReader = new FileReader(filePath)) {
-            Type userListType = new TypeToken<ArrayList<User>>() {
+            Type reqListType = new TypeToken<ArrayList<friendRequest>>() {
             }.getType();
-            users = gson.fromJson(fileReader, userListType);
-            System.out.println(users);
+            req = gson.fromJson(fileReader, reqListType);
+            System.out.println(req);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return users;
+        return req;
     }
 
     public static void main(String[] args) {
         JsonFileReader reader = new JsonFileReader(userDataBase);
         reader.readAllUsers();
+        JsonFileReader reader2 = new JsonFileReader(requestsDataBase);
+        reader2.readAllRequests();
     }
 }
