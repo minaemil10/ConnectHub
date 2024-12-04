@@ -58,7 +58,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="114" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="photoLabel" pref="102" max="32767" attributes="0"/>
+                  <Component id="photoLabel1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
@@ -90,6 +95,7 @@
                           <Component id="jPasswordField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="profilePhoto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="UploadProfilePhoto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="photoLabel" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -97,12 +103,13 @@
                           <Component id="username3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jConfirmPasswordField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jTextField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="photoLabel1" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jSignUpButton" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -274,6 +281,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSignUpButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="photoLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="no photo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="photoLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="no photo"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
