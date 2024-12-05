@@ -30,8 +30,9 @@ public class AppManager {
         if(temp == null){
             return false;
         } else{
-            Server.writeUsers();
+            
             Data.add(temp);
+            Server.writeUsers();
             return true;
 
         }
