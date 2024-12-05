@@ -11,8 +11,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserFileWriter extends JsonFileWriter<User> {
-    public UserFileWriter(String filePath) {
-        super(filePath);
+    public UserFileWriter() {
+        super(userDataBase);
     }
 
     @Override

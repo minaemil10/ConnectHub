@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class UserFileReader extends JsonFileReader{
 
-    public UserFileReader(String filePath) {
-        super(filePath);
+    public UserFileReader() {
+        super(userDataBase);
     }
 
     @Override

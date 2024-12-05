@@ -184,4 +184,5 @@ public class User implements DataBaseOBJ {
     public void addContent(String contentID){
         myPosts.add(contentID);
     }
+    public void removeContent(String contentID){myPosts.remove(contentID);}
 }

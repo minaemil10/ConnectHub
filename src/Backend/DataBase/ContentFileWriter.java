@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class ContentFileWriter extends JsonFileWriter<Content>{
 
-    public ContentFileWriter(String filePath) {
-        super(filePath);
+    public ContentFileWriter() {
+        super(contentDataBase);
     }
 
     @Override
