@@ -13,9 +13,9 @@ import java.util.ArrayList;
  * @author User
  */
 public class SignUp {
+    private static int counter;
     
-    
-    public User addUser (int counter ,String email, String password, String userName,LocalDate dateOfBirth,Boolean status, ArrayList <User> users ){
+    public User addUser (String email, String password, String userName,LocalDate dateOfBirth,Boolean status, ArrayList <User> users ){
         Validator v = new Validator();
         // Checking if the email is already signed
         for(User u : users){
@@ -31,5 +31,9 @@ public class SignUp {
            }
            else
                return null;
+    }
+    /*to set the id after reading file*/
+    public static void setCounter(int counter) {
+        SignUp.counter = counter;
     }
 }

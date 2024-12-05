@@ -27,7 +27,7 @@ public class User implements DataBaseOBJ {
     private String bio;
     private ArrayList<Relationship> friends;
     private ArrayList<String> myPosts;
-
+    /**/
     public User(String userId, String email, String userName, String password, LocalDate DateOfBirth) {
         this.userId = userId;
         this.email = email;
@@ -35,6 +35,7 @@ public class User implements DataBaseOBJ {
         this.setPassword(password);
         this.DateOfBirth = DateOfBirth;
     }
+
 
     public String getUserId() {
         return userId;

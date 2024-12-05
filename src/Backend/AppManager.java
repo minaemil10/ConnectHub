@@ -9,19 +9,22 @@ import java.util.ArrayList;
 
 public class AppManager {
     private ArrayList<User> Data;
-    private ArrayList<Content>contents;
+    private ArrayList<Post>posts;
+    private ArrayList<Story>stories;
     private User currentUser;
     private ProfileManger profileManger;
 
-    public AppManager(ArrayList<User> Data,ArrayList<Content>contents) {
+    public AppManager(ArrayList<User> Data,ArrayList<Post>posts,ArrayList<Story>stories) {
         currentUser=null;
         this.Data = Data;
-        this.contents=contents;
+        this.posts=posts;
+        this.stories=stories;
+        deleteStory();
     }
     /*accessing app*/
-    public void signUpUser(int userId , String email, String password, String userName, LocalDate regestrationTime, Boolean status, ArrayList <User> users ){
+    public void signUpUser(int userId , String email, String password, String userName, LocalDate registrationTime, Boolean status, ArrayList <User> users ){
         /*ntfahm fe mwdo3 el id*/
-        Data.add(new SignUp().addUser(userId,email,password,userName,regestrationTime,status,users));
+        Data.add(new SignUp().addUser(email,password,userName,registrationTime,status,users));
     }
     public void loginUser(String email, String Password){
         currentUser=new Login().accessUser(email,Password,Data);
@@ -75,45 +78,67 @@ public class AppManager {
     public boolean createPost(String photo, String text){
         Post post = new Post(photo,currentUser.getUserId(),text);
         currentUser.addContent(post.getContentID());
-        contents.add(post);
+        posts.add(post);
         return true;
     }
     public boolean createStory(String photo, String text){
         Story story = new Story(photo,currentUser.getUserId(),text);
         currentUser.addContent(story.getContentID());
-        contents.add(story);
+        stories.add(story);
         return true;
     }
-    public Content getContentWithID(String contentID){
-        for (int i = 0; i < contents.size(); i++) {
-            if(contents.get(i).getContentID().equalsIgnoreCase(contentID)){
-                return contents.get(i);
+    public Story getStoryWithID(String storyID){
+        deleteStory();
+        for (int i = 0; i < stories.size(); i++) {
+            if(stories.get(i).getContentID().equalsIgnoreCase(storyID)){
+                return stories.get(i);
+            }
+
+        }
+        return null;
+    }
+    public Content getPostWithID(String postID){
+        for (int i = 0; i < stories.size(); i++) {
+            if(stories.get(i).getContentID().equalsIgnoreCase(postID)){
+                return posts.get(i);
             }
 
         }
         return null;
     }
 
-    public ArrayList<Content> getContentWithAuthor(String authorID){
-        ArrayList<Content> authorContent=new ArrayList<>();
-        for (int i = 0; i < contents.size(); i++) {
-            if(contents.get(i).getAuthorID().equalsIgnoreCase(authorID)){
-                authorContent.add(contents.get(i));
-            }
 
+    public ArrayList<Story> getStoriesWithAuthor(String authorID){
+        deleteStory();
+        ArrayList<Story> authorContent=new ArrayList<>();
+        for (int i = 0; i < stories.size(); i++) {
+            if(stories.get(i).getAuthorID().equalsIgnoreCase(authorID)){
+                authorContent.add(stories.get(i));
+            }
+        }
+        return authorContent;
+    }
+    public ArrayList<Post> getPostsWithAuthor(String authorID){
+        ArrayList<Post> authorContent=new ArrayList<>();
+        for (int i = 0; i < posts.size(); i++) {
+            if(posts.get(i).getAuthorID().equalsIgnoreCase(authorID)){
+                authorContent.add(posts.get(i));
+            }
         }
         return authorContent;
     }
     public void deleteStory(){
         LocalDateTime currentTime = LocalDateTime.now();
-        for (int i = 0; i < contents.size(); i++) {
-            Content temp = contents.get(i);
+        for (int i = 0; i < stories.size(); i++) {
+            Content temp = stories.get(i);
             if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
                 currentUser.removeContent(temp.getContentID());
-                contents.remove(temp);
+                stories.remove(temp);
             }
         }
     }
+
+
     /*can the user modify the content??*/
 
 
