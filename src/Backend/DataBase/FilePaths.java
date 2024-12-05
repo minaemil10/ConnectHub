@@ -9,7 +9,7 @@ package Backend.DataBase;
  * @author Mnw Emile
  */
 public interface FilePaths {
-    String userDataBase = "src/Backend/DataBase/users.json";
-    String contentDataBase = "src/Backend/DataBase/content.json";
-    String requestsDataBase = "src/Backend/DataBase/friendRequests.json";
+    String userDataBase = "C:\\Users\\User\\Documents\\GitHub\\ConnectHub\\src\\Backend\\DataBase\\users.json";
+    String contentDataBase = "C:\\Users\\User\\Documents\\GitHub\\ConnectHub\\src\\Backend\\DataBase\\content.json";
+    String requestsDataBase = "C:\\Users\\User\\Documents\\GitHub\\ConnectHub\\src\\Backend\\DataBase\\friendRequests.json";
 }

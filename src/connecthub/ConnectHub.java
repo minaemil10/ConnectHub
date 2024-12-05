@@ -5,6 +5,7 @@
 package connecthub;
 
 import Frontend.LoginWindow;
+import Frontend.NewsfeedWindow;
 import Frontend.ProfileDetails;
 import Frontend.ProfileDetails;
 /**
@@ -19,7 +20,8 @@ public class ConnectHub {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new ProfileDetails().setVisible(true);
+               new LoginWindow().setVisible(true);
+              
             }
         });
     }    }

@@ -44,7 +44,7 @@ public class User implements DataBaseOBJ {
         received=new ArrayList<>();
         sent=new ArrayList<>();
     }
-
+    
 
     public String getUserId() {
         return userId;

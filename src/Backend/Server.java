@@ -17,7 +17,7 @@ public class Server {
         Data = loadUsers();
         posts =loadPost();
         stories=loadStory();
-        relationships=loadRelationShips();
+//        relationships=loadRelationShips();
     }
     public static Server getInstance() {
         return server; // Getter for singleton instance
@@ -39,7 +39,7 @@ public class Server {
     }
     private ArrayList<Story> loadStory(){
         ArrayList<Story> temp= new ContentFileReader(contentDataBase).readAllStories();
-        Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
+    //    Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
         return temp;
     }
 
@@ -50,12 +50,12 @@ public class Server {
     }
     /*Expected relations writer and reader*/
     /*m7tagen ntfahm fe mwdo3 el requests dhhhh*/
-    private ArrayList<Relationship> loadRelationShips(){
-        return new FriendRequestFileReader(requestsDataBase).readAll();
-
-    }
-    private void writeRelationShips(){
-        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
-    }
+//    private ArrayList<Relationship> loadRelationShips(){
+//        return new FriendRequestFileReader(requestsDataBase).readAll();
+//
+//    }
+//    private void writeRelationShips(){
+//        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
+//    }
 
 }

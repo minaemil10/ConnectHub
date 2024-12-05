@@ -20,12 +20,21 @@ public class AppManager {
         this.Data = Data;
         this.posts=posts;
         this.stories=stories;
-        deleteStory();
+       // deleteStory();
     }
     /*accessing app*/
-    public void signUpUser( String email, String password, String userName, LocalDate registrationTime, Boolean status, ArrayList <User> users ){
+    public boolean signUpUser( String email, String password, String userName, LocalDate registrationTime ){
         /*ntfahm fe mwdo3 el id*/
-        Data.add(new SignUp().addUser(email,password,userName,registrationTime,status,users));
+        User temp = new SignUp().addUser(email,password,userName,registrationTime, Data);
+        currentUser = temp;
+        if(temp == null){
+            return false;
+        }
+        else{
+            Data.add(temp);
+            return true;
+        }
+            
     }
     public boolean loginUser(String email, String Password){
         currentUser=new Login().accessUser(email,Password,Data);
@@ -90,7 +99,7 @@ public class AppManager {
         return true;
     }
     public Story getStoryWithID(String storyID){
-        deleteStory();
+       // deleteStory();
         for (int i = 0; i < stories.size(); i++) {
             if(stories.get(i).getContentID().equalsIgnoreCase(storyID)){
                 return stories.get(i);
@@ -110,16 +119,16 @@ public class AppManager {
     }
 
 
-    public ArrayList<Story> getStoriesWithAuthor(String authorID){
-        deleteStory();
-        ArrayList<Story> authorContent=new ArrayList<>();
-        for (int i = 0; i < stories.size(); i++) {
-            if(stories.get(i).getAuthorID().equalsIgnoreCase(authorID)){
-                authorContent.add(stories.get(i));
-            }
-        }
-        return authorContent;
-    }
+//    public ArrayList<Story> getStoriesWithAuthor(String authorID){
+//        deleteStory();
+//        ArrayList<Story> authorContent=new ArrayList<>();
+//        for (int i = 0; i < stories.size(); i++) {
+//            if(stories.get(i).getAuthorID().equalsIgnoreCase(authorID)){
+//                authorContent.add(stories.get(i));
+//            }
+//        }
+//        return authorContent;
+//    }
     public ArrayList<Post> getPostsWithAuthor(String authorID){
         ArrayList<Post> authorContent=new ArrayList<>();
         for (int i = 0; i < posts.size(); i++) {
@@ -129,16 +138,16 @@ public class AppManager {
         }
         return authorContent;
     }
-    public void deleteStory(){
-        LocalDateTime currentTime = LocalDateTime.now();
-        for (int i = 0; i < stories.size(); i++) {
-            Content temp = stories.get(i);
-            if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
-                currentUser.removeContent(temp.getContentID());
-                stories.remove(temp);
-            }
-        }
-    }
+//    public void deleteStory(){
+//        LocalDateTime currentTime = LocalDateTime.now();
+//        for (int i = 0; i < stories.size(); i++) {
+//            Content temp = stories.get(i);
+//            if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
+//                currentUser.removeContent(temp.getContentID());
+//                stories.remove(temp);
+//            }
+//        }
+//    }
     /*can the user modify the content??*/
     public ArrayList<Online> getOnline(){
         ArrayList<Online>onlinefriends=new ArrayList<>();
