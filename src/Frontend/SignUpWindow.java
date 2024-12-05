@@ -4,6 +4,18 @@
  */
 package Frontend;
 
+import java.awt.Image;
+import java.io.File;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import Backend.SignUp;
+import Backend.User;
+import java.util.ArrayList;
+
 /**
  *
  * @author carls
@@ -13,6 +25,9 @@ public class SignUpWindow extends javax.swing.JFrame {
     /**
      * Creates new form SignUpWindow
      */
+    private String profilePhotoPath = ""; 
+    private String coverPhotoPath = ""; 
+
     public SignUpWindow() {
         initComponents();
     }
@@ -41,6 +56,8 @@ public class SignUpWindow extends javax.swing.JFrame {
         UploadCoverPhoto1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jSignUpButton = new javax.swing.JButton();
+        photoLabel = new javax.swing.JLabel();
+        photoLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,50 +167,81 @@ public class SignUpWindow extends javax.swing.JFrame {
             }
         });
 
+        photoLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        photoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        photoLabel.setText("no photo");
+
+        photoLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        photoLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        photoLabel1.setText("no photo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(email)
-                    .addComponent(password)
-                    .addComponent(username3)
-                    .addComponent(username))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jUsernameField)
-                    .addComponent(jEmailField)
-                    .addComponent(jPasswordField)
-                    .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                .addGap(139, 139, 139)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(email)
+                            .addComponent(password)
+                            .addComponent(username3)
+                            .addComponent(username))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jUsernameField)
+                            .addComponent(jEmailField)
+                            .addComponent(jPasswordField)
+                            .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                        .addGap(139, 139, 139))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(photoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(photoLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(114, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(318, 318, 318)
-                .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(photoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 36, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,17 +255,14 @@ public class SignUpWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UploadProfilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UploadCoverPhoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27)
-                .addComponent(jSignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                            .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -241,6 +286,44 @@ public class SignUpWindow extends javax.swing.JFrame {
 
     private void UploadProfilePhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadProfilePhotoActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        int result = fileChooser.showOpenDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+             profilePhotoPath = selectedFile.getAbsolutePath();
+             if(profilePhotoPath.endsWith(".png")){
+            ImageIcon imageIcon = new ImageIcon(profilePhotoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                photoLabel.getWidth(), 
+                photoLabel.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            photoLabel.setIcon(new ImageIcon(image));
+            photoLabel.setText(""); 
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+             }
+             else{
+             JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+             }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    
     }//GEN-LAST:event_UploadProfilePhotoActionPerformed
 
     private void jCalendarPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jCalendarPanel1AncestorAdded
@@ -249,10 +332,86 @@ public class SignUpWindow extends javax.swing.JFrame {
 
     private void UploadCoverPhoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadCoverPhoto1ActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        // Show the file chooser dialog
+        int result = fileChooser.showOpenDialog(null);
+        
+        // Check if the user selected a file
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            coverPhotoPath = selectedFile.getAbsolutePath();
+            if(coverPhotoPath.endsWith(".png")){
+           ImageIcon imageIcon = new ImageIcon(coverPhotoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                photoLabel1.getWidth(), 
+                photoLabel1.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            photoLabel1.setIcon(new ImageIcon(image));
+            photoLabel1.setText("");
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+            }
+            else{
+              JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_UploadCoverPhoto1ActionPerformed
 
     private void jSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpButtonActionPerformed
         // TODO add your handling code here:
+       /*  ArrayList<User> users = AppManger.getUsers();
+         String email = jEmailField.getText().trim();
+         String userName = jUsernameField.getText().trim();
+         String password = new String(jPasswordField.getPassword()).trim();
+         String confirmPassword = new String(jConfirmPasswordField.getPassword()).trim();
+         LocalDate birthDate = LocalDate.ofInstant(jCalendarPanel1.getDate().toInstant(), ZoneId.systemDefault());
+         LocalDate today = LocalDate.now();
+         int age = Period.between(birthDate, today).getYears();
+    
+         if(email.isEmpty() || userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+             JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+         }
+         else if(!(password.equals(confirmPassword))){
+             JOptionPane.showMessageDialog(null, "passwords not identical", "Warning", JOptionPane.WARNING_MESSAGE);
+         }
+         else if(!(Validation.Validator.isEmail(email))){
+             JOptionPane.showMessageDialog(null, "enter correct email.", "Warning", JOptionPane.WARNING_MESSAGE);
+         }
+         else if (age < 12) {
+        JOptionPane.showMessageDialog(null, "You must be at least 12 years old to sign up.", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+         else{
+             SignUp signUp = new SignUp();
+             User user  = signUp.addUser(users.size() , email, password, userName, birthDate, false , users);
+             if(!coverPhotoPath.isEmpty()){
+             user.setCoverPhoto(coverPhotoPath);
+             coverPhotoPath = "";
+             }
+             if(!profilePhotoPath.isEmpty()){
+                 user.setProfilePhoto(profilePhotoPath);
+                 profilePhotoPath = "";
+             }
+             JOptionPane.showMessageDialog(this, "account created successfully");
+             LoginWindow login = new LoginWindow();
+             login.setVisible(true);
+             this.dispose();
+         }*/
     }//GEN-LAST:event_jSignUpButtonActionPerformed
 
     /**
@@ -303,6 +462,8 @@ public class SignUpWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jUsernameField;
     private javax.swing.JTextField password;
+    private javax.swing.JLabel photoLabel;
+    private javax.swing.JLabel photoLabel1;
     private javax.swing.JTextField profilePhoto;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username3;

@@ -26,6 +26,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -93,6 +94,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             }
         });
 
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,6 +153,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+
+
         );
 
         pack();
@@ -175,6 +179,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CreateStoryButtonActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -222,5 +227,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton profileMangmentButton;
+
     // End of variables declaration//GEN-END:variables
 }

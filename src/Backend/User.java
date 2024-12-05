@@ -6,6 +6,8 @@ package Backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import Backend.DataBase.DataBaseOBJ;
 import Backend.Friend_Management.Relationship;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author carls
  */
-public class User {
+public class User implements DataBaseOBJ {
     private String userId;
     private String email;
     private String userName;
@@ -145,5 +147,41 @@ public class User {
     }
     public void deleteRelation (Relationship relationship){
         friends.remove(relationship);
+    }
+    public boolean acceptFriendRequest(String senderID){
+        for (int i = 0; i < friends.size(); i++) {
+            if(friends.get(i).getSenderID().equalsIgnoreCase(senderID)){
+                friends.get(i).setFriend();
+                return true;
+            }
+
+        }
+        return false;
+    }
+    public boolean cancelFriendRequest(String senderID){
+        for (int i = 0; i < friends.size(); i++) {
+            if(friends.get(i).getSenderID().equalsIgnoreCase(senderID)){
+                friends.get(i).setCancel();
+                friends.remove(friends.get(i));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean blockFriend(String receiverID){
+        for (int i = 0; i < friends.size(); i++) {
+            if(friends.get(i).getReceiverID().equalsIgnoreCase(receiverID)){
+                friends.get(i).setBlock();
+                return true;
+            } else if (friends.get(i).getSenderID().equalsIgnoreCase(receiverID)) {
+                friends.get(i).setBlockAndSetReceiver();
+                return true;
+            }
+        }
+        return false;
+    }
+    public void addContent(String contentID){
+        myPosts.add(contentID);
     }
 }

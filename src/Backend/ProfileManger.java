@@ -16,28 +16,36 @@ public class ProfileManger {
     public ProfileManger(User user) {
         this.user = user;
     }
-    public void changeEmail (String email){
+    public boolean changeEmail (String email){
         boolean isVaildEmail = Validator.isEmail(email);
         if(isVaildEmail){
         user.setEmail(email);
+        return true;
         }
+        return false;
     }
-    public void changeUserName (String userName){
+    public boolean changeUserName (String userName){
         user.setUserName(userName);
+        return true;
     }
-    public void changePassword(String password){
+    public boolean changePassword(String password){
         boolean isValidPassword = Validator.isPassword(password);
         if(isValidPassword){
         user.setPassword(password);
+        return true;
         }
+        return false;
     }
-    public void changeProfilePhoto(String profilePhoto){
+    public boolean changeProfilePhoto(String profilePhoto){
         user.setProfilePhoto(profilePhoto);
+        return true;
     }
-    public void changeCoverPhoto(String CoverPhoto) {
+    public boolean changeCoverPhoto(String CoverPhoto) {
         user.setCoverPhoto(CoverPhoto);
+        return true;
     }
-    public void ChangeBio (String bio){
+    public boolean changeBio (String bio){
         user.setBio(bio);
+        return true;
     }
 }
