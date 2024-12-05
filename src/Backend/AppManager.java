@@ -65,24 +65,22 @@ public class AppManager {
         return currentUser.blockFriend(userID);
     }
     /*Profile Manager*/
-    public boolean changeEmail(String email){
-        return profileManger.changeEmail(email);
-
-    }
-    public boolean changeUsername(String username){
-        return profileManger.changeUserName(username);
-    }
+    
     public boolean changePassword(String password){
-        return profileManger.changePassword(password);
+         currentUser.setPassword(password);
+         return true;
     }
     public boolean changeProfilePhoto(String profilePhoto){
-        return profileManger.changeProfilePhoto(profilePhoto);
+         currentUser.setProfilePhoto(profilePhoto);
+         return true;
     }
     public boolean changeCoverPhoto(String coverPhoto){
-        return profileManger.changeCoverPhoto(coverPhoto);
+         currentUser.setCoverPhoto(coverPhoto);
+         return true;
     }
     public boolean changeBio(String bio){
-        return profileManger.changeBio(bio);
+        currentUser.setBio(bio);
+        return true;
     }
     /*content management*/
     /*posts manager*/
