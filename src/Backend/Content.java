@@ -7,6 +7,7 @@ package Backend;
 import Backend.DataBase.DataBaseOBJ;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Content implements DataBaseOBJ {
     private String contentID;
     private String authorID;
     private String text;
-    private LocalDate timePosted;
+    private LocalDateTime timePosted;
 
     public Content(String photo, String contentID, String authorID, String text) {
         //contructor used to take all values except time because it is the current time
@@ -26,7 +27,7 @@ public class Content implements DataBaseOBJ {
         this.contentID = contentID;
         this.authorID = authorID;
         this.text = text;
-        timePosted = LocalDate.now();
+        timePosted = LocalDateTime.now();
     }
     
     //getters for all attributed
@@ -46,7 +47,7 @@ public class Content implements DataBaseOBJ {
         return text;
     }
 
-    public LocalDate getTimePosted() {
+    public LocalDateTime getTimePosted() {
         return timePosted;
     }
     

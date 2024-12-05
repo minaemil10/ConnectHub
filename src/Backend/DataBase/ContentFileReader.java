@@ -14,8 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ContentFileReader extends JsonFileReader{
-    public ContentFileReader(String filePath) {
-        super(filePath);
+    public ContentFileReader() {
+        super(contentDataBase);
     }
 
     //Read all Content in the File despite r=the type

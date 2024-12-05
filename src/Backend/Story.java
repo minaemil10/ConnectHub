@@ -10,8 +10,13 @@ package Backend;
  */
 public class Story extends Content{
 
-    public Story(String photo, String contentID, String authorID, String text) {
-        super(photo, contentID, authorID, text);
+    private static int id;
+    public Story(String photo, String authorID, String text) {
+
+        super(photo, "S-"+id++, authorID, text);
     }
-    
+
+    public static void setId(int id) {
+        Story.id = id;
+    }
 }
