@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import static Backend.DataBase.FilePaths.*;
 
 public class Server {
-    private ArrayList<User> Data;
-    private ArrayList<Post>posts;
-    private ArrayList<Story>stories;
-    private ArrayList<Relationship>relationships;
+    private static ArrayList<User> Data;
+    private static ArrayList<Post>posts;
+    private static ArrayList<Story>stories;
+    private static ArrayList<Relationship>relationships;
     private static Server server=new Server();
     private Server() {
         Data = loadUsers();
@@ -30,7 +30,7 @@ public class Server {
     private ArrayList<User> loadUsers(){
         return new UserFileReader(userDataBase).readAll();
     }
-    private void writeUsers(){
+    public static void writeUsers(){
         new UserFileWriter(userDataBase).writeAll(Data);
     }
     /*Content database*/

@@ -29,10 +29,11 @@ public class AppManager {
         currentUser = temp;
         if(temp == null){
             return false;
-        }
-        else{
+        } else{
+            Server.writeUsers();
             Data.add(temp);
             return true;
+
         }
             
     }
@@ -43,6 +44,7 @@ public class AppManager {
     }
     public void LogoutUser(){
         boolean logout = new Logout().logout(currentUser);
+        Server.writeUsers();
     }
     /*friend requests*/
     public boolean sendFriendRequest(String receiver){
