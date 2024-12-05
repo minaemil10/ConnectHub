@@ -9,10 +9,14 @@ package Backend;
  * @author Mnw Emile
  */
 public class Post extends Content{
+    private static int id;
+    public Post(String photo, String authorID, String text) {//optional photo
 
-    public Post(String contentID, String authorID, String text) {//optional photo
         /*null should be sent from the front end*/
-        super(null, contentID, authorID, text);
+        super(photo, "P-"+id++, authorID, text);
     }
-    
+
+    public static void setId(int id) {
+        Post.id = id;
+    }
 }
