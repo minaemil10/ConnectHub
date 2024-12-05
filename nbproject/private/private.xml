@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/ProfileManger.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/ProfileDetails.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Story.java</file>
+            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Frontend/SignUpWindow.java</file>
+            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/AppManager.java</file>
+            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/User.java</file>
+            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/DataBase/users.json</file>
+            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/DataBase/friendRequests.json</file>
         </group>
     </open-files>
 </project-private>
