@@ -16,6 +16,7 @@ public class ProfileDetails extends javax.swing.JFrame {
     /**
      * Creates new form ProfileManagement
      */
+    
     public ProfileDetails() {
         initComponents();
         //making the bio text field not editable after pressing the button & editing it 
@@ -28,7 +29,9 @@ public class ProfileDetails extends javax.swing.JFrame {
         @Override
         public void focusLost(java.awt.event.FocusEvent e) {
             
-            bioText.setEditable(false); // Make it not editable when focus is lost
+                bioText.setEditable(false);
+                // put bio in the text field from appManager
+            
         }
     });
     }
@@ -59,6 +62,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         checkNewPass = new javax.swing.JPasswordField();
         confirmPassword_btn = new javax.swing.JButton();
         newPasword = new javax.swing.JPasswordField();
+        saveBio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,6 +177,14 @@ public class ProfileDetails extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        saveBio.setText("Save");
+        saveBio.setEnabled(false);
+        saveBio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,23 +201,23 @@ public class ProfileDetails extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editBio_btn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveBio))
+                            .addComponent(bioText))
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bioText, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(editBio_btn)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
+                                .addGap(104, 104, 104)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(currPass)
                                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
+                                .addGap(139, 139, 139)
                                 .addComponent(changePassword_btn)))
                         .addGap(48, 48, 48)
                         .addComponent(newPasswordPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,14 +248,19 @@ public class ProfileDetails extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(currPass))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bioText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(editBio_btn)
-                            .addComponent(changePassword_btn)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(bioText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addComponent(changePassword_btn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(saveBio)
+                                    .addComponent(editBio_btn)))))
                     .addComponent(newPasswordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
@@ -269,7 +286,9 @@ public class ProfileDetails extends javax.swing.JFrame {
     private void editBio_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBio_btnActionPerformed
         // TODO add your handling code here:
         bioText.setEditable(true);
-        bioText.requestFocus();
+        bioText.setFocusable(true);
+        saveBio.setEnabled(true);
+        
     }//GEN-LAST:event_editBio_btnActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -321,10 +340,19 @@ public class ProfileDetails extends javax.swing.JFrame {
     // Save the new password
     
     JOptionPane.showMessageDialog(this, "Password changed successfully!");
-
-    // Optionally reset the form or close it
-    dispose();
+    passwordField.setText(newPassword);
+    newPasword.setText("");
+    checkNewPass.setText("");
     }//GEN-LAST:event_confirmPassword_btnActionPerformed
+
+    private void saveBioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBioActionPerformed
+        // TODO add your handling code here:
+        //Save in user bio
+        
+        bioText.setFocusable(false);
+        saveBio.setEnabled(false);
+        JOptionPane.showMessageDialog(ProfileDetails.this, "Bio saved successfully!");
+    }//GEN-LAST:event_saveBioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,5 +408,6 @@ public class ProfileDetails extends javax.swing.JFrame {
     private javax.swing.JPasswordField newPasword;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel reEnterPass;
+    private javax.swing.JButton saveBio;
     // End of variables declaration//GEN-END:variables
 }
