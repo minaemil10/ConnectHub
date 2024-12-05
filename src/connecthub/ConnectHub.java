@@ -5,7 +5,8 @@
 package connecthub;
 
 import Frontend.LoginWindow;
-
+import Frontend.ProfileDetails;
+import Frontend.ProfileDetails;
 /**
  *
  * @author Mnw Emile
@@ -18,7 +19,7 @@ public class ConnectHub {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginWindow().setVisible(true);
+               new ProfileDetails().setVisible(true);
             }
         });
     }    }
