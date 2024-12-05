@@ -18,7 +18,7 @@ public class UserFileWriter extends JsonFileWriter<User> {
     @Override
     public void writeAll(ArrayList<User> users) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-        //check for rlations set to "cancel" and remove them
+        //check for relations set to "cancel" and remove them
         for (User user : users) {
             ArrayList<Relationship> relations = user.getFriends();
             if (relations != null) {

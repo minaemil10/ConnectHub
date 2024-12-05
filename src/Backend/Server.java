@@ -1,9 +1,7 @@
 package Backend;
 
-import Backend.DataBase.ContentFileReader;
-import Backend.DataBase.ContentFileWriter;
-import Backend.DataBase.UserFileReader;
-import Backend.DataBase.UserFileWriter;
+import Backend.DataBase.*;
+import Backend.Friend_Management.Relationship;
 
 import java.util.ArrayList;
 
@@ -11,11 +9,15 @@ import static Backend.DataBase.FilePaths.*;
 
 public class Server {
     private ArrayList<User> Data;
-    private ArrayList<Content>contents;
+    private ArrayList<Post>posts;
+    private ArrayList<Story>stories;
+    private ArrayList<Relationship>relationships;
     private static Server server=new Server();
     private Server() {
         Data = loadUsers();
-        contents =loadContent();
+        posts =loadPost();
+        stories=loadStory();
+        relationships=loadRelationShips();
     }
     public static Server getInstance() {
         return server; // Getter for singleton instance
@@ -23,7 +25,7 @@ public class Server {
     /*database management*/
     /*User Database*/
     public AppManager serve(){
-       return new AppManager(Data,contents);
+       return new AppManager(Data,posts,stories);
     }
     private ArrayList<User> loadUsers(){
         return new UserFileReader(userDataBase).readAll();
@@ -32,11 +34,28 @@ public class Server {
         new UserFileWriter(userDataBase).writeAll(Data);
     }
     /*Content database*/
-    private ArrayList<Content> loadContent(){
-        return new ContentFileReader(contentDataBase).readAll();
+    private ArrayList<Post> loadPost(){
+        return new ContentFileReader(contentDataBase).readAllPosts();
     }
+    private ArrayList<Story> loadStory(){
+        ArrayList<Story> temp= new ContentFileReader(contentDataBase).readAllStories();
+        Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
+        return temp;
+    }
+
     private void writeContent(){
+        ArrayList<Content> contents = new ArrayList<>(stories);
+        contents.addAll(posts);
         new ContentFileWriter(contentDataBase).writeAll(contents);
+    }
+    /*Expected relations writer and reader*/
+    /*m7tagen ntfahm fe mwdo3 el requests dhhhh*/
+    private ArrayList<Relationship> loadRelationShips(){
+        return new FriendRequestFileReader(requestsDataBase).readAll();
+
+    }
+    private void writeRelationShips(){
+        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
     }
 
 }
