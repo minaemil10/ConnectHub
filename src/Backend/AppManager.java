@@ -1,12 +1,11 @@
 package Backend;
 
 import Backend.Friend_Management.friendRequest;
-import Validation.Validator;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AppManager {
     private ArrayList<User> Data;
@@ -14,9 +13,10 @@ public class AppManager {
     private User currentUser;
     private ProfileManger profileManger;
 
-    public AppManager() {
+    public AppManager(ArrayList<User> Data,ArrayList<Content>contents) {
         currentUser=null;
-        Data = new ArrayList<>();
+        this.Data = Data;
+        this.contents=contents;
     }
     /*accessing app*/
     public void signUpUser(int userId , String email, String password, String userName, LocalDate regestrationTime, Boolean status, ArrayList <User> users ){
@@ -38,10 +38,8 @@ public class AppManager {
                 new friendRequest(currentUser.getUserId(), Data.get(i).getUserId()).make(currentUser,Data.get(i));
                 return true;
             }
-
         }
         return false;
-
     }
     public boolean acceptFriendRequest(String senderID){
         return currentUser.acceptFriendRequest(senderID);
@@ -95,6 +93,7 @@ public class AppManager {
         }
         return null;
     }
+
     public ArrayList<Content> getContentWithAuthor(String authorID){
         ArrayList<Content> authorContent=new ArrayList<>();
         for (int i = 0; i < contents.size(); i++) {
@@ -115,9 +114,7 @@ public class AppManager {
             }
         }
     }
-
-    /*database management*/
-
+    /*can the user modify the content??*/
 
 
 
