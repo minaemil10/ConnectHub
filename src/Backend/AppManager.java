@@ -6,6 +6,7 @@ import Backend.Friend_Management.friendRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AppManager {
     private ArrayList<User> Data;
@@ -22,13 +23,14 @@ public class AppManager {
         deleteStory();
     }
     /*accessing app*/
-    public void signUpUser(int userId , String email, String password, String userName, LocalDate registrationTime, Boolean status, ArrayList <User> users ){
+    public void signUpUser( String email, String password, String userName, LocalDate registrationTime, Boolean status, ArrayList <User> users ){
         /*ntfahm fe mwdo3 el id*/
         Data.add(new SignUp().addUser(email,password,userName,registrationTime,status,users));
     }
-    public void loginUser(String email, String Password){
+    public boolean loginUser(String email, String Password){
         currentUser=new Login().accessUser(email,Password,Data);
         profileManger =new ProfileManger(currentUser);
+        return currentUser != null;
     }
     public void LogoutUser(){
         boolean logout = new Logout().logout(currentUser);
@@ -137,10 +139,20 @@ public class AppManager {
             }
         }
     }
-
-
     /*can the user modify the content??*/
+    public ArrayList<Online> getOnline(){
+        ArrayList<Online>onlinefriends=new ArrayList<>();
+        for (int i = 0; i < currentUser.getFriends().size(); i++) {
+            for (int j = 0; j < Data.size(); j++) {
+                /*searching for the user using id*/
+                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
+                    onlinefriends.add(new Online(Data.get(j).getStatus(),Data.get(j).getUserName()));
 
+                }
+            }
+        }
+        return onlinefriends;
+    }
 
 
 
