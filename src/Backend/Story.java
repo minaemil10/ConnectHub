@@ -15,7 +15,9 @@ public class Story extends Content{
 
         super(photo, "S-"+id++, authorID, text);
     }
-
+    public Story(String photo, String contentID,String authorID, String text) {
+        super(photo, contentID, authorID, text);
+    }
     public static void setId(int id) {
         Story.id = id;
     }

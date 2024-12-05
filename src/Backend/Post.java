@@ -15,6 +15,11 @@ public class Post extends Content{
         /*null should be sent from the front end*/
         super(photo, "P-"+id++, authorID, text);
     }
+    public Post(String photo,String contentID, String authorID, String text) {//optional photo
+
+        /*null should be sent from the front end*/
+        super(photo, contentID, authorID, text);
+    }
 
     public static void setId(int id) {
         Post.id = id;

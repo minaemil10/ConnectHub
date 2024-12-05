@@ -7,6 +7,8 @@ import Backend.DataBase.UserFileWriter;
 
 import java.util.ArrayList;
 
+import static Backend.DataBase.FilePaths.*;
+
 public class Server {
     private ArrayList<User> Data;
     private ArrayList<Content>contents;
@@ -24,17 +26,17 @@ public class Server {
        return new AppManager(Data,contents);
     }
     private ArrayList<User> loadUsers(){
-        return new UserFileReader().readAll();
+        return new UserFileReader(userDataBase).readAll();
     }
     private void writeUsers(){
-        new UserFileWriter().writeAll(Data);
+        new UserFileWriter(userDataBase).writeAll(Data);
     }
     /*Content database*/
     private ArrayList<Content> loadContent(){
-        return new ContentFileReader().readAll();
+        return new ContentFileReader(contentDataBase).readAll();
     }
     private void writeContent(){
-        new ContentFileWriter().writeAll(contents);
+        new ContentFileWriter(contentDataBase).writeAll(contents);
     }
 
 }
