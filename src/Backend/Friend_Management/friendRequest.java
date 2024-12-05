@@ -14,9 +14,9 @@ private Relation status;
         this.status = new Relation();
     }
     public void make(User sender,User receiver){
-        Relationship relationship=new Relationship(senderID,status,receiverID);
-        sender.addRelation(relationship);
-        receiver.addRelation(relationship);
+        new Relationship(status,receiverID);
+        sender.sendRelation(new Relationship(status,receiverID));
+        receiver.receiveRelation(new Relationship(status,senderID));
     }
     public void accept(){
         status.setFriend();
