@@ -34,13 +34,11 @@
     ]
   },
   {
-    "userId": "U1",
+    "userId": "U3",
     "email": "rober@gmail.com",
     "userName": "rober",
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "DateOfBirth": "05,12,2003",
-    "status": false,
-    "bio": "biooooooooooooo",
+    "DateOfBirth": "06,12,2012",
     "friends": [],
     "Blocked": [],
     "received": [],
