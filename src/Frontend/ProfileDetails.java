@@ -5,23 +5,39 @@
 package Frontend;
 
 import Backend.AppManager;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
+
 public class ProfileDetails extends javax.swing.JFrame {
 
     /**
      * Creates new form ProfileManagement
      */
+    private String profilePhotoPath = ""; 
+    private String coverPhotoPath = ""; 
     private AppManager a;
     public ProfileDetails(AppManager a) {
         initComponents();
         this.a = a;
-        //making the bio text field not editable after pressing the button & editing it 
+        //making the bio text field not editable after pressing the button & editing it
+        ImageIcon imageIcon = new ImageIcon(profilePhotoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                profilePhoto.getWidth(), 
+                profilePhoto.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            profilePhoto.setIcon(new ImageIcon(image));
+            profilePhoto.setText(""); 
+            
         bioText.addFocusListener(new java.awt.event.FocusListener() {
         @Override
         public void focusGained(java.awt.event.FocusEvent e) {
@@ -273,14 +289,90 @@ public class ProfileDetails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String profilePhoto = null;
-        a.changeProfilePhoto(profilePhoto);
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        int result = fileChooser.showOpenDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+             profilePhotoPath = selectedFile.getAbsolutePath();
+             if(profilePhotoPath.endsWith(".png")){
+            ImageIcon imageIcon = new ImageIcon(profilePhotoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                profilePhoto.getWidth(), 
+                profilePhoto.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            profilePhoto.setIcon(new ImageIcon(image));
+            profilePhoto.setText(""); 
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+             }
+             else{
+             JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+             }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        a.changeProfilePhoto(profilePhotoPath);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String coverPhoto =null;
-        a.changeCoverPhoto(coverPhoto);
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        // Show the file chooser dialog
+        int result = fileChooser.showOpenDialog(null);
+        
+        // Check if the user selected a file
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            coverPhotoPath = selectedFile.getAbsolutePath();
+            if(coverPhotoPath.endsWith(".png")){
+           ImageIcon imageIcon = new ImageIcon(coverPhotoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                coverPhoto.getWidth(), 
+                coverPhoto.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            coverPhoto.setIcon(new ImageIcon(image));
+            coverPhoto.setText("");
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+            }
+            else{
+              JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+       
+        a.changeCoverPhoto(coverPhotoPath);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void bioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bioTextActionPerformed

@@ -189,6 +189,9 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Confirm Password"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="username3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="birthday">
       <Properties>

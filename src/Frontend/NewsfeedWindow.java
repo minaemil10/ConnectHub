@@ -272,7 +272,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private void CreatePostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePostButtonActionPerformed
         // TODO add your handling code here:
         //String text = "Connect app";
-        //Post post = new Post(text);
+        //Post post = new PostImage(text);
         //postPanel.add(post);
 //        JFrame frame = new JFrame("Custom Dialog Example");
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -287,12 +287,19 @@ public class NewsfeedWindow extends javax.swing.JFrame {
        // openDialogButton.addActionListener(e -> {
             // Open the custom dialog
             Result result = showCustomDialog();
-            if (result != null) {
-                Post post = new Post(result.userText, result.imagePath);
-                postPanel.add(post);
-            } else {
-                    return;
+            if(result.userText.equals("")){
+                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
             }
+            else if(!result.imagePath.equals("No file selected")){
+                PostImage post = new PostImage(result.userText, result.imagePath);
+                postPanel.add(post);
+            }
+            else{
+                PostText postText = new PostText(result.userText);
+                postPanel.add(postText);
+            }
+           // System.out.println(result.imagePath);
+           
 //        });
       //  postPanel.setBackground(Color.BLUE);
         postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
@@ -304,11 +311,16 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
         // TODO add your handling code here:
         Result result = showCustomDialog();
-            if (result != null) {
-                Story story = new Story(result.userText);
-                storyPanel.add(story);
-            } else {
-                    return;
+            if(result.userText.equals("")){
+                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else if(!result.imagePath.equals("No file selected")){
+                StoryImage storyImage = new StoryImage(result.userText, result.imagePath);
+                storyPanel.add(storyImage);
+            }
+            else{
+                PostText postText = new PostText(result.userText);
+                storyPanel.add(postText);
             }
         storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
         storyPanel.revalidate();

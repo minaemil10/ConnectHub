@@ -86,6 +86,11 @@ public class SignUpWindow extends javax.swing.JFrame {
         username3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         username3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username3.setText("Confirm Password");
+        username3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username3ActionPerformed(evt);
+            }
+        });
 
         birthday.setEditable(false);
         birthday.setBackground(new java.awt.Color(0, 153, 255));
@@ -442,6 +447,10 @@ public class SignUpWindow extends javax.swing.JFrame {
              this.dispose();
          }*/
     }//GEN-LAST:event_jSignUpButtonActionPerformed
+
+    private void username3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username3ActionPerformed
 
     /**
      * @param args the command line arguments

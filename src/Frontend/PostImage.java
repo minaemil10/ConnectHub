@@ -4,26 +4,33 @@
  */
 package Frontend;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
 
 /**
  *
  * @author User
  */
-public class Post extends javax.swing.JPanel {
+public class PostImage extends javax.swing.JPanel {
 
     /**
      * Creates new form Post
      */
-    public Post(String text, String photoPath) {
+    public PostImage(String text, String photoPath) {
         
         initComponents();
+        
+        jTextField1.setForeground(Color.BLUE);
+
         textArea.setText(text);
         ImageIcon imageIcon = new ImageIcon(photoPath);
             Image image = imageIcon.getImage().getScaledInstance(
-                postPhoto.getWidth(), 
-                postPhoto.getHeight(), 
+                220, 
+                305, 
                 Image.SCALE_SMOOTH
             );
             postPhoto.setIcon(new ImageIcon(image));
@@ -44,6 +51,8 @@ public class Post extends javax.swing.JPanel {
         textArea = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
         jTextField1 = new javax.swing.JTextField();
+
+        setPreferredSize(new java.awt.Dimension(330, 450));
 
         postPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
