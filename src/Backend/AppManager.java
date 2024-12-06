@@ -98,6 +98,9 @@ public class AppManager {
     public String getBio(){
         return currentUser.getBio();
     }
+    public boolean checkPassword(String password){
+        return currentUser.checkPassword(password);
+    }
     /*content management*/
     /*posts manager*/
     public boolean createPost(String photo, String text){
