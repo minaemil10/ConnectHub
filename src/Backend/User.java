@@ -25,8 +25,8 @@ public class User implements DataBaseOBJ {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
-
     private ArrayList<String> myPosts;
+    private ArrayList<String> myStories;
     private ArrayList<Relationship> friends;
     private ArrayList<Relationship> Blocked;
     private ArrayList<Relationship> received;
@@ -43,6 +43,8 @@ public class User implements DataBaseOBJ {
         Blocked=new ArrayList<>();
         received=new ArrayList<>();
         sent=new ArrayList<>();
+        myPosts=new ArrayList<>();
+        myStories=new ArrayList<>();
     }
     
 
@@ -173,8 +175,15 @@ public class User implements DataBaseOBJ {
         }
         return false;
     }
-    public void addContent(String contentID){
-        myPosts.add(contentID);
+    public void addPost(String contentID){
+        myPosts.addFirst(contentID);
     }
+    public void addStory(String contentID){
+        myStories.addFirst(contentID);
+    }
+    public ArrayList<String> getMyStories() {
+        return myStories;
+    }
+
     public void removeContent(String contentID){myPosts.remove(contentID);}
 }

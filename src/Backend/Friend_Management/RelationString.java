@@ -12,12 +12,7 @@ public class RelationString {
         this.ID=ID;
 
     }
-    public RelationString(String username,String ID) {
-        this.username = username;
-        this.relation = relation;
-        this.ID=null;
 
-    }
     public String getUsernameString() {
         return username;
     }

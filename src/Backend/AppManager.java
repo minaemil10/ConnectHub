@@ -53,7 +53,7 @@ public class AppManager {
     }
     /*friend requests*/
     public boolean sendFriendRequest(String receiver){
-        /*need to handle if the user is already in the array list*/
+        /*need to handle if the user is already in the friends*/
         for (int i = 0; i < Data.size(); i++) {
             if(Data.get(i).getUserId().equalsIgnoreCase(receiver)){
                 new friendRequest(currentUser.getUserId(), Data.get(i).getUserId()).make(currentUser,Data.get(i));
@@ -102,13 +102,13 @@ public class AppManager {
     /*posts manager*/
     public boolean createPost(String photo, String text){
         Post post = new Post(photo,currentUser.getUserId(),text);
-        currentUser.addContent(post.getContentID());
+        currentUser.addPost(post.getContentID());
         posts.add(post);
         return true;
     }
     public boolean createStory(String photo, String text){
         Story story = new Story(photo,currentUser.getUserId(),text);
-        currentUser.addContent(story.getContentID());
+        currentUser.addStory(story.getContentID());
         stories.add(story);
         return true;
     }
@@ -131,18 +131,6 @@ public class AppManager {
         }
         return null;
     }
-
-
-//    public ArrayList<Story> getStoriesWithAuthor(String authorID){
-//        deleteStory();
-//        ArrayList<Story> authorContent=new ArrayList<>();
-//        for (int i = 0; i < stories.size(); i++) {
-//            if(stories.get(i).getAuthorID().equalsIgnoreCase(authorID)){
-//                authorContent.add(stories.get(i));
-//            }
-//        }
-//        return authorContent;
-//    }
     public ArrayList<Post> getPostsWithAuthor(String authorID){
         ArrayList<Post> authorContent=new ArrayList<>();
         for (int i = 0; i < posts.size(); i++) {
@@ -156,7 +144,7 @@ public class AppManager {
         LocalDateTime currentTime = LocalDateTime.now();
         for (int i = 0; i < stories.size(); i++) {
             Content temp = stories.get(i);
-            if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
+            if (currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
                 currentUser.removeContent(temp.getContentID());
                 stories.remove(temp);
             }
@@ -184,7 +172,7 @@ public class AppManager {
             for (int j = 0; j < Data.size(); j++) {
                 /*searching for the user using id*/
                 if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
-                    relationStrings.add(new RelationString(currentUser.getFriends().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                    relationStrings.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getProfilePhoto(),Data.get(j).getUserId()));
 
                 }
             }
@@ -197,19 +185,7 @@ public class AppManager {
             for (int j = 0; j < Data.size(); j++) {
                 /*searching for the user using id*/
                 if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getReceived().get(i).getrelationWith())){
-                    relationStrings.add(new RelationString(currentUser.getReceived().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
-                }
-            }
-        }
-        return relationStrings;
-    }
-    public ArrayList<RelationString> SentRequest(){
-        ArrayList<RelationString> relationStrings=new ArrayList<>();
-        for (int i = 0; i < currentUser.getSent().size(); i++) {
-            for (int j = 0; j < Data.size(); j++) {
-                /*searching for the user using id*/
-                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getSent().get(i).getrelationWith())){
-                    relationStrings.add(new RelationString(currentUser.getSent().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                    relationStrings.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getProfilePhoto(),Data.get(j).getUserId()));
                 }
             }
         }
@@ -221,7 +197,7 @@ public class AppManager {
             for (int j = 0; j < Data.size(); j++) {
                 /*searching for the user using id*/
                 if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getBlocked().get(i).getrelationWith())){
-                    relationStrings.add(new RelationString(currentUser.getSent().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                    relationStrings.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getProfilePhoto(),Data.get(j).getUserId()));
                 }
             }
         }
@@ -232,7 +208,6 @@ public class AppManager {
         ArrayList<PostString> posts=new ArrayList<>();
         for (int i = 0; i < currentUser.getFriends().size(); i++) {
             for (int j = 0; j < this.posts.size(); j++) {
-
                 if(this.posts.get(j).getAuthorID().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
                     /*searching for the user using id*/
                     for (int k = 0; k < Data.size(); k++) {
@@ -240,14 +215,37 @@ public class AppManager {
                             posts.add(new PostString(Data.get(k).getUserName(),this.posts.get(j).getText(),this.posts.get(j).getPhoto(),this.posts.get(j).getTimePosted().toString()) );
                         }
                     }
-
-
                 }
             }
         }
        return posts;
     }
+    public ArrayList<PostString> getMyPosts(){
+        ArrayList<PostString> posts=new ArrayList<>();
+        for (int i = 0; i <currentUser.getMyPosts().size(); i++) {
+            for (int j = 0; j < this.posts.size(); j++) {
+                if(currentUser.getMyPosts().get(i).equalsIgnoreCase(this.posts.get(j).getContentID())){
+                    posts.add(new PostString(currentUser.getUserName(),this.posts.get(j).getText(),this.posts.get(j).getPhoto(),this.posts.get(j).getTimePosted().toString()));
+                }
+
+            }
+        }
+        return posts;
+    }
+    public ArrayList<PostString> getMyStories(){
+        ArrayList<PostString> stories=new ArrayList<>();
+        for (int i = 0; i <currentUser.getMyStories().size(); i++) {
+            for (int j = 0; j < this.stories.size(); j++) {
+                if(currentUser.getMyStories().get(i).equalsIgnoreCase(this.stories.get(j).getContentID())){
+                    stories.add(new PostString(currentUser.getUserName(),this.stories.get(j).getText(),this.stories.get(j).getPhoto(),this.stories.get(j).getTimePosted().toString()));
+                }
+
+            }
+        }
+        return stories;
+    }
     public ArrayList<PostString> getStories(){
+        deleteStory();
         ArrayList<PostString> stories=new ArrayList<>();
         for (int i = 0; i < currentUser.getFriends().size(); i++) {
             for (int j = 0; j < this.stories.size(); j++) {
@@ -267,8 +265,6 @@ public class AppManager {
         }
         return stories;
     }
-
-
     public ArrayList<RelationString>friendSuggest(){
         ArrayList<RelationString> suggestion=new ArrayList<>();
         ArrayList<Relationship>temp=new ArrayList<>();
@@ -276,21 +272,11 @@ public class AppManager {
         for (int i = 0; i < temp.size(); i++) {
             for (int j = 0; j < Data.size() ; j++) {
                 if(!(temp.get(i).getrelationWith().equalsIgnoreCase(Data.get(j).getUserId()))){
-                    suggestion.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getUserId()));
+                    suggestion.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getProfilePhoto(),Data.get(j).getUserId()));
                 }
             }
         }
         return suggestion;
-
-
-
     }
-
-
-
-
-
-
-
 
 }
