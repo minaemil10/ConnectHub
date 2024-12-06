@@ -5,10 +5,12 @@
 package Frontend;
 
 import Backend.AppManager;
+import Backend.Friend_Management.PostString;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -245,20 +247,32 @@ public class MyPosts_Stories extends javax.swing.JPanel {
 
     private void CreatePostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePostButtonActionPerformed
         // TODO add your handling code here:
-                    Result result = showCustomDialog();
+            Result result = showCustomDialog();
+            
             if(result.userText.equals("")){
                 JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(!result.imagePath.equals("No file selected")){
-//                PostImage post = new PostImage(result.userText, result.imagePath);
-//                postPanel.add(post);
+            else {
+                a.createPost(result.imagePath, result.userText);
+               
             }
-            else{
-//                PostText postText = new PostText(result.userText);
-//                postPanel.add(postText);
-            }
+
            // System.out.println(result.imagePath);
-           
+            ArrayList <PostString> posts =  a.getMyPosts();
+            for(PostString p : posts){
+                String date = p.getDate();
+                String name = p.getAuthor();
+                String text = p.getText();
+                String path = p.getPhoto();
+                if(!path.equals("No file selected")){
+                PostImage post = new PostImage(text, path, name, date);
+                postPanel.add(post);
+                }
+                else{
+                PostText postText = new PostText(text, name, date);
+                postPanel.add(postText);
+            }
+            }
 //        });
       //  postPanel.setBackground(Color.BLUE);
         postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));

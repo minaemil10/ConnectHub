@@ -10,6 +10,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -492,11 +493,14 @@ public class ProfileDetails extends javax.swing.JFrame {
 
     private void user_post_storyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_post_storyActionPerformed
         // TODO add your handling code here:
-        MyPosts_Stories myPosts_Stories = new MyPosts_Stories(a);
-        myPosts_Stories.setVisible(true);
+         JFrame frame = new JFrame("My Posts and Stories");
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
+    frame.setSize(800, 600); // Set the frame size
+    frame.add(new MyPosts_Stories(a)); // Add your panel
+    frame.setVisible(true); // Make the frame visible
         //new window for displaying user's post and stories
     }//GEN-LAST:event_user_post_storyActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
