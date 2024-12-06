@@ -275,15 +275,17 @@ public class AppManager {
         
         temp.addAll(currentUser.getFriends());temp.addAll(currentUser.getBlocked());temp.addAll(currentUser.getReceived());
         if(temp.isEmpty()){
+           
             for(int i=0;i<Data.size();i++){
-             suggestion.add(new RelationString(Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getUserId()));   
+                if(!currentUser.getUserId().equalsIgnoreCase(Data.get(i).getUserId())){
+                suggestion.add(new RelationString(Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getUserId()));}   
             }
         }else{
         for (int i = 0; i < temp.size(); i++) {
             
             for (int j = 0; j < Data.size() ; j++) {
                 
-                if(!(temp.get(i).getrelationWith().equalsIgnoreCase(Data.get(j).getUserId()))){
+                if(!currentUser.getUserId().equalsIgnoreCase(Data.get(j).getUserId())&&!(temp.get(i).getrelationWith().equalsIgnoreCase(Data.get(j).getUserId()))){
                     suggestion.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getProfilePhoto(),Data.get(j).getUserId()));
                 }
             }
