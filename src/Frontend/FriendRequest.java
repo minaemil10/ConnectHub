@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+
 /**
  *
  * @author User
@@ -13,8 +15,13 @@ public class FriendRequest extends javax.swing.JPanel {
     /**
      * Creates new form FriendRequest
      */
-    public FriendRequest() {
+    private AppManager a;
+    private String id;
+    private String name;
+    private String photo;
+    public FriendRequest(AppManager a, String id,String name,String photo) {
         initComponents();
+        this.a = a;
     }
 
     /**
@@ -27,8 +34,8 @@ public class FriendRequest extends javax.swing.JPanel {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
+        accept = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
@@ -40,14 +47,19 @@ public class FriendRequest extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Remove");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        remove.setText("decline");
+        remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                removeActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Accept");
+        accept.setText("Accept");
+        accept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
 
@@ -65,9 +77,9 @@ public class FriendRequest extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(accept)
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton1)
+                                .addComponent(remove)
                                 .addGap(21, 21, 21))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1)
@@ -85,8 +97,8 @@ public class FriendRequest extends javax.swing.JPanel {
                     .addComponent(jTextField1))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(accept)
+                    .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -97,16 +109,22 @@ public class FriendRequest extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        a.cancelFriendRequest(id);
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptActionPerformed
+        // TODO add your handling code here:
+        a.acceptFriendRequest(id);
+    }//GEN-LAST:event_acceptActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton accept;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton remove;
     // End of variables declaration//GEN-END:variables
 }
