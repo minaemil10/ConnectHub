@@ -17,6 +17,18 @@ public class Server {
         Data = loadUsers();
         posts =loadPost();
         stories=loadStory();
+        if(Data==null){
+            Data=new ArrayList<>();
+        }
+        if(posts==null){
+            posts=new ArrayList<>();
+
+        }
+
+        if(stories==null){
+            stories=new ArrayList<>();
+        }
+
 //        relationships=loadRelationShips();
     }
     public static Server getInstance() {
@@ -51,7 +63,7 @@ public class Server {
         return temp;
     }
 
-    private void writeContent(){
+    public static void writeContent(){
         ArrayList<Content> contents = new ArrayList<>(stories);
         contents.addAll(posts);
         new ContentFileWriter(contentDataBase).writeAll(contents);

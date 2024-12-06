@@ -5,23 +5,51 @@
 package Frontend;
 
 import Backend.AppManager;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
+// m7tagen nzbt lma yt2fl wlma n8yr el profile manager
+//check current password
 public class ProfileDetails extends javax.swing.JFrame {
 
     /**
      * Creates new form ProfileManagement
      */
+    private String profilePath = ""; 
+    private String coverPath = ""; 
     private AppManager a;
     public ProfileDetails(AppManager a) {
         initComponents();
         this.a = a;
-        //making the bio text field not editable after pressing the button & editing it 
+        //making the bio text field not editable after pressing the button & editing it
+        String profilePath = a.getProfilePhoto();
+        ImageIcon imageIcon = new ImageIcon(profilePath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                170, 
+                170, 
+                Image.SCALE_SMOOTH
+            );
+            profilePhoto.setIcon(new ImageIcon(image));
+            profilePhoto.setText(""); 
+        String coverPath = a.getCoverPhoto();
+        ImageIcon imageIconC = new ImageIcon(coverPath);
+        Image imageC = imageIconC.getImage().getScaledInstance(
+                460, 
+                220, 
+                Image.SCALE_SMOOTH
+            );
+            coverPhoto.setIcon(new ImageIcon(imageC));
+            coverPhoto.setText(""); 
+            
         bioText.addFocusListener(new java.awt.event.FocusListener() {
         @Override
         public void focusGained(java.awt.event.FocusEvent e) {
@@ -36,7 +64,8 @@ public class ProfileDetails extends javax.swing.JFrame {
             
         }
     });
-        
+       
+      bioText.setText(a.getBio());
     }
 
     /**
@@ -66,8 +95,9 @@ public class ProfileDetails extends javax.swing.JFrame {
         confirmPassword_btn = new javax.swing.JButton();
         newPasword = new javax.swing.JPasswordField();
         saveBio = new javax.swing.JButton();
+        user_post_story = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         profilePhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -189,6 +219,13 @@ public class ProfileDetails extends javax.swing.JFrame {
             }
         });
 
+        user_post_story.setText("Show my posts and stories");
+        user_post_story.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_post_storyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,22 +265,26 @@ public class ProfileDetails extends javax.swing.JFrame {
                         .addGap(118, 118, 118)))
                 .addContainerGap())
             .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(378, 378, 378)
+                .addComponent(user_post_story)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coverPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jButton1))
-                            .addComponent(coverPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jButton2)))
+                                .addComponent(jButton1)))))
                 .addGap(25, 25, 25)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -265,7 +306,9 @@ public class ProfileDetails extends javax.swing.JFrame {
                                     .addComponent(editBio_btn)
                                     .addComponent(changePassword_btn)))))
                     .addComponent(newPasswordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(user_post_story)
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -273,14 +316,90 @@ public class ProfileDetails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String profilePhoto = null;
-        a.changeProfilePhoto(profilePhoto);
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        int result = fileChooser.showOpenDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+             profilePath = selectedFile.getAbsolutePath();
+             if(profilePath.endsWith(".png")){
+            ImageIcon imageIcon = new ImageIcon(profilePath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                profilePhoto.getWidth(), 
+                profilePhoto.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            profilePhoto.setIcon(new ImageIcon(image));
+            profilePhoto.setText(""); 
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+             }
+             else{
+             JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+             }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        a.changeProfilePhoto(profilePath);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String coverPhoto =null;
-        a.changeCoverPhoto(coverPhoto);
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        // Show the file chooser dialog
+        int result = fileChooser.showOpenDialog(null);
+        
+        // Check if the user selected a file
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            coverPath = selectedFile.getAbsolutePath();
+            if(coverPath.endsWith(".png")){
+           ImageIcon imageIcon = new ImageIcon(coverPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                460, 
+                220, 
+                Image.SCALE_SMOOTH
+            );
+            coverPhoto.setIcon(new ImageIcon(image));
+            coverPhoto.setText("");
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+            }
+            else{
+              JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+       
+        a.changeCoverPhoto(coverPath);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void bioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bioTextActionPerformed
@@ -309,14 +428,20 @@ public class ProfileDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
         //We need to check if the password is true or not
         //If Password is true
-        newPass.setEnabled(true);
-        reEnterPass.setEnabled(true);
-        newPasword.setEnabled(true);
-        checkNewPass.setEnabled(true);
-        confirmPassword_btn.setEnabled(true);
-        currPass.setEnabled(false);
-        passwordField.setEnabled(false);
-        changePassword_btn.setEnabled(false);
+        
+        if(a.checkPassword(passwordField.getText())){
+            newPass.setEnabled(true);
+            reEnterPass.setEnabled(true);
+            newPasword.setEnabled(true);
+            checkNewPass.setEnabled(true);
+            confirmPassword_btn.setEnabled(true);
+            currPass.setEnabled(false);
+            passwordField.setEnabled(false);
+            changePassword_btn.setEnabled(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Wrong Password", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
         
         
     }//GEN-LAST:event_changePassword_btnActionPerformed
@@ -366,6 +491,16 @@ public class ProfileDetails extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(ProfileDetails.this, "Bio saved successfully!");
     }//GEN-LAST:event_saveBioActionPerformed
 
+    private void user_post_storyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_post_storyActionPerformed
+        // TODO add your handling code here:
+         JFrame frame = new JFrame("My Posts and Stories");
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
+    frame.setSize(800, 600); // Set the frame size
+    frame.add(new MyPosts_Stories(a)); // Add your panel
+    frame.setVisible(true); // Make the frame visible
+        //new window for displaying user's post and stories
+    }//GEN-LAST:event_user_post_storyActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -421,5 +556,6 @@ public class ProfileDetails extends javax.swing.JFrame {
     private javax.swing.JLabel profilePhoto;
     private javax.swing.JLabel reEnterPass;
     private javax.swing.JButton saveBio;
+    private javax.swing.JButton user_post_story;
     // End of variables declaration//GEN-END:variables
 }

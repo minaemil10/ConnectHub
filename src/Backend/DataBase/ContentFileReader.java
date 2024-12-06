@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ContentFileReader extends JsonFileReader{
@@ -21,7 +22,7 @@ public class ContentFileReader extends JsonFileReader{
     //Read all Content in the File despite r=the type
     @Override
     public ArrayList<Content> readAll(){
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         ArrayList<Content> Content = new ArrayList<>(); //arrayList creation
         try (FileReader fileReader = new FileReader(getFilePath())) {
             Type contentListType = new TypeToken<ArrayList<Content>>() { //create Type token

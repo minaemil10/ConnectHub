@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ContentFileWriter extends JsonFileWriter<Content>{
@@ -17,7 +18,7 @@ public class ContentFileWriter extends JsonFileWriter<Content>{
 
     @Override
     public void writeAll(ArrayList<Content> data) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         //write content to file
         String json = gson.toJson(data);
         try (FileWriter fileWriter = new FileWriter(getFilePath(), false)) {

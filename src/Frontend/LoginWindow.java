@@ -52,12 +52,14 @@ public class LoginWindow extends javax.swing.JFrame {
         Email.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Email.setText("Email");
+        Email.setFocusable(false);
 
         password.setEditable(false);
         password.setBackground(new java.awt.Color(0, 153, 255));
         password.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("Password");
+        password.setFocusable(false);
 
         LoginButton.setBackground(new java.awt.Color(0, 153, 255));
         LoginButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

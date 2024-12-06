@@ -68,30 +68,40 @@ public class SignUpWindow extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username.setText("Username");
+        username.setFocusable(false);
 
         email.setEditable(false);
         email.setBackground(new java.awt.Color(0, 153, 255));
         email.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         email.setText("Email");
+        email.setFocusable(false);
 
         password.setEditable(false);
         password.setBackground(new java.awt.Color(0, 153, 255));
         password.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("Password");
+        password.setFocusable(false);
 
         username3.setEditable(false);
         username3.setBackground(new java.awt.Color(0, 153, 255));
         username3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         username3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username3.setText("Confirm Password");
+        username3.setFocusable(false);
+        username3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username3ActionPerformed(evt);
+            }
+        });
 
         birthday.setEditable(false);
         birthday.setBackground(new java.awt.Color(0, 153, 255));
         birthday.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         birthday.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         birthday.setText("Birthday");
+        birthday.setFocusable(false);
 
         jUsernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +142,7 @@ public class SignUpWindow extends javax.swing.JFrame {
         profilePhoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         profilePhoto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         profilePhoto.setText("profile photo");
+        profilePhoto.setFocusable(false);
 
         UploadProfilePhoto.setBackground(new java.awt.Color(0, 153, 255));
         UploadProfilePhoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -158,6 +169,7 @@ public class SignUpWindow extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Cover photo");
+        jTextField1.setFocusable(false);
 
         jSignUpButton.setBackground(new java.awt.Color(0, 153, 255));
         jSignUpButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -387,6 +399,7 @@ public class SignUpWindow extends javax.swing.JFrame {
           if(email.isEmpty() || userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
              JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
          }
+          
          else if(!(password.equals(confirmPassword))){
              JOptionPane.showMessageDialog(null, "passwords not identical", "Warning", JOptionPane.WARNING_MESSAGE);
          }
@@ -442,6 +455,10 @@ public class SignUpWindow extends javax.swing.JFrame {
              this.dispose();
          }*/
     }//GEN-LAST:event_jSignUpButtonActionPerformed
+
+    private void username3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username3ActionPerformed
 
     /**
      * @param args the command line arguments

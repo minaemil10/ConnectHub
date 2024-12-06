@@ -4,11 +4,12 @@ public class PostString {
     private String author;
     private String text;
     private String photo;
-
-    public PostString(String author, String text, String photo) {
+    private String date;
+    public PostString(String author, String text, String photo,String date) {
         this.author = author;
         this.text = text;
         this.photo = photo;
+        this.date=date;
     }
 
     public String getAuthor() {
@@ -21,5 +22,9 @@ public class PostString {
 
     public String getPhoto() {
         return photo;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

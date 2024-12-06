@@ -5,14 +5,18 @@
 package Frontend;
 
 import Backend.AppManager;
+import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.RelationString;
 import Backend.Online;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.naming.spi.DirStateFactory.Result;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -39,6 +43,14 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         initComponents();
         this.a = a;
          postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+         ImageIcon imageIcon = new ImageIcon(a.getProfilePhoto());
+            Image image = imageIcon.getImage().getScaledInstance(
+                223, 
+                85, 
+                Image.SCALE_SMOOTH
+            );
+            photoLabel.setIcon(new ImageIcon(image));
+            photoLabel.setText("");
     }
 
     /**
@@ -54,15 +66,13 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         storyPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         postPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        photoLabel = new javax.swing.JLabel();
         RefreshButton = new javax.swing.JButton();
         profileMangmentButton = new javax.swing.JButton();
         LogoutButton = new javax.swing.JButton();
-        CreatePostButton = new javax.swing.JButton();
-        CreateStoryButton = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         status = new javax.swing.JTable();
+        friendManagement_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,9 +97,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane4.setViewportView(postPanel);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("photo");
+        photoLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        photoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        photoLabel.setText("photo");
 
         RefreshButton.setBackground(new java.awt.Color(0, 153, 255));
         RefreshButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -118,26 +128,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         LogoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutButtonActionPerformed(evt);
-            }
-        });
-
-        CreatePostButton.setBackground(new java.awt.Color(0, 153, 255));
-        CreatePostButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CreatePostButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreatePostButton.setText("Create a post");
-        CreatePostButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreatePostButtonActionPerformed(evt);
-            }
-        });
-
-        CreateStoryButton.setBackground(new java.awt.Color(0, 153, 255));
-        CreateStoryButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CreateStoryButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreateStoryButton.setText("Create a story");
-        CreateStoryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateStoryButtonActionPerformed(evt);
             }
         });
 
@@ -172,63 +162,57 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             status.getColumnModel().getColumn(1).setMaxWidth(121);
         }
 
+        friendManagement_btn.setBackground(new java.awt.Color(0, 153, 255));
+        friendManagement_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        friendManagement_btn.setForeground(new java.awt.Color(255, 255, 255));
+        friendManagement_btn.setText("Friend Management");
+        friendManagement_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendManagement_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(CreateStoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profileMangmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(friendManagement_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(photoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RefreshButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(profileMangmentButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LogoutButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LogoutButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(friendManagement_btn)))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateStoryButton)
-                    .addComponent(CreatePostButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane4)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -240,6 +224,15 @@ public class NewsfeedWindow extends javax.swing.JFrame {
 
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
         // TODO add your handling code here:
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+         ImageIcon imageIcon = new ImageIcon(a.getProfilePhoto());
+            Image image = imageIcon.getImage().getScaledInstance(
+                223, 
+                85, 
+                Image.SCALE_SMOOTH
+            );
+            photoLabel.setIcon(new ImageIcon(image));
+            photoLabel.setText("");
         ArrayList<Online> o = a.getOnline();
         for(Online on : o){
             //DefaultTableModel model = new DefaultTableModel();
@@ -252,9 +245,40 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             else{
                 status = "offline";
             }
-            model.addRow(new Object[]{user, status});
+            model.addRow(new Object[]{user, status});    
         }
-        
+        ArrayList<PostString> postString = a.getPosts();
+        for(PostString p : postString){
+            String date = p.getDate();
+            String photo = p.getPhoto();
+            String name = p.getAuthor();
+            String text = p.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+            }
+            else{
+                PostImage pi = new PostImage(text, photo, name, date);
+            }
+            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            postPanel.revalidate();
+            postPanel.repaint(); 
+        }
+        ArrayList<PostString> storyString = a.getStories();
+        for(PostString s : storyString){
+            String date = s.getDate();
+            String photo = s.getPhoto();
+            String name = s.getAuthor();
+            String text = s.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+            }
+            else{
+                StoryImage si = new StoryImage(text, text, date, name);
+            }
+            storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            storyPanel.revalidate();
+            storyPanel.repaint(); 
+        }
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
     private void profileMangmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileMangmentButtonActionPerformed
@@ -266,54 +290,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         a.LogoutUser();
+        this.dispose();
         
     }//GEN-LAST:event_LogoutButtonActionPerformed
-
-    private void CreatePostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePostButtonActionPerformed
-        // TODO add your handling code here:
-        //String text = "Connect app";
-        //Post post = new Post(text);
-        //postPanel.add(post);
-//        JFrame frame = new JFrame("Custom Dialog Example");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(300, 200);
-//        frame.setVisible(true);
-//
-//        // Button to open the dialog
-//        JButton openDialogButton = new JButton("Open Dialog");
-//        frame.add(openDialogButton, BorderLayout.CENTER);
-
-        // Action listener for the button
-       // openDialogButton.addActionListener(e -> {
-            // Open the custom dialog
-            Result result = showCustomDialog();
-            if (result != null) {
-                Post post = new Post(result.userText, result.imagePath);
-                postPanel.add(post);
-            } else {
-                    return;
-            }
-//        });
-      //  postPanel.setBackground(Color.BLUE);
-        postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-        postPanel.revalidate();
-        postPanel.repaint();
-        
-    }//GEN-LAST:event_CreatePostButtonActionPerformed
-
-    private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
-        // TODO add your handling code here:
-        Result result = showCustomDialog();
-            if (result != null) {
-                Story story = new Story(result.userText);
-                storyPanel.add(story);
-            } else {
-                    return;
-            }
-        storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-        storyPanel.revalidate();
-        storyPanel.repaint();
-    }//GEN-LAST:event_CreateStoryButtonActionPerformed
 
     private void jScrollPane4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane4FocusGained
         // TODO add your handling code here:
@@ -323,93 +302,18 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jScrollPane4ComponentAdded
-     public static Result showCustomDialog() {
-        // Create a JDialog
-        JDialog dialog = new JDialog((Frame) null ,"Custom Dialog", true);
-        dialog.setSize(400, 300);
-        dialog.setLayout(new BorderLayout());
 
-
-        // Panel for file chooser
-        JPanel filePanel = new JPanel(new FlowLayout());
-        JLabel fileLabel = new JLabel("No file selected");
-        JButton fileButton = new JButton("Choose Image");
-        filePanel.add(fileButton);
-        filePanel.add(fileLabel);
-
-        // Add file chooser functionality
-        fileButton.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            // Filter for image files only
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "bmp");
-            fileChooser.setFileFilter(filter);
-            int result = fileChooser.showOpenDialog(dialog);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                fileLabel.setText(selectedFile.getAbsolutePath());
-            }
-        });
-
-        // Text area for user input
-        JTextArea textArea = new JTextArea(5, 30);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        JPanel textPanel = new JPanel(new BorderLayout());
-        textPanel.add(new JLabel("Enter your text:"), BorderLayout.NORTH);
-        textPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Buttons for OK and Cancel
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton okButton = new JButton("OK");
-        JButton cancelButton = new JButton("Cancel");
-        buttonPanel.add(okButton);
-        buttonPanel.add(cancelButton);
-
-        // Variable to hold the result
-        final Result[] dialogResult = {null};
-
-        // Action for OK button
-        okButton.addActionListener(e -> {
-            String imagePath = fileLabel.getText();
-            String userText = textArea.getText();
-            dialogResult[0] = new Result(imagePath, userText);
-            dialog.dispose();
-            // Only proceed if a file is selected
-//            if (!imagePath.equals("No file selected")) {
-//                dialogResult[0] = new Result(imagePath, userText);
-//                dialog.dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(dialog, "Please select an image.", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-        });
-
-        // Action for Cancel button
-        cancelButton.addActionListener(e -> {
-            dialogResult[0] = null;
-            dialog.dispose();
-        });
-
-        // Add components to the dialog
-        dialog.add(filePanel, BorderLayout.NORTH);
-        dialog.add(textPanel, BorderLayout.CENTER);
-        dialog.add(buttonPanel, BorderLayout.SOUTH);
-
-        // Show the dialog
-        dialog.setVisible(true);
-
-        // Return the result
-        return dialogResult[0];
-    }
-
-    // Class to hold the result
-    static class Result {
-        String imagePath;
-        String userText;
-
-        public Result(String imagePath, String userText) {
-            this.imagePath = imagePath;
-            this.userText = userText;
-        }
-    }
+    private void friendManagement_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendManagement_btnActionPerformed
+        // TODO add your handling code here:
+         
+              JFrame frame = new JFrame("Friend Management");
+              frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
+               frame.setSize(1150, 633); // Set the frame size
+             frame.add(new FriendManagement(a)); // Add your panel
+             frame.setVisible(true); // Make the frame visible
+        
+    }//GEN-LAST:event_friendManagement_btnActionPerformed
+    
 
 
     /**
@@ -448,15 +352,13 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CreatePostButton;
-    private javax.swing.JButton CreateStoryButton;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JButton RefreshButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton friendManagement_btn;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JPanel postPanel;
     private javax.swing.JButton profileMangmentButton;
     private javax.swing.JTable status;
