@@ -32,8 +32,6 @@ public class FriendManagement extends javax.swing.JPanel {
             String name = r.getUsernameString();
             FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
             friendSuggest.add(suggestion);
-            FriendSuggestion friendSuggestion = new FriendSuggestion(id, name, photo, a);
-            friendSuggest.add(friendSuggestion);
            // System.out.println(name);
             //link friend suggestion with panel
         }
@@ -177,7 +175,6 @@ public class FriendManagement extends javax.swing.JPanel {
             friendSuggest.add(suggestion);
             FriendSuggestion friendSuggestion = new FriendSuggestion(id, name, photo, a);
             friendSuggest.add(friendSuggestion);
-            System.out.println(name);
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();
@@ -188,6 +185,7 @@ public class FriendManagement extends javax.swing.JPanel {
             //link friend request with panel
             FriendRequest f = new FriendRequest(a, id, name, photo);
             friendRequestPanel.add(f);
+            System.out.println(name);
         }
         ArrayList <RelationString> friends = a.getFriends();
         for(RelationString r : request){
