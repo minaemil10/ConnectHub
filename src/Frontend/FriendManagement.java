@@ -19,12 +19,12 @@ public class FriendManagement extends javax.swing.JPanel {
      * Creates new form FriendManagement
      */
     private AppManager a ;
-    public FriendManagement() {
+    public FriendManagement(AppManager a ) {
         initComponents();
         this.a = a;
         friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.Y_AXIS));
         friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.Y_AXIS));
-        friendSuggestPanel.setLayout(new javax.swing.BoxLayout(friendSuggestPanel, javax.swing.BoxLayout.Y_AXIS));
+        friendSuggest.setLayout(new javax.swing.BoxLayout(friendSuggest, javax.swing.BoxLayout.Y_AXIS));
     }
 
     /**
@@ -41,11 +41,10 @@ public class FriendManagement extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         friendListPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        friendSuggestPanel = new javax.swing.JPanel();
+        friendSuggest = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
 
         friendRequestPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -56,9 +55,9 @@ public class FriendManagement extends javax.swing.JPanel {
         friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane2.setViewportView(friendListPanel);
 
-        friendSuggestPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        friendSuggestPanel.setLayout(new javax.swing.BoxLayout(friendSuggestPanel, javax.swing.BoxLayout.LINE_AXIS));
-        jScrollPane3.setViewportView(friendSuggestPanel);
+        friendSuggest.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendSuggest.setLayout(new javax.swing.BoxLayout(friendSuggest, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane3.setViewportView(friendSuggest);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Friend Suggestions");
@@ -68,8 +67,6 @@ public class FriendManagement extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Friend List");
-
-        jButton1.setText("Back");
 
         refresh.setText("Refresh");
         refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -86,14 +83,11 @@ public class FriendManagement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(refresh)))
@@ -110,11 +104,9 @@ public class FriendManagement extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(refresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -137,7 +129,7 @@ public class FriendManagement extends javax.swing.JPanel {
             String photo = r.getRelationString();
             String name = r.getUsernameString();
             FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
-            friendSuggestPanel.add(suggestion);
+            friendSuggest.add(suggestion);
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();
@@ -164,8 +156,7 @@ public class FriendManagement extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel friendListPanel;
     private javax.swing.JPanel friendRequestPanel;
-    private javax.swing.JPanel friendSuggestPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel friendSuggest;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

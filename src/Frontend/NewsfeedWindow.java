@@ -60,10 +60,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         RefreshButton = new javax.swing.JButton();
         profileMangmentButton = new javax.swing.JButton();
         LogoutButton = new javax.swing.JButton();
-        CreatePostButton = new javax.swing.JButton();
-        CreateStoryButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         status = new javax.swing.JTable();
+        friendManagement_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,26 +121,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             }
         });
 
-        CreatePostButton.setBackground(new java.awt.Color(0, 153, 255));
-        CreatePostButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CreatePostButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreatePostButton.setText("Create a post");
-        CreatePostButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreatePostButtonActionPerformed(evt);
-            }
-        });
-
-        CreateStoryButton.setBackground(new java.awt.Color(0, 153, 255));
-        CreateStoryButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CreateStoryButton.setForeground(new java.awt.Color(255, 255, 255));
-        CreateStoryButton.setText("Create a story");
-        CreateStoryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateStoryButtonActionPerformed(evt);
-            }
-        });
-
         status.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -173,29 +152,33 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             status.getColumnModel().getColumn(1).setMaxWidth(121);
         }
 
+        friendManagement_btn.setBackground(new java.awt.Color(0, 153, 255));
+        friendManagement_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        friendManagement_btn.setForeground(new java.awt.Color(255, 255, 255));
+        friendManagement_btn.setText("Friend Management");
+        friendManagement_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendManagement_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(CreateStoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(272, 272, 272)
-                        .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profileMangmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(friendManagement_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -205,23 +188,21 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RefreshButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(profileMangmentButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LogoutButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LogoutButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(friendManagement_btn)))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateStoryButton)
-                    .addComponent(CreatePostButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -294,64 +275,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
-    private void CreatePostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePostButtonActionPerformed
-        // TODO add your handling code here:
-        //String text = "Connect app";
-        //Post post = new PostImage(text);
-        //postPanel.add(post);
-//        JFrame frame = new JFrame("Custom Dialog Example");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(300, 200);
-//        frame.setVisible(true);
-//
-//        // Button to open the dialog
-//        JButton openDialogButton = new JButton("Open Dialog");
-//        frame.add(openDialogButton, BorderLayout.CENTER);
-
-        // Action listener for the button
-       // openDialogButton.addActionListener(e -> {
-            // Open the custom dialog
-//            Result result = showCustomDialog();
-//            if(result.userText.equals("")){
-//                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(!result.imagePath.equals("No file selected")){
-//                PostImage post = new PostImage(result.userText, result.imagePath);
-//                postPanel.add(post);
-//            }
-//            else{
-//                PostText postText = new PostText(result.userText);
-//                postPanel.add(postText);
-//            }
-//           // System.out.println(result.imagePath);
-//           
-////        });
-//      //  postPanel.setBackground(Color.BLUE);
-//        postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-//        postPanel.revalidate();
-//        postPanel.repaint();
-        
-    }//GEN-LAST:event_CreatePostButtonActionPerformed
-
-    private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
-        // TODO add your handling code here:
-//        Result result = showCustomDialog();
-//            if(result.userText.equals("")){
-//                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//            else if(!result.imagePath.equals("No file selected")){
-//                StoryImage storyImage = new StoryImage(result.userText, result.imagePath);
-//                storyPanel.add(storyImage);
-//            }
-//            else{
-//                PostText postText = new PostText(result.userText);
-//                storyPanel.add(postText);
-//            }
-//        storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-//        storyPanel.revalidate();
-//        storyPanel.repaint();
-    }//GEN-LAST:event_CreateStoryButtonActionPerformed
-
     private void jScrollPane4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane4FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane4FocusGained
@@ -360,6 +283,12 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jScrollPane4ComponentAdded
+
+    private void friendManagement_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendManagement_btnActionPerformed
+        // TODO add your handling code here:
+        FriendManagement friendManagement = new FriendManagement(a);
+        friendManagement.setVisible(true);
+    }//GEN-LAST:event_friendManagement_btnActionPerformed
     
 
 
@@ -399,10 +328,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CreatePostButton;
-    private javax.swing.JButton CreateStoryButton;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JButton RefreshButton;
+    private javax.swing.JButton friendManagement_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

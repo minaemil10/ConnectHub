@@ -64,7 +64,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         }
     });
        
-        
+      bioText.setText(a.getBio());
     }
 
     /**
@@ -96,7 +96,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         saveBio = new javax.swing.JButton();
         user_post_story = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         profilePhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -382,8 +382,8 @@ public class ProfileDetails extends javax.swing.JFrame {
             if(coverPath.endsWith(".png")){
            ImageIcon imageIcon = new ImageIcon(coverPath);
             Image image = imageIcon.getImage().getScaledInstance(
-                coverPhoto.getWidth(), 
-                coverPhoto.getHeight(), 
+                460, 
+                220, 
                 Image.SCALE_SMOOTH
             );
             coverPhoto.setIcon(new ImageIcon(image));
@@ -427,14 +427,20 @@ public class ProfileDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
         //We need to check if the password is true or not
         //If Password is true
-        newPass.setEnabled(true);
-        reEnterPass.setEnabled(true);
-        newPasword.setEnabled(true);
-        checkNewPass.setEnabled(true);
-        confirmPassword_btn.setEnabled(true);
-        currPass.setEnabled(false);
-        passwordField.setEnabled(false);
-        changePassword_btn.setEnabled(false);
+        
+        if(a.checkPassword(passwordField.getText())){
+            newPass.setEnabled(true);
+            reEnterPass.setEnabled(true);
+            newPasword.setEnabled(true);
+            checkNewPass.setEnabled(true);
+            confirmPassword_btn.setEnabled(true);
+            currPass.setEnabled(false);
+            passwordField.setEnabled(false);
+            changePassword_btn.setEnabled(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Wrong Password", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
         
         
     }//GEN-LAST:event_changePassword_btnActionPerformed
@@ -488,7 +494,6 @@ public class ProfileDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
         MyPosts_Stories myPosts_Stories = new MyPosts_Stories(a);
         myPosts_Stories.setVisible(true);
-        //this.dispose();
         //new window for displaying user's post and stories
     }//GEN-LAST:event_user_post_storyActionPerformed
 
