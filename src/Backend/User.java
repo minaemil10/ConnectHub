@@ -54,6 +54,14 @@ public class User implements DataBaseOBJ {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getUserName() {
         return userName;
     }
