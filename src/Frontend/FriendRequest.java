@@ -24,6 +24,7 @@ public class FriendRequest extends javax.swing.JPanel {
     public FriendRequest(AppManager a, String id,String name,String photo) {
         initComponents();
         this.a = a;
+        this.id = id;
         nameText.setText(name);
         ImageIcon imageIcon = new ImageIcon(photo);
             Image image = imageIcon.getImage().getScaledInstance(

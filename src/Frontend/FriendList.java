@@ -24,6 +24,7 @@ public class FriendList extends javax.swing.JPanel {
     public FriendList(String id, String name, String photo ,AppManager a) {
         initComponents();
         this.a = a;
+        this.id = id;
         nameText.setText(name);
         ImageIcon imageIcon = new ImageIcon(photo);
             Image image = imageIcon.getImage().getScaledInstance(

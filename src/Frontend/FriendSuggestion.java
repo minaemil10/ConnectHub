@@ -24,6 +24,7 @@ public class FriendSuggestion extends javax.swing.JPanel {
     private String photo;
     public FriendSuggestion(String id, String name, String photo ,AppManager a) {
         initComponents();
+        this.id=id;
         this.a = a;
         nameText.setText(name);
         ImageIcon imageIcon = new ImageIcon(photo);
@@ -110,6 +111,7 @@ public class FriendSuggestion extends javax.swing.JPanel {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         a.sendFriendRequest(id);
+        System.out.println(id);
     }//GEN-LAST:event_addActionPerformed
 
 

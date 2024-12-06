@@ -53,6 +53,7 @@ public class FriendManagement extends javax.swing.JPanel {
             //link friend  with panel
             FriendList list = new FriendList(id, name, photo, a);
             friendListPanel.add(list);
+            System.out.println(name+id);
         }
 //        friendSuggest.repaint();
 //        friendRequestPanel.repaint();
@@ -195,6 +196,7 @@ public class FriendManagement extends javax.swing.JPanel {
             //link friend  with panel
             FriendList list = new FriendList(id, name, photo, a);
             friendListPanel.add(list);
+        //    System.out.println(name+ id);
         }
 //        friendSuggest.repaint();
 //        friendRequestPanel.repaint();
