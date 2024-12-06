@@ -1,12 +1,16 @@
 package Backend;
 
+import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.RelationString;
+
+import Backend.Friend_Management.Relationship;
 import Backend.Friend_Management.friendRequest;
 
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class AppManager {
     private ArrayList<User> Data;
@@ -85,6 +89,15 @@ public class AppManager {
         currentUser.setBio(bio);
         return true;
     }
+    public String getProfilePhoto(){
+       return currentUser.getProfilePhoto();
+    }
+    public String getCoverPhoto(){
+        return currentUser.getCoverPhoto();
+    }
+    public String getBio(){
+        return currentUser.getBio();
+    }
     /*content management*/
     /*posts manager*/
     public boolean createPost(String photo, String text){
@@ -150,6 +163,7 @@ public class AppManager {
 //        }
 //    }
     /*can the user modify the content??*/
+    /*get the online friends*/
     public ArrayList<Online> getOnline(){
         ArrayList<Online>onlinefriends=new ArrayList<>();
         for (int i = 0; i < currentUser.getFriends().size(); i++) {
@@ -163,6 +177,116 @@ public class AppManager {
         }
         return onlinefriends;
     }
+    /*get the friends*/
+    public ArrayList<RelationString> getFriends(){
+        ArrayList<RelationString> relationStrings=new ArrayList<>();
+        for (int i = 0; i < currentUser.getFriends().size(); i++) {
+            for (int j = 0; j < Data.size(); j++) {
+                /*searching for the user using id*/
+                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
+                    relationStrings.add(new RelationString(currentUser.getFriends().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+
+                }
+            }
+        }
+        return relationStrings;
+    }
+    public ArrayList<RelationString> getRequests(){
+        ArrayList<RelationString> relationStrings=new ArrayList<>();
+        for (int i = 0; i < currentUser.getReceived().size(); i++) {
+            for (int j = 0; j < Data.size(); j++) {
+                /*searching for the user using id*/
+                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getReceived().get(i).getrelationWith())){
+                    relationStrings.add(new RelationString(currentUser.getReceived().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                }
+            }
+        }
+        return relationStrings;
+    }
+    public ArrayList<RelationString> SentRequest(){
+        ArrayList<RelationString> relationStrings=new ArrayList<>();
+        for (int i = 0; i < currentUser.getSent().size(); i++) {
+            for (int j = 0; j < Data.size(); j++) {
+                /*searching for the user using id*/
+                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getSent().get(i).getrelationWith())){
+                    relationStrings.add(new RelationString(currentUser.getSent().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                }
+            }
+        }
+        return relationStrings;
+    }
+    public ArrayList<RelationString> Blocked(){
+        ArrayList<RelationString> relationStrings=new ArrayList<>();
+        for (int i = 0; i < currentUser.getBlocked().size(); i++) {
+            for (int j = 0; j < Data.size(); j++) {
+                /*searching for the user using id*/
+                if(Data.get(j).getUserId().equalsIgnoreCase(currentUser.getBlocked().get(i).getrelationWith())){
+                    relationStrings.add(new RelationString(currentUser.getSent().get(i).getrelationWith(),Data.get(j).getUserName(),Data.get(j).getUserId()));
+                }
+            }
+        }
+        return relationStrings;
+    }
+    /**/
+    public ArrayList<PostString> getPosts(){
+        ArrayList<PostString> posts=new ArrayList<>();
+        for (int i = 0; i < currentUser.getFriends().size(); i++) {
+            for (int j = 0; j < this.posts.size(); j++) {
+
+                if(this.posts.get(j).getAuthorID().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
+                    /*searching for the user using id*/
+                    for (int k = 0; k < Data.size(); k++) {
+                        if(Data.get(k).getUserId().equalsIgnoreCase(this.posts.get(j).getAuthorID())){
+                            posts.add(new PostString(Data.get(k).getUserName(),this.posts.get(j).getText(),this.posts.get(j).getPhoto()) );
+                        }
+                    }
+
+
+                }
+            }
+        }
+       return posts;
+    }
+    public ArrayList<PostString> getStories(){
+        ArrayList<PostString> stories=new ArrayList<>();
+        for (int i = 0; i < currentUser.getFriends().size(); i++) {
+            for (int j = 0; j < this.stories.size(); j++) {
+                if(this.stories.get(j).getAuthorID().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())){
+
+
+                    /*searching for the user using id*/
+                    for (int k = 0; k < Data.size(); k++) {
+                        if(Data.get(k).getUserId().equalsIgnoreCase(this.stories.get(j).getAuthorID())){
+                            stories.add(new PostString(Data.get(k).getUserName(),this.stories.get(j).getText(),this.stories.get(j).getPhoto()) );
+                        }
+                    }
+
+
+                }
+            }
+        }
+        return stories;
+    }
+
+
+    public ArrayList<RelationString>friendSuggest(){
+        ArrayList<RelationString> suggestion=new ArrayList<>();
+        ArrayList<Relationship>temp=new ArrayList<>();
+        temp.addAll(currentUser.getFriends());temp.addAll(currentUser.getBlocked());temp.addAll(currentUser.getReceived());
+        for (int i = 0; i < temp.size(); i++) {
+            for (int j = 0; j < Data.size() ; j++) {
+                if(!(temp.get(i).getrelationWith().equalsIgnoreCase(Data.get(j).getUserId()))){
+                    suggestion.add(new RelationString(Data.get(j).getUserName(),Data.get(j).getUserId()));
+                }
+            }
+        }
+        return suggestion;
+
+
+
+    }
+
+
 
 
 
