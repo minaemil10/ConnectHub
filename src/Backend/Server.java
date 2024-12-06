@@ -27,8 +27,16 @@ public class Server {
     public AppManager serve(){
        return new AppManager(Data,posts,stories);
     }
-    private ArrayList<User> loadUsers(){
-        return new UserFileReader(userDataBase).readAll();
+    private ArrayList<User> loadUsers() throws RuntimeException {
+        ArrayList<User> temp= new UserFileReader(userDataBase).readAll();
+        try {
+            /*check the array*/
+            SignUp.setCounter(Integer.parseInt(temp.getLast().getUserId().split("U")[1]));
+            return temp;
+        } catch (Exception e) {
+            return temp;
+        }
+
     }
     public static void writeUsers(){
         new UserFileWriter(userDataBase).writeAll(Data);
