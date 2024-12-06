@@ -176,6 +176,7 @@ public class FriendManagement extends javax.swing.JPanel {
         friendListPanel.repaint();
         ArrayList <RelationString> suggest =  a.friendSuggest();
         for(RelationString r : suggest){
+            
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();

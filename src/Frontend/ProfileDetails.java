@@ -40,14 +40,14 @@ public class ProfileDetails extends javax.swing.JFrame {
             );
             profilePhoto.setIcon(new ImageIcon(image));
             profilePhoto.setText(""); 
-        String coverPath = a.getProfilePhoto();
+        String coverPath = a.getCoverPhoto();
         ImageIcon imageIconC = new ImageIcon(coverPath);
         Image imageC = imageIconC.getImage().getScaledInstance(
                 460, 
                 220, 
                 Image.SCALE_SMOOTH
             );
-            coverPhoto.setIcon(new ImageIcon(image));
+            coverPhoto.setIcon(new ImageIcon(imageC));
             coverPhoto.setText(""); 
             
         bioText.addFocusListener(new java.awt.event.FocusListener() {
