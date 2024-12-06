@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Friend_Management.RelationString;
+import Backend.Friend_Management.friendRequest;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +22,9 @@ public class FriendManagement extends javax.swing.JPanel {
     public FriendManagement() {
         initComponents();
         this.a = a;
+        friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.Y_AXIS));
+        friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.Y_AXIS));
+        friendSuggestPanel.setLayout(new javax.swing.BoxLayout(friendSuggestPanel, javax.swing.BoxLayout.Y_AXIS));
     }
 
     /**
@@ -33,41 +37,28 @@ public class FriendManagement extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        friendRequest = new javax.swing.JPanel();
+        friendRequestPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        friendList = new javax.swing.JPanel();
+        friendListPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
+        friendSuggestPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
 
-        javax.swing.GroupLayout friendRequestLayout = new javax.swing.GroupLayout(friendRequest);
-        friendRequest.setLayout(friendRequestLayout);
-        friendRequestLayout.setHorizontalGroup(
-            friendRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
-        friendRequestLayout.setVerticalGroup(
-            friendRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
-        );
+        friendRequestPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane1.setViewportView(friendRequestPanel);
 
-        jScrollPane1.setViewportView(friendRequest);
+        friendListPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane2.setViewportView(friendListPanel);
 
-        javax.swing.GroupLayout friendListLayout = new javax.swing.GroupLayout(friendList);
-        friendList.setLayout(friendListLayout);
-        friendListLayout.setHorizontalGroup(
-            friendListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
-        friendListLayout.setVerticalGroup(
-            friendListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
-        );
-
-        jScrollPane2.setViewportView(friendList);
+        friendSuggestPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendSuggestPanel.setLayout(new javax.swing.BoxLayout(friendSuggestPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane3.setViewportView(friendSuggestPanel);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Friend Suggestions");
@@ -104,16 +95,17 @@ public class FriendManagement extends javax.swing.JPanel {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel2)
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel3)
-                        .addGap(169, 169, 169)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(refresh)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jLabel2)
+                .addGap(158, 158, 158)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,15 +114,15 @@ public class FriendManagement extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(refresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane3)
                     .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -138,11 +130,14 @@ public class FriendManagement extends javax.swing.JPanel {
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
+        
         ArrayList <RelationString> suggest =  a.friendSuggest();
         for(RelationString r : suggest){
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();
+            FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
+            friendSuggestPanel.add(suggestion);
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();
@@ -151,20 +146,25 @@ public class FriendManagement extends javax.swing.JPanel {
             String photo = r.getRelationString();
             String name = r.getUsernameString();
             //link friend request with panel
+            FriendRequest f = new FriendRequest(a, id, name, photo);
+            friendRequestPanel.add(f);
         }
         ArrayList <RelationString> friends = a.getFriends();
         for(RelationString r : request){
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();
-            //link friend request with panel
+            //link friend  with panel
+            FriendList list = new FriendList(id, name, photo, a);
+            friendListPanel.add(list);
         }
     }//GEN-LAST:event_refreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel friendList;
-    private javax.swing.JPanel friendRequest;
+    private javax.swing.JPanel friendListPanel;
+    private javax.swing.JPanel friendRequestPanel;
+    private javax.swing.JPanel friendSuggestPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

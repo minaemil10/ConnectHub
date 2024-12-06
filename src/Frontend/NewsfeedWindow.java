@@ -5,6 +5,8 @@
 package Frontend;
 
 import Backend.AppManager;
+import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.RelationString;
 import Backend.Online;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -60,7 +62,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         LogoutButton = new javax.swing.JButton();
         CreatePostButton = new javax.swing.JButton();
         CreateStoryButton = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         status = new javax.swing.JTable();
 
@@ -179,23 +180,11 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(CreateStoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE))))
+                        .addGap(75, 75, 75)
+                        .addComponent(CreateStoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(272, 272, 272)
+                        .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +193,12 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profileMangmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(LogoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -228,7 +222,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -252,9 +245,40 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             else{
                 status = "offline";
             }
-            model.addRow(new Object[]{user, status});
+            model.addRow(new Object[]{user, status});    
         }
-        
+        ArrayList<PostString> postString = a.getPosts();
+        for(PostString p : postString){
+            String date = p.getDate();
+            String photo = p.getPhoto();
+            String name = p.getAuthor();
+            String text = p.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+            }
+            else{
+                PostImage pi = new PostImage(text, photo, name, date);
+            }
+            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            postPanel.revalidate();
+            postPanel.repaint(); 
+        }
+        ArrayList<PostString> storyString = a.getStories();
+        for(PostString s : storyString){
+            String date = s.getDate();
+            String photo = s.getPhoto();
+            String name = s.getAuthor();
+            String text = s.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+            }
+            else{
+                StoryImage si = new StoryImage(text, text, date, name);
+            }
+            storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            storyPanel.revalidate();
+            storyPanel.repaint(); 
+        }
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
     private void profileMangmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileMangmentButtonActionPerformed
@@ -266,6 +290,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         a.LogoutUser();
+        this.dispose();
         
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
@@ -286,45 +311,45 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // Action listener for the button
        // openDialogButton.addActionListener(e -> {
             // Open the custom dialog
-            Result result = showCustomDialog();
-            if(result.userText.equals("")){
-                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(!result.imagePath.equals("No file selected")){
-                PostImage post = new PostImage(result.userText, result.imagePath);
-                postPanel.add(post);
-            }
-            else{
-                PostText postText = new PostText(result.userText);
-                postPanel.add(postText);
-            }
-           // System.out.println(result.imagePath);
-           
-//        });
-      //  postPanel.setBackground(Color.BLUE);
-        postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-        postPanel.revalidate();
-        postPanel.repaint();
+//            Result result = showCustomDialog();
+//            if(result.userText.equals("")){
+//                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+//            }
+//            else if(!result.imagePath.equals("No file selected")){
+//                PostImage post = new PostImage(result.userText, result.imagePath);
+//                postPanel.add(post);
+//            }
+//            else{
+//                PostText postText = new PostText(result.userText);
+//                postPanel.add(postText);
+//            }
+//           // System.out.println(result.imagePath);
+//           
+////        });
+//      //  postPanel.setBackground(Color.BLUE);
+//        postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+//        postPanel.revalidate();
+//        postPanel.repaint();
         
     }//GEN-LAST:event_CreatePostButtonActionPerformed
 
     private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
         // TODO add your handling code here:
-        Result result = showCustomDialog();
-            if(result.userText.equals("")){
-                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(!result.imagePath.equals("No file selected")){
-                StoryImage storyImage = new StoryImage(result.userText, result.imagePath);
-                storyPanel.add(storyImage);
-            }
-            else{
-                PostText postText = new PostText(result.userText);
-                storyPanel.add(postText);
-            }
-        storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-        storyPanel.revalidate();
-        storyPanel.repaint();
+//        Result result = showCustomDialog();
+//            if(result.userText.equals("")){
+//                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+//            }
+//            else if(!result.imagePath.equals("No file selected")){
+//                StoryImage storyImage = new StoryImage(result.userText, result.imagePath);
+//                storyPanel.add(storyImage);
+//            }
+//            else{
+//                PostText postText = new PostText(result.userText);
+//                storyPanel.add(postText);
+//            }
+//        storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+//        storyPanel.revalidate();
+//        storyPanel.repaint();
     }//GEN-LAST:event_CreateStoryButtonActionPerformed
 
     private void jScrollPane4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane4FocusGained
@@ -335,93 +360,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jScrollPane4ComponentAdded
-     public static Result showCustomDialog() {
-        // Create a JDialog
-        JDialog dialog = new JDialog((Frame) null ,"Custom Dialog", true);
-        dialog.setSize(400, 300);
-        dialog.setLayout(new BorderLayout());
-
-
-        // Panel for file chooser
-        JPanel filePanel = new JPanel(new FlowLayout());
-        JLabel fileLabel = new JLabel("No file selected");
-        JButton fileButton = new JButton("Choose Image");
-        filePanel.add(fileButton);
-        filePanel.add(fileLabel);
-
-        // Add file chooser functionality
-        fileButton.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            // Filter for image files only
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "bmp");
-            fileChooser.setFileFilter(filter);
-            int result = fileChooser.showOpenDialog(dialog);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                fileLabel.setText(selectedFile.getAbsolutePath());
-            }
-        });
-
-        // Text area for user input
-        JTextArea textArea = new JTextArea(5, 30);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        JPanel textPanel = new JPanel(new BorderLayout());
-        textPanel.add(new JLabel("Enter your text:"), BorderLayout.NORTH);
-        textPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Buttons for OK and Cancel
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton okButton = new JButton("OK");
-        JButton cancelButton = new JButton("Cancel");
-        buttonPanel.add(okButton);
-        buttonPanel.add(cancelButton);
-
-        // Variable to hold the result
-        final Result[] dialogResult = {null};
-
-        // Action for OK button
-        okButton.addActionListener(e -> {
-            String imagePath = fileLabel.getText();
-            String userText = textArea.getText();
-            dialogResult[0] = new Result(imagePath, userText);
-            dialog.dispose();
-            // Only proceed if a file is selected
-//            if (!imagePath.equals("No file selected")) {
-//                dialogResult[0] = new Result(imagePath, userText);
-//                dialog.dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(dialog, "Please select an image.", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-        });
-
-        // Action for Cancel button
-        cancelButton.addActionListener(e -> {
-            dialogResult[0] = null;
-            dialog.dispose();
-        });
-
-        // Add components to the dialog
-        dialog.add(filePanel, BorderLayout.NORTH);
-        dialog.add(textPanel, BorderLayout.CENTER);
-        dialog.add(buttonPanel, BorderLayout.SOUTH);
-
-        // Show the dialog
-        dialog.setVisible(true);
-
-        // Return the result
-        return dialogResult[0];
-    }
-
-    // Class to hold the result
-    static class Result {
-        String imagePath;
-        String userText;
-
-        public Result(String imagePath, String userText) {
-            this.imagePath = imagePath;
-            this.userText = userText;
-        }
-    }
+    
 
 
     /**
@@ -468,7 +407,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel postPanel;
     private javax.swing.JButton profileMangmentButton;
     private javax.swing.JTable status;

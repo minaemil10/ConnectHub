@@ -94,7 +94,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         confirmPassword_btn = new javax.swing.JButton();
         newPasword = new javax.swing.JPasswordField();
         saveBio = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        user_post_story = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,10 +218,10 @@ public class ProfileDetails extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Show my posts and stories");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        user_post_story.setText("Show my posts and stories");
+        user_post_story.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                user_post_storyActionPerformed(evt);
             }
         });
 
@@ -266,7 +266,7 @@ public class ProfileDetails extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(378, 378, 378)
-                .addComponent(jButton3)
+                .addComponent(user_post_story)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -306,7 +306,7 @@ public class ProfileDetails extends javax.swing.JFrame {
                                     .addComponent(changePassword_btn)))))
                     .addComponent(newPasswordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(user_post_story)
                 .addGap(23, 23, 23))
         );
 
@@ -484,10 +484,13 @@ public class ProfileDetails extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(ProfileDetails.this, "Bio saved successfully!");
     }//GEN-LAST:event_saveBioActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void user_post_storyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_post_storyActionPerformed
         // TODO add your handling code here:
+        MyPosts_Stories myPosts_Stories = new MyPosts_Stories(a);
+        myPosts_Stories.setVisible(true);
+        //this.dispose();
         //new window for displaying user's post and stories
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_user_post_storyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,7 +538,6 @@ public class ProfileDetails extends javax.swing.JFrame {
     private javax.swing.JButton editBio_btn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel newPass;
@@ -545,5 +547,6 @@ public class ProfileDetails extends javax.swing.JFrame {
     private javax.swing.JLabel profilePhoto;
     private javax.swing.JLabel reEnterPass;
     private javax.swing.JButton saveBio;
+    private javax.swing.JButton user_post_story;
     // End of variables declaration//GEN-END:variables
 }
