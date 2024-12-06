@@ -152,16 +152,16 @@ public class AppManager {
         }
         return authorContent;
     }
-//    public void deleteStory(){
-//        LocalDateTime currentTime = LocalDateTime.now();
-//        for (int i = 0; i < stories.size(); i++) {
-//            Content temp = stories.get(i);
-//            if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
-//                currentUser.removeContent(temp.getContentID());
-//                stories.remove(temp);
-//            }
-//        }
-//    }
+    public void deleteStory(){
+        LocalDateTime currentTime = LocalDateTime.now();
+        for (int i = 0; i < stories.size(); i++) {
+            Content temp = stories.get(i);
+            if (temp.getContentID().split("-")[0].equalsIgnoreCase("S") && currentTime.isAfter(temp.getTimePosted().plusHours(24))) {
+                currentUser.removeContent(temp.getContentID());
+                stories.remove(temp);
+            }
+        }
+    }
     /*can the user modify the content??*/
     /*get the online friends*/
     public ArrayList<Online> getOnline(){
@@ -237,7 +237,7 @@ public class AppManager {
                     /*searching for the user using id*/
                     for (int k = 0; k < Data.size(); k++) {
                         if(Data.get(k).getUserId().equalsIgnoreCase(this.posts.get(j).getAuthorID())){
-                            posts.add(new PostString(Data.get(k).getUserName(),this.posts.get(j).getText(),this.posts.get(j).getPhoto()) );
+                            posts.add(new PostString(Data.get(k).getUserName(),this.posts.get(j).getText(),this.posts.get(j).getPhoto(),this.posts.get(j).getTimePosted().toString()) );
                         }
                     }
 
@@ -257,7 +257,7 @@ public class AppManager {
                     /*searching for the user using id*/
                     for (int k = 0; k < Data.size(); k++) {
                         if(Data.get(k).getUserId().equalsIgnoreCase(this.stories.get(j).getAuthorID())){
-                            stories.add(new PostString(Data.get(k).getUserName(),this.stories.get(j).getText(),this.stories.get(j).getPhoto()) );
+                            stories.add(new PostString(Data.get(k).getUserName(),this.stories.get(j).getText(),this.stories.get(j).getPhoto(),this.stories.get(j).getTimePosted().toString()) );
                         }
                     }
 
