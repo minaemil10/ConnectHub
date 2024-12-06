@@ -286,8 +286,12 @@ public class NewsfeedWindow extends javax.swing.JFrame {
 
     private void friendManagement_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendManagement_btnActionPerformed
         // TODO add your handling code here:
-         new FriendManagement(a).setVisible(true);
-        
+         
+              JFrame frame = new JFrame("Friend Management");
+              frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
+               frame.setSize(800, 600); // Set the frame size
+             frame.add(new FriendManagement(a)); // Add your panel
+             frame.setVisible(true); // Make the frame visible
         
     }//GEN-LAST:event_friendManagement_btnActionPerformed
     

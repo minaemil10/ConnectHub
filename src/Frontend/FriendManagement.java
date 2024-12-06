@@ -91,7 +91,7 @@ public class FriendManagement extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(refresh)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jLabel2)
@@ -99,7 +99,7 @@ public class FriendManagement extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49))
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +130,9 @@ public class FriendManagement extends javax.swing.JPanel {
             String name = r.getUsernameString();
             FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
             friendSuggest.add(suggestion);
+            FriendSuggestion friendSuggestion = new FriendSuggestion(id, name, photo, a);
+            friendSuggest.add(friendSuggestion);
+            System.out.println(name);
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();

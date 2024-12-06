@@ -35,6 +35,38 @@ public class MyPosts_Stories extends javax.swing.JPanel {
     public MyPosts_Stories(AppManager a) {
         this.a = a;
         initComponents();
+        
+         postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+          ArrayList <PostString> stories = a.getMyStories();
+            for(PostString s : stories){
+                String date = s.getDate();
+                String name = s.getAuthor();
+                String text = s.getText();
+                String path = s.getPhoto();
+                if(!path.equals("No file selected")){
+                    StoryImage story = new StoryImage(text, path, name, date);
+                    storyPanel.add(story);
+            }
+                else{
+                    PostText story = new PostText(text, name, date);
+                    storyPanel.add(story);
+                }
+            }
+            ArrayList <PostString> posts =  a.getMyPosts();
+            for(PostString p : posts){
+                String date = p.getDate();
+                String name = p.getAuthor();
+                String text = p.getText();
+                String path = p.getPhoto();
+                if(!path.equals("No file selected")){
+                PostImage post = new PostImage(text, path, name, date);
+                postPanel.add(post);
+                }
+                else{
+                PostText postText = new PostText(text, name, date);
+                postPanel.add(postText);
+            }
+            }
     }
 
     /**
@@ -141,33 +173,11 @@ public class MyPosts_Stories extends javax.swing.JPanel {
         CreatePostButton = new javax.swing.JButton();
 
         postPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout postPanelLayout = new javax.swing.GroupLayout(postPanel);
-        postPanel.setLayout(postPanelLayout);
-        postPanelLayout.setHorizontalGroup(
-            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
-        );
-        postPanelLayout.setVerticalGroup(
-            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 321, Short.MAX_VALUE)
-        );
-
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane1.setViewportView(postPanel);
 
         storyPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout storyPanelLayout = new javax.swing.GroupLayout(storyPanel);
-        storyPanel.setLayout(storyPanelLayout);
-        storyPanelLayout.setHorizontalGroup(
-            storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
-        );
-        storyPanelLayout.setVerticalGroup(
-            storyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-
+        storyPanel.setLayout(new javax.swing.BoxLayout(storyPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane2.setViewportView(storyPanel);
 
         CreateStoryButton.setBackground(new java.awt.Color(102, 153, 255));
@@ -228,18 +238,31 @@ public class MyPosts_Stories extends javax.swing.JPanel {
 
     private void CreateStoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateStoryButtonActionPerformed
         // TODO add your handling code here:
-                Result result = showCustomDialog();
+            Result result = showCustomDialog();
             if(result.userText.equals("")){
                 JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else if(!result.imagePath.equals("No file selected")){
-//                StoryImage storyImage = new StoryImage(result.userText, result.imagePath);
-//                storyPanel.add(storyImage);
+            else {
+                a.createStory(result.imagePath, result.userText);
             }
-            else{
-//                PostText postText = new PostText(result.userText);
-//                storyPanel.add(postText);
+            postPanel.removeAll();
+            ArrayList <PostString> stories = a.getMyStories();
+            for(PostString s : stories){
+                String date = s.getDate();
+                String name = s.getAuthor();
+                String text = s.getText();
+                String path = s.getPhoto();
+                if(!path.equals("No file selected")){
+                    StoryImage story = new StoryImage(text, path, name, date);
+                    storyPanel.add(story);
             }
+                else{
+                    PostText story = new PostText(text, name, date);
+                    storyPanel.add(story);
+                }
+            }
+            
+            
         storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
         storyPanel.revalidate();
         storyPanel.repaint();
@@ -256,7 +279,8 @@ public class MyPosts_Stories extends javax.swing.JPanel {
                 a.createPost(result.imagePath, result.userText);
                
             }
-
+            postPanel.removeAll();  // Remove all components
+            
            // System.out.println(result.imagePath);
             ArrayList <PostString> posts =  a.getMyPosts();
             for(PostString p : posts){
