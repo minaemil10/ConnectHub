@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import static Backend.DataBase.FilePaths.*;
 
 public class Server {
-    private ArrayList<User> Data;
-    private ArrayList<Post>posts;
-    private ArrayList<Story>stories;
-    private ArrayList<Relationship>relationships;
+    private static ArrayList<User> Data;
+    private static ArrayList<Post>posts;
+    private static ArrayList<Story>stories;
+    private static ArrayList<Relationship>relationships;
     private static Server server=new Server();
     private Server() {
         Data = loadUsers();
         posts =loadPost();
         stories=loadStory();
-        relationships=loadRelationShips();
+//        relationships=loadRelationShips();
     }
     public static Server getInstance() {
         return server; // Getter for singleton instance
@@ -27,10 +27,18 @@ public class Server {
     public AppManager serve(){
        return new AppManager(Data,posts,stories);
     }
-    private ArrayList<User> loadUsers(){
-        return new UserFileReader(userDataBase).readAll();
+    private ArrayList<User> loadUsers() throws RuntimeException {
+        ArrayList<User> temp= new UserFileReader(userDataBase).readAll();
+        try {
+            /*check the array*/
+            SignUp.setCounter(Integer.parseInt(temp.getLast().getUserId().split("U")[1]));
+            return temp;
+        } catch (Exception e) {
+            return temp;
+        }
+
     }
-    private void writeUsers(){
+    public static void writeUsers(){
         new UserFileWriter(userDataBase).writeAll(Data);
     }
     /*Content database*/
@@ -39,7 +47,7 @@ public class Server {
     }
     private ArrayList<Story> loadStory(){
         ArrayList<Story> temp= new ContentFileReader(contentDataBase).readAllStories();
-        Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
+    //    Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
         return temp;
     }
 
@@ -50,12 +58,12 @@ public class Server {
     }
     /*Expected relations writer and reader*/
     /*m7tagen ntfahm fe mwdo3 el requests dhhhh*/
-    private ArrayList<Relationship> loadRelationShips(){
-        return new FriendRequestFileReader(requestsDataBase).readAll();
-
-    }
-    private void writeRelationShips(){
-        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
-    }
+//    private ArrayList<Relationship> loadRelationShips(){
+//        return new FriendRequestFileReader(requestsDataBase).readAll();
+//
+//    }
+//    private void writeRelationShips(){
+//        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
+//    }
 
 }

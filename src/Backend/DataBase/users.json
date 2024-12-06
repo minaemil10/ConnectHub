@@ -10,7 +10,6 @@
     "bio": "I am an Engineer",
     "friends": [
       {
-        "userID": "U2",
         "relation": {
           "relation": "Friend"
         }
@@ -28,11 +27,23 @@
     "bio": "I am a Developer",
     "friends": [
       {
-        "userID": "U1",
         "relation": {
           "relation": "Friend"
         }
       }
     ]
+  },
+  {
+    "userId": "U1",
+    "email": "rober@gmail.com",
+    "userName": "rober",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "DateOfBirth": "05,12,2003",
+    "status": false,
+    "bio": "biooooooooooooo",
+    "friends": [],
+    "Blocked": [],
+    "received": [],
+    "sent": []
   }
 ]

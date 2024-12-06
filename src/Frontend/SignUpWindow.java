@@ -4,6 +4,7 @@
  */
 package Frontend;
 
+import Backend.AppManager;
 import java.awt.Image;
 import java.io.File;
 import java.time.LocalDate;
@@ -27,9 +28,10 @@ public class SignUpWindow extends javax.swing.JFrame {
      */
     private String profilePhotoPath = ""; 
     private String coverPhotoPath = ""; 
-
-    public SignUpWindow() {
+    private AppManager a ;
+    public SignUpWindow(AppManager a) {
         initComponents();
+        this.a = a;
     }
 
     /**
@@ -252,13 +254,13 @@ public class SignUpWindow extends javax.swing.JFrame {
                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)))
-                        .addGap(18, 18, 18)
+                                .addGap(70, 70, 70))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -375,16 +377,14 @@ public class SignUpWindow extends javax.swing.JFrame {
 
     private void jSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpButtonActionPerformed
         // TODO add your handling code here:
-       /*  ArrayList<User> users = AppManger.getUsers();
-         String email = jEmailField.getText().trim();
-         String userName = jUsernameField.getText().trim();
-         String password = new String(jPasswordField.getPassword()).trim();
-         String confirmPassword = new String(jConfirmPasswordField.getPassword()).trim();
-         LocalDate birthDate = LocalDate.ofInstant(jCalendarPanel1.getDate().toInstant(), ZoneId.systemDefault());
+        String userName = jUsernameField.getText().trim();
+        String email= jEmailField.getText().trim();
+        String password = new String(jPasswordField.getPassword()).trim();
+        String confirmPassword = new String(jConfirmPasswordField.getPassword()).trim();
+        LocalDate birthDate = LocalDate.ofInstant(jCalendarPanel1.getDate().toInstant(), ZoneId.systemDefault());
          LocalDate today = LocalDate.now();
          int age = Period.between(birthDate, today).getYears();
-    
-         if(email.isEmpty() || userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+          if(email.isEmpty() || userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
              JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
          }
          else if(!(password.equals(confirmPassword))){
@@ -396,6 +396,35 @@ public class SignUpWindow extends javax.swing.JFrame {
          else if (age < 12) {
         JOptionPane.showMessageDialog(null, "You must be at least 12 years old to sign up.", "Warning", JOptionPane.WARNING_MESSAGE);
     }
+         else if(a.signUpUser(email, password, userName, birthDate)){
+        
+            
+        
+        if(!coverPhotoPath.isEmpty()){
+             a.changeCoverPhoto(coverPhotoPath);
+             coverPhotoPath = "";
+             }
+             if(!profilePhotoPath.isEmpty()){
+                 a.changeProfilePhoto(profilePhotoPath);
+                 profilePhotoPath = "";
+             }
+        JOptionPane.showMessageDialog(this, "account created successfully");
+             LoginWindow login = new LoginWindow();
+             login.setVisible(true);
+             this.dispose();
+         }
+         
+          else
+          {
+                  JOptionPane.showMessageDialog(this, "Account already exist");
+                  }
+       /*  ArrayList<User> users = AppManger.getUsers();
+         
+         
+         
+         
+    
+        
          else{
              SignUp signUp = new SignUp();
              User user  = signUp.addUser(users.size() , email, password, userName, birthDate, false , users);
@@ -444,7 +473,7 @@ public class SignUpWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpWindow().setVisible(true);
+          //      new SignUpWindow(a).setVisible(true);
             }
         });
     }

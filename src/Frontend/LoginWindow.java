@@ -4,8 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
 import Backend.User;
 import Backend.Login;
+import Backend.Server;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -18,9 +20,12 @@ public class LoginWindow extends javax.swing.JFrame {
     /**
      * Creates new form LoginWindow
      */
+    private Server s = Server.getInstance();
+    private AppManager a =  s.serve();
     public LoginWindow() {
           
         initComponents();
+        
     }
 
     /**
@@ -125,30 +130,37 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-       /*  String email = jEmailField.getText().trim();
+         String email = jEmailField.getText().trim();
          String password = new String(jPasswordField1.getPassword()).trim();
-        ArrayList<User> users = AppManger.getUsers();
-        if(email.isEmpty() || password.isEmpty()){
+         if(email.isEmpty() || password.isEmpty()){
         JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         return;
         }
-        Login login = new Login();
-        User user = login.accessUser(email , password , users);
+        if(a.loginUser(email, password)){
+              NewsfeedWindow newsfeed =  new NewsfeedWindow(a);
+              JOptionPane.showMessageDialog(this, "login Successfully");
+              newsfeed.setVisible(true);
+              this.dispose();
+         }
+//        ArrayList<User> users = AppManger.getUsers();
         
-            if(user!=null){
-                JOptionPane.showMessageDialog(this, "login Successfully");
-                NewsfeedWindow newsfeed =  new NewsfeedWindow();
-                newsfeed.setVisible(true);
-                this.dispose();
-            }
+//        Login login = new Login();
+//        User user = login.accessUser(email , password , users);
+//        
+//            if(user!=null){
+//                JOptionPane.showMessageDialog(this, "login Successfully");
+//                NewsfeedWindow newsfeed =  new NewsfeedWindow();
+//                newsfeed.setVisible(true);
+//                this.dispose();
+//            }
             else{
-        JOptionPane.showMessageDialog(null, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
-            }*/
+       JOptionPane.showMessageDialog(null, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
         // TODO add your handling code here:
-        SignUpWindow signup = new SignUpWindow();
+        SignUpWindow signup = new SignUpWindow(a);
         signup.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SignUpButtonActionPerformed

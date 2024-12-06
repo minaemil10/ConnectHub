@@ -44,40 +44,26 @@ public class User implements DataBaseOBJ {
         received=new ArrayList<>();
         sent=new ArrayList<>();
     }
-
+    
 
     public String getUserId() {
         return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getUserName() {
         return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public boolean checkPassword(String password) {
         return this.password.equals(hashPassword(password));
     }
-
     public void setPassword(String password) {
         this.password = hashPassword(password);
     }
-    
      private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -96,10 +82,6 @@ public class User implements DataBaseOBJ {
 
     public LocalDate getDateOfBirth() {
         return DateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
     }
 
     public Boolean getStatus() {
@@ -132,17 +114,23 @@ public class User implements DataBaseOBJ {
     public ArrayList<Relationship> getFriends() {
         return friends;
     }
-    public void setFriends(ArrayList<Relationship> friends) {
-        this.friends = friends;
-    }
     public ArrayList<String> getMyPosts() {
         return myPosts;
     }
-    public void setMyPosts(ArrayList<String> myPosts) {
-        this.myPosts = myPosts;
 
+    public ArrayList<Relationship> getBlocked() {
+        return Blocked;
     }
-    public void sendRelation ( Relationship relationship){
+
+    public ArrayList<Relationship> getReceived() {
+        return received;
+    }
+
+    public ArrayList<Relationship> getSent() {
+        return sent;
+    }
+
+    public void sendRelation (Relationship relationship){
         sent.add(relationship);
     }
     public void receiveRelation ( Relationship relationship){

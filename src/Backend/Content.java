@@ -19,7 +19,7 @@ public class Content implements DataBaseOBJ {
     private String contentID;
     private String authorID;
     private String text;
-    private LocalDateTime timePosted;
+    private LocalDate timePosted;
 
     public Content(String photo, String contentID, String authorID, String text) {
         //contructor used to take all values except time because it is the current time
@@ -27,7 +27,7 @@ public class Content implements DataBaseOBJ {
         this.contentID = contentID;
         this.authorID = authorID;
         this.text = text;
-        timePosted = LocalDateTime.now();
+        timePosted = LocalDate.now();
     }
     
     //getters for all attributed
@@ -47,7 +47,7 @@ public class Content implements DataBaseOBJ {
         return text;
     }
 
-    public LocalDateTime getTimePosted() {
+    public LocalDate getTimePosted() {
         return timePosted;
     }
     
