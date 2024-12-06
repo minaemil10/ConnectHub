@@ -289,7 +289,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
          
               JFrame frame = new JFrame("Friend Management");
               frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
-               frame.setSize(800, 600); // Set the frame size
+               frame.setSize(1140, 623); // Set the frame size
              frame.add(new FriendManagement(a)); // Add your panel
              frame.setVisible(true); // Make the frame visible
         

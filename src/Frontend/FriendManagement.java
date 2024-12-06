@@ -25,6 +25,38 @@ public class FriendManagement extends javax.swing.JPanel {
         friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.Y_AXIS));
         friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.Y_AXIS));
         friendSuggest.setLayout(new javax.swing.BoxLayout(friendSuggest, javax.swing.BoxLayout.Y_AXIS));
+        ArrayList <RelationString> suggest =  a.friendSuggest();
+        for(RelationString r : suggest){
+            String id = r.getIdString();
+            String photo = r.getRelationString();
+            String name = r.getUsernameString();
+            FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
+            friendSuggest.add(suggestion);
+            FriendSuggestion friendSuggestion = new FriendSuggestion(id, name, photo, a);
+            friendSuggest.add(friendSuggestion);
+           // System.out.println(name);
+            //link friend suggestion with panel
+        }
+        ArrayList <RelationString> request = a.getRequests();
+        for(RelationString r : request){
+            String id = r.getIdString();
+            String photo = r.getRelationString();
+            String name = r.getUsernameString();
+            //link friend request with panel
+            FriendRequest f = new FriendRequest(a, id, name, photo);
+            friendRequestPanel.add(f);
+            System.out.println(name);
+        }
+        ArrayList <RelationString> friends = a.getFriends();
+        for(RelationString r : request){
+            String id = r.getIdString();
+            String photo = r.getRelationString();
+            String name = r.getUsernameString();
+            //link friend  with panel
+            FriendList list = new FriendList(id, name, photo, a);
+            friendListPanel.add(list);
+        }
+        friendSuggest.repaint();
     }
 
     /**
@@ -48,14 +80,17 @@ public class FriendManagement extends javax.swing.JPanel {
         refresh = new javax.swing.JButton();
 
         friendRequestPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendRequestPanel.setPreferredSize(new java.awt.Dimension(270, 460));
         friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane1.setViewportView(friendRequestPanel);
 
         friendListPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendListPanel.setPreferredSize(new java.awt.Dimension(270, 460));
         friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane2.setViewportView(friendListPanel);
 
         friendSuggest.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        friendSuggest.setPreferredSize(new java.awt.Dimension(270, 460));
         friendSuggest.setLayout(new javax.swing.BoxLayout(friendSuggest, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane3.setViewportView(friendSuggest);
 
@@ -82,47 +117,55 @@ public class FriendManagement extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(112, 112, 112)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(15, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(128, 128, 128)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(refresh)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel2)
-                .addGap(158, 158, 158)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79))
+                .addContainerGap()
+                .addComponent(refresh)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(refresh)
-                .addGap(28, 28, 28)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
-        
+        friendSuggest.removeAll();
+        friendRequestPanel.removeAll();
+        friendListPanel.removeAll();
         ArrayList <RelationString> suggest =  a.friendSuggest();
         for(RelationString r : suggest){
             String id = r.getIdString();

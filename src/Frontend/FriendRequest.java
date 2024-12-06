@@ -5,6 +5,8 @@
 package Frontend;
 
 import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,6 +24,15 @@ public class FriendRequest extends javax.swing.JPanel {
     public FriendRequest(AppManager a, String id,String name,String photo) {
         initComponents();
         this.a = a;
+        nameText.setText(name);
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            photoLabel.setIcon(new ImageIcon(image));
+            photoLabel.setText("");
     }
 
     /**
@@ -33,17 +44,17 @@ public class FriendRequest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
         remove = new javax.swing.JButton();
         accept = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        photoLabel = new javax.swing.JLabel();
 
-        jTextField1.setEnabled(false);
-        jTextField1.setFocusable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nameText.setEnabled(false);
+        nameText.setFocusable(false);
+        nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nameTextActionPerformed(evt);
             }
         });
 
@@ -63,7 +74,7 @@ public class FriendRequest extends javax.swing.JPanel {
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        photoLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,7 +84,7 @@ public class FriendRequest extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -82,7 +93,7 @@ public class FriendRequest extends javax.swing.JPanel {
                                 .addComponent(remove)
                                 .addGap(21, 21, 21))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1)
+                                .addComponent(nameText)
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1)
@@ -93,8 +104,8 @@ public class FriendRequest extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(photoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(nameText))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(accept)
@@ -105,9 +116,9 @@ public class FriendRequest extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nameTextActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
@@ -122,9 +133,9 @@ public class FriendRequest extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accept;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nameText;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JButton remove;
     // End of variables declaration//GEN-END:variables
 }
