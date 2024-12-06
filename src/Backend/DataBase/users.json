@@ -38,11 +38,12 @@
     "email": "rober@gmail.com",
     "userName": "rober",
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "DateOfBirth": "06,12,2012",
+    "DateOfBirth": "06,12,2010",
     "status": false,
-    "profilePhoto": "C:\\Users\\User\\Desktop\\1_NdZYCyf_RZTf6NOM6AnFhQ.png",
-    "coverPhoto": "C:\\Users\\User\\Desktop\\1_NdZYCyf_RZTf6NOM6AnFhQ.png",
-    "bio": "bioooooooooooooo",
+    "myPosts": [
+      "P-0"
+    ],
+    "myStories": [],
     "friends": [],
     "Blocked": [],
     "received": [],

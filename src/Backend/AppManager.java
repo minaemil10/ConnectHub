@@ -50,6 +50,7 @@ public class AppManager {
     public void LogoutUser(){
         boolean logout = new Logout().logout(currentUser);
         Server.writeUsers();
+        Server.writeContent();
     }
     /*friend requests*/
     public boolean sendFriendRequest(String receiver){

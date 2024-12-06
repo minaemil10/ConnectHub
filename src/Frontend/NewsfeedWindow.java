@@ -286,8 +286,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
 
     private void friendManagement_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendManagement_btnActionPerformed
         // TODO add your handling code here:
-        FriendManagement friendManagement = new FriendManagement(a);
-        friendManagement.setVisible(true);
+         new FriendManagement(a).setVisible(true);
+        
+        
     }//GEN-LAST:event_friendManagement_btnActionPerformed
     
 
