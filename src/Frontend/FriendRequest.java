@@ -129,6 +129,7 @@ public class FriendRequest extends javax.swing.JPanel {
     private void acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptActionPerformed
         // TODO add your handling code here:
         a.acceptFriendRequest(id);
+        
     }//GEN-LAST:event_acceptActionPerformed
 
 

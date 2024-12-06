@@ -46,7 +46,8 @@ public class FriendManagement extends javax.swing.JPanel {
             System.out.println(name);
         }
         ArrayList <RelationString> friends = a.getFriends();
-        for(RelationString r : request){
+        System.out.println(friends.size());
+        for(RelationString r : friends){
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();
@@ -54,10 +55,11 @@ public class FriendManagement extends javax.swing.JPanel {
             FriendList list = new FriendList(id, name, photo, a);
             friendListPanel.add(list);
             System.out.println(name+id);
+            
         }
-//        friendSuggest.repaint();
-//        friendRequestPanel.repaint();
-//        friendListPanel.repaint();
+        friendSuggest.repaint();
+        friendRequestPanel.repaint();
+        friendListPanel.repaint();
     }
 
     /**
@@ -69,6 +71,8 @@ public class FriendManagement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scrollPane1 = new java.awt.ScrollPane();
+        scrollPane2 = new java.awt.ScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         friendRequestPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -118,19 +122,19 @@ public class FriendManagement extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(128, 128, 128)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +162,7 @@ public class FriendManagement extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -167,6 +171,9 @@ public class FriendManagement extends javax.swing.JPanel {
         friendSuggest.removeAll();
         friendRequestPanel.removeAll();
         friendListPanel.removeAll();
+        friendSuggest.repaint();
+        friendRequestPanel.repaint();
+        friendListPanel.repaint();
         ArrayList <RelationString> suggest =  a.friendSuggest();
         for(RelationString r : suggest){
             String id = r.getIdString();
@@ -174,8 +181,7 @@ public class FriendManagement extends javax.swing.JPanel {
             String name = r.getUsernameString();
             FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
             friendSuggest.add(suggestion);
-            FriendSuggestion friendSuggestion = new FriendSuggestion(id, name, photo, a);
-            friendSuggest.add(friendSuggestion);
+            
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();
@@ -198,9 +204,7 @@ public class FriendManagement extends javax.swing.JPanel {
             friendListPanel.add(list);
         //    System.out.println(name+ id);
         }
-//        friendSuggest.repaint();
-//        friendRequestPanel.repaint();
-//        friendListPanel.repaint();
+        
     }//GEN-LAST:event_refreshActionPerformed
 
 
@@ -215,5 +219,7 @@ public class FriendManagement extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton refresh;
+    private java.awt.ScrollPane scrollPane1;
+    private java.awt.ScrollPane scrollPane2;
     // End of variables declaration//GEN-END:variables
 }

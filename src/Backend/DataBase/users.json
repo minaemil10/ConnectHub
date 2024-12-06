@@ -33,16 +33,16 @@
     "status": false,
     "myPosts": [],
     "myStories": [],
-    "friends": [],
-    "Blocked": [],
-    "received": [
+    "friends": [
       {
         "relationWith": "U1",
         "relation": {
-          "relation": "pending"
+          "relation": "Friend"
         }
       }
     ],
+    "Blocked": [],
+    "received": [],
     "sent": []
   }
 ]
