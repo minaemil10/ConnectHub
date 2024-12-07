@@ -16,15 +16,15 @@
     ],
     "friends": [],
     "Blocked": [],
-    "received": [],
-    "sent": [
+    "received": [
       {
         "relationWith": "U2",
         "relation": {
           "relation": "pending"
         }
       }
-    ]
+    ],
+    "sent": []
   },
   {
     "userId": "U2",
@@ -35,17 +35,17 @@
     "status": false,
     "myPosts": [],
     "myStories": [],
-    "friends": [
+    "friends": [],
+    "Blocked": [],
+    "received": [],
+    "sent": [
       {
         "relationWith": "U1",
         "relation": {
-          "relation": "Friend"
+          "relation": "pending"
         }
       }
-    ],
-    "Blocked": [],
-    "received": [],
-    "sent": []
+    ]
   },
   {
     "userId": "U3",

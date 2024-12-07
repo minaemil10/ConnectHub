@@ -274,6 +274,7 @@ public class AppManager {
         ArrayList<Relationship>temp=new ArrayList<>();
         
         temp.addAll(currentUser.getFriends());temp.addAll(currentUser.getBlocked());temp.addAll(currentUser.getReceived());
+        temp.addAll(currentUser.getSent());
         if(temp.isEmpty()){
            
             for(int i=0;i<Data.size();i++){

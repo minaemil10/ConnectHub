@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Frontend/SignUpWindow.java</file>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/AppManager.java</file>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/User.java</file>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/DataBase/users.json</file>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
-            <file>file:/C:/Users/beroo/Desktop/prog%202/lab%207/ConnectHub/src/Backend/DataBase/friendRequests.json</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/FriendRequest.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/StoryImage.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/FriendSuggestion.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/SignUpWindow.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/LoginWindow.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/FriendList.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/PostText.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/DataBase/users.json</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/FriendManagement.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/PostImage.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/AppManager.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/DataBase/UserFileWriter.java</file>
         </group>
     </open-files>
 </project-private>

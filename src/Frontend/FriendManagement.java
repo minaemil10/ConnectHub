@@ -43,18 +43,19 @@ public class FriendManagement extends javax.swing.JPanel {
             //link friend request with panel
             FriendRequest f = new FriendRequest(a, id, name, photo);
             friendRequestPanel.add(f);
-            System.out.println(name);
+           // System.out.println(name);
         }
         ArrayList <RelationString> friends = a.getFriends();
         System.out.println(friends.size());
-        for(RelationString r : friends){
-            String id = r.getIdString();
-            String photo = r.getRelationString();
-            String name = r.getUsernameString();
+        for(RelationString f : friends){
+            String id = f.getIdString();
+            String photo = f.getRelationString();
+            String name = f.getUsernameString();
             //link friend  with panel
             FriendList list = new FriendList(id, name, photo, a);
             friendListPanel.add(list);
-            System.out.println(name+id);
+            System.out.println(friends.size());
+       //     System.out.println(name+id);
             
         }
         friendSuggest.repaint();
