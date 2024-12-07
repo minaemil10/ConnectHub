@@ -42,8 +42,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     public NewsfeedWindow(AppManager a) {
         initComponents();
         this.a = a;
-         postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
-         ImageIcon imageIcon = new ImageIcon(a.getProfilePhoto());
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+        ImageIcon imageIcon = new ImageIcon(a.getProfilePhoto());
             Image image = imageIcon.getImage().getScaledInstance(
                 223, 
                 85, 
@@ -238,7 +238,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             //DefaultTableModel model = new DefaultTableModel();
             DefaultTableModel model = (DefaultTableModel) status.getModel();
             String user  = on.getUser();
-            String status;
+            String status ;
             if(on.getStatus()){
                 status = "online";
             }

@@ -79,8 +79,8 @@ public class ProfileDetails extends javax.swing.JFrame {
 
         profilePhoto = new javax.swing.JLabel();
         coverPhoto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        changePhoto_btn = new javax.swing.JButton();
+        changeCover_btn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         bioText = new javax.swing.JTextField();
         editBio_btn = new javax.swing.JButton();
@@ -103,17 +103,17 @@ public class ProfileDetails extends javax.swing.JFrame {
 
         coverPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Change Profile Photo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        changePhoto_btn.setText("Change Profile Photo");
+        changePhoto_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                changePhoto_btnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Change Cover Photo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        changeCover_btn.setText("Change Cover Photo");
+        changeCover_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                changeCover_btnActionPerformed(evt);
             }
         });
 
@@ -235,12 +235,12 @@ public class ProfileDetails extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(changePhoto_btn)
                             .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(coverPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(changeCover_btn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -276,7 +276,7 @@ public class ProfileDetails extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jButton2))
+                        .addComponent(changeCover_btn))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +284,7 @@ public class ProfileDetails extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jButton1)))))
+                                .addComponent(changePhoto_btn)))))
                 .addGap(25, 25, 25)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -314,7 +314,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void changePhoto_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePhoto_btnActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         
@@ -355,9 +355,9 @@ public class ProfileDetails extends javax.swing.JFrame {
         }
         
         a.changeProfilePhoto(profilePath);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_changePhoto_btnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void changeCover_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCover_btnActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         
@@ -400,7 +400,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         }
        
         a.changeCoverPhoto(coverPath);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_changeCover_btnActionPerformed
 
     private void bioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bioTextActionPerformed
         // TODO add your handling code here:
@@ -428,7 +428,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
         //We need to check if the password is true or not
         //If Password is true
-        
+        //new string for password getPassword().
         if(a.checkPassword(passwordField.getText())){
             newPass.setEnabled(true);
             reEnterPass.setEnabled(true);
@@ -460,25 +460,25 @@ public class ProfileDetails extends javax.swing.JFrame {
         return;
     }
 
-    if (!newPassword.equals(confirmPassword)) {
-        JOptionPane.showMessageDialog(this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    newPass.setEnabled(false);
-    reEnterPass.setEnabled(false);
-    newPasword.setEnabled(false);
-    checkNewPass.setEnabled(false);
-    confirmPassword_btn.setEnabled(false);
-    currPass.setEnabled(true);
-    passwordField.setEnabled(true);
-    changePassword_btn.setEnabled(true);
-    // Save the new password
-    
-    a.changePassword(newPasword.getText());  // n4of get text dy lw fy tareka tanya
-    JOptionPane.showMessageDialog(this, "Password changed successfully!");
-    passwordField.setText(newPassword);
-    newPasword.setText("");
-    checkNewPass.setText("");
+        if (!newPassword.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        newPass.setEnabled(false);
+        reEnterPass.setEnabled(false);
+        newPasword.setEnabled(false);
+        checkNewPass.setEnabled(false);
+        confirmPassword_btn.setEnabled(false);
+        currPass.setEnabled(true);
+        passwordField.setEnabled(true);
+        changePassword_btn.setEnabled(true);
+        // Save the new password
+
+        a.changePassword(newPasword.getText());  // n4of get text dy lw fy tareka tanya
+        JOptionPane.showMessageDialog(this, "Password changed successfully!");
+        passwordField.setText(newPassword);
+        newPasword.setText("");
+        checkNewPass.setText("");
     }//GEN-LAST:event_confirmPassword_btnActionPerformed
 
     private void saveBioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBioActionPerformed
@@ -539,14 +539,14 @@ public class ProfileDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bioText;
+    private javax.swing.JButton changeCover_btn;
     private javax.swing.JButton changePassword_btn;
+    private javax.swing.JButton changePhoto_btn;
     private javax.swing.JPasswordField checkNewPass;
     private javax.swing.JButton confirmPassword_btn;
     private javax.swing.JLabel coverPhoto;
     private javax.swing.JLabel currPass;
     private javax.swing.JButton editBio_btn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel newPass;

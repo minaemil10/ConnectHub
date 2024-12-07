@@ -36,8 +36,8 @@ public class MyPosts_Stories extends javax.swing.JPanel {
         this.a = a;
         initComponents();
         
-         postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
-          ArrayList <PostString> stories = a.getMyStories();
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+            ArrayList <PostString> stories = a.getMyStories();
             for(PostString s : stories){
                 String date = s.getDate();
                 String name = s.getAuthor();
@@ -47,6 +47,7 @@ public class MyPosts_Stories extends javax.swing.JPanel {
                     StoryImage story = new StoryImage(text, path, name, date);
                     storyPanel.add(story);
             }
+                //change photo with text
                 else{
                     PostText story = new PostText(text, name, date);
                     storyPanel.add(story);

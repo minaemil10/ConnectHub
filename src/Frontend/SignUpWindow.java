@@ -305,12 +305,13 @@ public class SignUpWindow extends javax.swing.JFrame {
         fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
             public boolean accept(File file) {
-                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+                String fileName = file.getName().toLowerCase();
+                return file.isDirectory() || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif");
             }
 
             @Override
             public String getDescription() {
-                return "PNG Images (*.png)";
+                return "PNG Images (*.png, *.jpg, *.jpeg, *.gif)";
             }
         });
         
@@ -319,7 +320,8 @@ public class SignUpWindow extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
              profilePhotoPath = selectedFile.getAbsolutePath();
-             if(profilePhotoPath.endsWith(".png")){
+             String fileName = selectedFile.getName().toLowerCase();
+             if(fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif")){
             ImageIcon imageIcon = new ImageIcon(profilePhotoPath);
             Image image = imageIcon.getImage().getScaledInstance(
                 photoLabel.getWidth(), 
@@ -351,12 +353,13 @@ public class SignUpWindow extends javax.swing.JFrame {
         fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
             public boolean accept(File file) {
-                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+                String fileName = file.getName().toLowerCase();
+                return file.isDirectory() || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif");
             }
 
             @Override
             public String getDescription() {
-                return "PNG Images (*.png)";
+                return "PNG Images (*.png, *.jpg, *.jpeg, *.gif)";
             }
         });
         
@@ -367,7 +370,8 @@ public class SignUpWindow extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             coverPhotoPath = selectedFile.getAbsolutePath();
-            if(coverPhotoPath.endsWith(".png")){
+            String fileName = selectedFile.getName().toLowerCase();
+            if(fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif")){
            ImageIcon imageIcon = new ImageIcon(coverPhotoPath);
             Image image = imageIcon.getImage().getScaledInstance(
                 photoLabel1.getWidth(), 
@@ -377,10 +381,10 @@ public class SignUpWindow extends javax.swing.JFrame {
             photoLabel1.setIcon(new ImageIcon(image));
             photoLabel1.setText("");
             
-           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+            JOptionPane.showMessageDialog(this, "photo uploaded successfully");
             }
             else{
-              JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selected file is not image", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         } else {
         JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -410,27 +414,25 @@ public class SignUpWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "You must be at least 12 years old to sign up.", "Warning", JOptionPane.WARNING_MESSAGE);
     }
          else if(a.signUpUser(email, password, userName, birthDate)){
-        
-            
-        
+       
         if(!coverPhotoPath.isEmpty()){
              a.changeCoverPhoto(coverPhotoPath);
              coverPhotoPath = "";
-             }
-             if(!profilePhotoPath.isEmpty()){
-                 a.changeProfilePhoto(profilePhotoPath);
-                 profilePhotoPath = "";
-             }
+        }
+        if(!profilePhotoPath.isEmpty()){
+            a.changeProfilePhoto(profilePhotoPath);
+            profilePhotoPath = "";
+        }
         JOptionPane.showMessageDialog(this, "account created successfully");
              LoginWindow login = new LoginWindow();
              login.setVisible(true);
              this.dispose();
-         }
+        }
          
-          else
-          {
-                  JOptionPane.showMessageDialog(this, "Account already exist");
-                  }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Account already exist");
+        }
        /*  ArrayList<User> users = AppManger.getUsers();
          
          

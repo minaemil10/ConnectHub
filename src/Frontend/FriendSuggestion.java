@@ -112,6 +112,7 @@ public class FriendSuggestion extends javax.swing.JPanel {
         // TODO add your handling code here:
         a.sendFriendRequest(id);
         add.setText("Pending");
+        add.setEnabled(false);
     }//GEN-LAST:event_addActionPerformed
 
 
