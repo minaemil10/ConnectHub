@@ -143,7 +143,7 @@ public class User implements DataBaseOBJ {
     }
     public boolean acceptFriendRequest(String senderID){
         for (int i = 0; i < received.size(); i++) {
-            if(received.get(i).getrelationWith().equalsIgnoreCase(senderID)){
+            if(received.get(i).getRelatedUserID().equalsIgnoreCase(senderID)){
                 received.get(i).setFriend();
                 friends.add(received.get(i));
                 received.remove(received.get(i));
@@ -155,7 +155,7 @@ public class User implements DataBaseOBJ {
     }
     public boolean cancelFriendRequest(String senderID){
         for (int i = 0; i < received.size(); i++) {
-            if(received.get(i).getrelationWith().equalsIgnoreCase(senderID)){
+            if(received.get(i).getRelatedUserID().equalsIgnoreCase(senderID)){
                 received.get(i).setCancel();
                 received.remove(received.get(i));
                 return true;
@@ -163,10 +163,9 @@ public class User implements DataBaseOBJ {
         }
         return false;
     }
-
     public boolean blockFriend(String receiverID){
         for (int i = 0; i < friends.size(); i++) {
-            if(friends.get(i).getrelationWith().equalsIgnoreCase(receiverID)){
+            if(friends.get(i).getRelatedUserID().equalsIgnoreCase(receiverID)){
                 friends.get(i).setBlock();
                 Blocked.add(friends.get(i));
                 friends.remove(friends.get(i));

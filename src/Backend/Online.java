@@ -2,13 +2,11 @@ package Backend;
 
 public class Online {
     private Boolean status;
-
+    private String user;
     public Online(Boolean status, String user) {
         this.status = status;
         this.user = user;
     }
-
-    private String user;
 
     public Boolean getStatus() {
         return status;

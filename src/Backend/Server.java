@@ -22,9 +22,7 @@ public class Server {
         }
         if(posts==null){
             posts=new ArrayList<>();
-
         }
-
         if(stories==null){
             stories=new ArrayList<>();
         }
