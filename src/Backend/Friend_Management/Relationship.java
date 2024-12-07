@@ -1,11 +1,11 @@
 package Backend.Friend_Management;
 
 public class Relationship {
-    private String relatedUserId;
+    private String relationWith;
     private Relation relation;
 
     public Relationship( Relation relation,String relationWith) {
-        this.relatedUserId = relationWith;
+        this.relationWith = relationWith;
         this.relation = relation;
     }
     public void setFriend() {
@@ -21,9 +21,8 @@ public class Relationship {
         return relation.getRelation();
     }
 
-    public String getRelatedUserID() {
-        return relatedUserId;
+    public String getrelationWith() {
+        return relationWith;
     }
-
 
 }
