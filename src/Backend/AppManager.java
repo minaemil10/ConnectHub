@@ -215,7 +215,7 @@ public class AppManager {
             Content temp = stories.get(i);
             
             Duration duration = Duration.between(temp.getTimePosted(), currentTime);
-            System.out.print(duration.toHours());
+            //System.out.print(duration.toHours());
             if (duration.toHours()>=24) {
                 currentUser.removeContent(temp.getContentID());
                 stories.remove(temp);
@@ -345,7 +345,7 @@ public class AppManager {
                 }
             }
         }
-        System.out.print(stories.size());
+       // System.out.print(stories.size());
         return stories;
     }
 
