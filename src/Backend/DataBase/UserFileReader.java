@@ -49,9 +49,10 @@ public class UserFileReader extends JsonFileReader {
                 if (user.getUserId().equals(recieverUserID)) {
                     reciever = user;
                 }
-                if (sender != null && reciever != null) break;
+                if (sender != null && reciever != null) {
+                    break;
+                }
             }
-
 
             if (sender != null && reciever != null) {
                 //Get sender relations
@@ -106,7 +107,7 @@ public class UserFileReader extends JsonFileReader {
                             break;
                         }
                     }
-                }else if (rel.getRelation().equals("Block")) {
+                } else if (rel.getRelation().equals("Block")) {
                     /*if they are blocked search blocked arraylist in both*/
                     //Find sender RelationShip object
                     for (Relationship relationship : senderBlocked) {
