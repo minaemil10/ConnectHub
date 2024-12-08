@@ -185,10 +185,17 @@ public class User implements DataBaseOBJ {
             if (received.get(i).getrelationWith().equalsIgnoreCase(senderID)) {
                 received.get(i).setCancel();
                 received.remove(received.get(i));
-                return true;
+                
             }
         }
-        return false;
+        for (int i = 0; i < friends.size(); i++) {
+            if (friends.get(i).getrelationWith().equalsIgnoreCase(senderID)) {
+                friends.get(i).setCancel();
+                friends.remove(friends.get(i));
+                
+            }
+        }
+        return true;
     }
 
     public boolean blockFriend(String receiverID) {

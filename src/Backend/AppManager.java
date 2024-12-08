@@ -93,8 +93,9 @@ public class AppManager {
         clearCancel();
         for (int i = 0; i < request.size(); i++) {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
-                request.get(i).decline();
                 currentUser.cancelFriendRequest(senderID);
+                request.get(i).decline();
+                
                 
                 return true;
             }
@@ -104,6 +105,7 @@ public class AppManager {
         return true;
     }
 
+    
     public boolean blockFriend(String userID) {
         clearCancel();
 
@@ -356,7 +358,7 @@ public class AppManager {
         temp.addAll(currentUser.getFriends());
         temp.addAll(currentUser.getBlocked());
         temp.addAll(currentUser.getReceived());
-
+temp.addAll(currentUser.getSent());
         if (temp.isEmpty()) {
 
             for (int i = 0; i < Data.size(); i++) {
