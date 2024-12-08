@@ -9,6 +9,7 @@ public class Relation {
 
     public void setFriend() {
         this.relation = "Friend";
+
     }
     public void setBlock() {
         this.relation = "Block";

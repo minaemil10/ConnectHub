@@ -51,6 +51,59 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             );
             photoLabel.setIcon(new ImageIcon(image));
             photoLabel.setText("");
+            ArrayList<Online> o = a.getOnline();
+            DefaultTableModel model = (DefaultTableModel) status.getModel();
+            model.setRowCount(0);
+        for(Online on : o){
+            //DefaultTableModel model = new DefaultTableModel();
+            
+            String user  = on.getUser();
+            String status;
+            if(on.getStatus()){
+                status = "online";
+            }
+            else{
+                status = "offline";
+            }
+            model.addRow(new Object[]{user, status});    
+           
+        }
+        ArrayList<PostString> postString = a.getPosts();
+        for(PostString p : postString){
+            String date = p.getDate();
+            String photo = p.getPhoto();
+            String name = p.getAuthor();
+            String text = p.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+                postPanel.add(pt);
+            }
+            else{
+                PostImage pi = new PostImage(text, photo, name, date);
+                postPanel.add(pi);
+            }
+            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            postPanel.revalidate();
+            postPanel.repaint(); 
+        }
+        ArrayList<PostString> storyString = a.getStories();
+        for(PostString s : storyString){
+            String date = s.getDate();
+            String photo = s.getPhoto();
+            String name = s.getAuthor();
+            String text = s.getText();
+            if(photo.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+                storyPanel.add(pt);
+            }
+            else{
+                StoryImage si = new StoryImage(text, text, date, name);
+                storyPanel.add(si);
+            }
+            storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            storyPanel.revalidate();
+            storyPanel.repaint(); 
+        }
     }
 
     /**
@@ -224,6 +277,11 @@ public class NewsfeedWindow extends javax.swing.JFrame {
 
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
         // TODO add your handling code here:
+        //status.removeAll();
+        storyPanel.removeAll();
+        DefaultTableModel model = (DefaultTableModel) status.getModel();
+        model.setRowCount(0);
+        
         postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
          ImageIcon imageIcon = new ImageIcon(a.getProfilePhoto());
             Image image = imageIcon.getImage().getScaledInstance(
@@ -236,7 +294,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         ArrayList<Online> o = a.getOnline();
         for(Online on : o){
             //DefaultTableModel model = new DefaultTableModel();
-            DefaultTableModel model = (DefaultTableModel) status.getModel();
+            
             String user  = on.getUser();
             String status;
             if(on.getStatus()){
@@ -271,14 +329,17 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             String text = s.getText();
             if(photo.equals("No file selected")){
                 PostText pt = new PostText(text, name, date);
+                storyPanel.add(pt);
             }
             else{
                 StoryImage si = new StoryImage(text, text, date, name);
+                storyPanel.add(si);
             }
             storyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             storyPanel.revalidate();
             storyPanel.repaint(); 
         }
+        status.repaint();
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
     private void profileMangmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileMangmentButtonActionPerformed
@@ -291,7 +352,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         a.LogoutUser();
         this.dispose();
-        
+        LoginWindow l = new LoginWindow();
+        l.setVisible(true);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void jScrollPane4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane4FocusGained
@@ -308,7 +370,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
          
               JFrame frame = new JFrame("Friend Management");
               frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
-               frame.setSize(1150, 633); // Set the frame size
+               frame.setSize(1176, 615); // Set the frame size
              frame.add(new FriendManagement(a)); // Add your panel
              frame.setVisible(true); // Make the frame visible
         

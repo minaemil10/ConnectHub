@@ -25,4 +25,8 @@ public class Relationship {
         return relationWith;
     }
 
+    public void setRelation(Relation relation) {
+        this.relation = relation;
+    }
+
 }

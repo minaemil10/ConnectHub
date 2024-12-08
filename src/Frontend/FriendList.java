@@ -121,11 +121,17 @@ public class FriendList extends javax.swing.JPanel {
     private void blockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockActionPerformed
         // TODO add your handling code here:
         a.blockFriend(id);
+        block.setText("Blocked");
+        remove.setEnabled(false);
+        block.setEnabled(false);
     }//GEN-LAST:event_blockActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
         a.cancelFriendRequest(id);
+        remove.setText("Removed");
+        remove.setEnabled(false);
+        block.setEnabled(false);
     }//GEN-LAST:event_removeActionPerformed
 
 
