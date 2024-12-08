@@ -1,9 +1,1 @@
-[
-  {
-    "senderID": "U1",
-    "receiverID": "U2",
-    "status": {
-      "relation": "pending"
-    }
-  }
-]
+[]

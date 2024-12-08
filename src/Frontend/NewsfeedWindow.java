@@ -352,7 +352,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         a.LogoutUser();
         this.dispose();
-        
+        LoginWindow l = new LoginWindow();
+        l.setVisible(true);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void jScrollPane4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane4FocusGained
@@ -369,7 +370,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
          
               JFrame frame = new JFrame("Friend Management");
               frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
-               frame.setSize(1150, 633); // Set the frame size
+               frame.setSize(1176, 615); // Set the frame size
              frame.add(new FriendManagement(a)); // Add your panel
              frame.setVisible(true); // Make the frame visible
         

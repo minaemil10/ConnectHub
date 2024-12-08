@@ -124,12 +124,17 @@ public class FriendRequest extends javax.swing.JPanel {
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
         a.cancelFriendRequest(id);
+        remove.setText("Removed");
+        accept.setEnabled(false);
+        remove.setEnabled(false);
     }//GEN-LAST:event_removeActionPerformed
 
     private void acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptActionPerformed
         // TODO add your handling code here:
         a.acceptFriendRequest(id);
-        
+        accept.setText("Accepted");
+        accept.setEnabled(false);
+        remove.setEnabled(false);
     }//GEN-LAST:event_acceptActionPerformed
 
 

@@ -15,14 +15,7 @@
     "friends": [],
     "Blocked": [],
     "received": [],
-    "sent": [
-      {
-        "relationWith": "U2",
-        "relation": {
-          "relation": "pending"
-        }
-      }
-    ]
+    "sent": []
   },
   {
     "userId": "U2",
@@ -37,14 +30,7 @@
     "myStories": [],
     "friends": [],
     "Blocked": [],
-    "received": [
-      {
-        "relationWith": "U1",
-        "relation": {
-          "relation": "pending"
-        }
-      }
-    ],
+    "received": [],
     "sent": []
   }
 ]
