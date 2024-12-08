@@ -63,13 +63,12 @@ public class ContentFileReader extends JsonFileReader{
 
     //Creating story object
     public static Story contentToStory(Content con){
-        return new Story(con.getPhoto(),con.getContentID(),con.getAuthorID(),con.getText());
+        return new Story(con.getPhoto(),con.getContentID(),con.getAuthorID(),con.getText(),con.getTimePosted());
     }
 
     //creating post
     public static Post contentToPost(Content con){
-        Post post =  new Post(con.getContentID(),con.getAuthorID(),con.getText());
-        post.setPhoto(con.getPhoto());
+        Post post =  new Post(con.getPhoto(),con.getContentID(),con.getAuthorID(),con.getText(),con.getTimePosted());
         return post;
     }
 }
