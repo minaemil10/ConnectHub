@@ -14,16 +14,18 @@
     "myStories": [
       "S-0"
     ],
-    "friends": [],
+    "friends": [
+        {
+        "relationWith": "U2",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+        ],
     "Blocked": [],
     "received": [],
     "sent": [
-      {
-        "relationWith": "U2",
-        "relation": {
-          "relation": "pending"
-        }
-      }
+      
     ]
   },
   {

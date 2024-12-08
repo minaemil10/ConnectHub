@@ -25,4 +25,16 @@ private Relation status;
         status.setCanceled();
     }
 
+    public Relation getStatus() {
+        return status;
+    }
+
+    public String getSenderID() {
+        return senderID;
+    }
+
+    public String getReceiverID() {
+        return receiverID;
+    }
+
 }
