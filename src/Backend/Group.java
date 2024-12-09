@@ -102,6 +102,14 @@ public class Group {
         }
         return false;
     }
+    
+    public String checkUser(String id){
+       if(isAdmin(id)){
+           return "admin";
+       }
+       
+       i
+    }
 
     /*required actions in group*/
     //members managment
