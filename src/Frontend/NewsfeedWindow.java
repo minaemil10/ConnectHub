@@ -126,6 +126,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         status = new javax.swing.JTable();
         friendManagement_btn = new javax.swing.JButton();
+        friendManagement_btn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -225,6 +226,16 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             }
         });
 
+        friendManagement_btn1.setBackground(new java.awt.Color(0, 153, 255));
+        friendManagement_btn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        friendManagement_btn1.setForeground(new java.awt.Color(255, 255, 255));
+        friendManagement_btn1.setText("Search");
+        friendManagement_btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendManagement_btn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -233,8 +244,10 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(friendManagement_btn1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(RefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profileMangmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
@@ -252,7 +265,10 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(friendManagement_btn1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -375,6 +391,11 @@ public class NewsfeedWindow extends javax.swing.JFrame {
              frame.setVisible(true); // Make the frame visible
         
     }//GEN-LAST:event_friendManagement_btnActionPerformed
+
+    private void friendManagement_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendManagement_btn1ActionPerformed
+    
+        new SearchWindow(a);
+    }//GEN-LAST:event_friendManagement_btn1ActionPerformed
     
 
 
@@ -417,6 +438,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private javax.swing.JButton LogoutButton;
     private javax.swing.JButton RefreshButton;
     private javax.swing.JButton friendManagement_btn;
+    private javax.swing.JButton friendManagement_btn1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

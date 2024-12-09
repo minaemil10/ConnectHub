@@ -254,7 +254,34 @@ public class User implements DataBaseOBJ {
         }
         
     }
-
-   
+    boolean isFriend(String key){
+        for(int i=0;i<friends.size();i++){
+            if(key.equalsIgnoreCase(friends.get(i).getrelationWith())){
+              return true;  
+            }
+        }
+    return false;   
+    } 
+    boolean isBlock(String key){
+        for(int i=0;i<Blocked.size();i++){
+            if(key.equalsIgnoreCase(Blocked.get(i).getrelationWith())){
+              return true;  
+            }
+        }
+    return false;   
+    } 
+    boolean isPending(String key){
+        for(int i=0;i<sent.size();i++){
+            if(key.equalsIgnoreCase(sent.get(i).getrelationWith())){
+              return true;  
+            }
+        }
+        for(int i=0;i<received.size();i++){
+            if(key.equalsIgnoreCase(received.get(i).getrelationWith())){
+              return true;  
+            }
+        }
+    return false;   
+    } 
 
 }
