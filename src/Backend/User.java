@@ -271,11 +271,15 @@ public class User implements DataBaseOBJ {
     }
 
     public ArrayList<String> getAllGroupsLeftByMe() {
-        return groupsLeftByMe;
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.groupsLeftByMe);
+        return temp;
     }
 
     public ArrayList<String> getAllGroupRequests() {
-        return groupRequests;
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.groupRequests);
+        return temp;
     }
 
     public void addGroupRequest(String groupID){
