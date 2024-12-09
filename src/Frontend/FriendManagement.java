@@ -123,12 +123,11 @@ public class FriendManagement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(20, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -153,10 +152,11 @@ public class FriendManagement extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(refresh)
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,18 +171,18 @@ public class FriendManagement extends javax.swing.JPanel {
         friendSuggest.removeAll();
         friendRequestPanel.removeAll();
         friendListPanel.removeAll();
-        friendSuggest.repaint();
-        friendRequestPanel.repaint();
-        friendListPanel.repaint();
-        ArrayList <RelationString> suggest =  a.friendSuggest();
+        friendRequestPanel.setLayout(new javax.swing.BoxLayout(friendRequestPanel, javax.swing.BoxLayout.Y_AXIS));
+        friendListPanel.setLayout(new javax.swing.BoxLayout(friendListPanel, javax.swing.BoxLayout.Y_AXIS));
+        friendSuggest.setLayout(new javax.swing.BoxLayout(friendSuggest, javax.swing.BoxLayout.Y_AXIS));
+
+       ArrayList <RelationString> suggest =  a.friendSuggest();
         for(RelationString r : suggest){
-            
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();
             FriendSuggestion suggestion = new FriendSuggestion(id, name, photo, a);
             friendSuggest.add(suggestion);
-            
+           // System.out.println(name);
             //link friend suggestion with panel
         }
         ArrayList <RelationString> request = a.getRequests();
@@ -196,16 +196,20 @@ public class FriendManagement extends javax.swing.JPanel {
             System.out.println(name);
         }
         ArrayList <RelationString> friends = a.getFriends();
-        for(RelationString r : request){
+        System.out.println(friends.size());
+        for(RelationString r : friends){
             String id = r.getIdString();
             String photo = r.getRelationString();
             String name = r.getUsernameString();
             //link friend  with panel
             FriendList list = new FriendList(id, name, photo, a);
             friendListPanel.add(list);
-        //    System.out.println(name+ id);
+            System.out.println(name+id);
+            
         }
-        
+        friendSuggest.repaint();
+        friendRequestPanel.repaint();
+        friendListPanel.repaint();
     }//GEN-LAST:event_refreshActionPerformed
 
 

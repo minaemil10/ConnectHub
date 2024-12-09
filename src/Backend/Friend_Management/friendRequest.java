@@ -14,7 +14,7 @@ private Relation status;
         this.status = new Relation();
     }
     public void make(User sender,User receiver){
-        new Relationship(status,receiverID);
+        
         sender.sendRelation(new Relationship(status,receiverID));
         receiver.receiveRelation(new Relationship(status,senderID));
     }
@@ -36,5 +36,13 @@ private Relation status;
     public String getReceiverID() {
         return receiverID;
     }
-
+    public void block(){
+        status.setBlock();
+    }
+    public void blockAndSwitch(){
+        String temp=senderID;
+        senderID=receiverID;
+        receiverID=temp;
+        status.setBlock();
+    }
 }

@@ -6,17 +6,19 @@ import Backend.Friend_Management.Relationship;
 import java.util.ArrayList;
 
 import static Backend.DataBase.FilePaths.*;
+import Backend.Friend_Management.friendRequest;
 
 public class Server {
     private static ArrayList<User> Data;
     private static ArrayList<Post>posts;
     private static ArrayList<Story>stories;
-    private static ArrayList<Relationship>relationships;
+    private static ArrayList<friendRequest>requests;
     private static Server server=new Server();
     private Server() {
         Data = loadUsers();
         posts =loadPost();
         stories=loadStory();
+        requests=loadRelationShips();
         if(Data==null){
             Data=new ArrayList<>();
         }
@@ -24,12 +26,13 @@ public class Server {
             posts=new ArrayList<>();
 
         }
-
         if(stories==null){
             stories=new ArrayList<>();
         }
-
-//        relationships=loadRelationShips();
+         if(requests==null){
+            requests=new ArrayList<>();
+        }
+       
     }
     public static Server getInstance() {
         return server; // Getter for singleton instance
@@ -37,7 +40,7 @@ public class Server {
     /*database management*/
     /*User Database*/
     public AppManager serve(){
-       return new AppManager(Data,posts,stories);
+       return new AppManager(Data,posts,stories,requests);
     }
     private ArrayList<User> loadUsers() throws RuntimeException {
         ArrayList<User> temp= new UserFileReader(userDataBase).readAll();
@@ -70,12 +73,12 @@ public class Server {
     }
     /*Expected relations writer and reader*/
     /*m7tagen ntfahm fe mwdo3 el requests dhhhh*/
-//    private ArrayList<Relationship> loadRelationShips(){
-//        return new FriendRequestFileReader(requestsDataBase).readAll();
-//
-//    }
-//    private void writeRelationShips(){
-//        new FriendRequestFileWriter(requestsDataBase).writeAll(Data);
-//    }
+private ArrayList<friendRequest> loadRelationShips(){
+        return new FriendRequestFileReader(requestsDataBase).readAll();
+
+}
+public static void writeRelationShips(){
+new FriendRequestFileWriter(requestsDataBase).writeAll(requests);
+}
 
 }
