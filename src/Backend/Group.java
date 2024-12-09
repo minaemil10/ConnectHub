@@ -108,7 +108,15 @@ public class Group {
            return "admin";
        }
        
-       i
+       if(isOwner(id)){
+           return "owner";
+       }
+       
+       if(isUser(id)){
+           return "user";
+       }
+       
+       return null;
     }
 
     /*required actions in group*/
