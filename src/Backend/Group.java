@@ -174,4 +174,76 @@ public class Group {
             posts.remove(id);
         }
     }
+    
+    
+    /*essential setters and getters*/
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGroupPhoto(String groupPhoto) {
+        this.groupPhoto = groupPhoto;
+    }
+
+    public static void setGroupsCount(int groupsCount) {
+        Group.groupsCount = groupsCount;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getGroupPhoto() {
+        return groupPhoto;
+    }
+
+    public String getCREATOR_ID() {
+        return CREATOR_ID;
+    }
+
+    public static int getGroupsCount() {
+        return groupsCount;
+    }
+
+    public ArrayList<String> getAllAdmins() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.admins);
+        return temp;
+    }
+
+    public ArrayList<String> getUsers() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.users);
+        return temp;
+    }
+
+    public ArrayList<String> getPendingRequests() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.pendingRequests);
+        return temp;
+    }
+
+    public ArrayList<String> getPosts() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.admins);
+        return temp;
+    }
+
+    public ArrayList<String> getPendingPosts() {
+        return pendingPosts;
+    }
+     
 }
