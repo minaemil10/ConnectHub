@@ -12,7 +12,14 @@
     "myStories": [
       "S-0"
     ],
-    "friends": [],
+    "friends": [
+      {
+        "relationWith": "U2",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ],
     "Blocked": [],
     "received": [],
     "sent": []
@@ -28,7 +35,14 @@
       "P-0"
     ],
     "myStories": [],
-    "friends": [],
+    "friends": [
+      {
+        "relationWith": "U1",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ],
     "Blocked": [],
     "received": [],
     "sent": []

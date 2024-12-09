@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "senderID": "U2",
+    "receiverID": "U1",
+    "status": {
+      "relation": "Friend"
+    }
+  }
+]
