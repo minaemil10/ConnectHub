@@ -177,7 +177,6 @@ public class Group {
     
     
     /*essential setters and getters*/
-
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
@@ -218,32 +217,35 @@ public class Group {
         return groupsCount;
     }
 
+    //to prevent access from the outside but allow data reading a copy will be sent from any Arraylist(not normal getters)
     public ArrayList<String> getAllAdmins() {
         ArrayList<String> temp = new ArrayList<>();
         temp.addAll(this.admins);
         return temp;
     }
 
-    public ArrayList<String> getUsers() {
+    public ArrayList<String> getAllUsers() {
         ArrayList<String> temp = new ArrayList<>();
         temp.addAll(this.users);
         return temp;
     }
 
-    public ArrayList<String> getPendingRequests() {
+    public ArrayList<String> getAllPendingRequests() {
         ArrayList<String> temp = new ArrayList<>();
         temp.addAll(this.pendingRequests);
         return temp;
     }
 
-    public ArrayList<String> getPosts() {
+    public ArrayList<String> getAllPosts() {
         ArrayList<String> temp = new ArrayList<>();
-        temp.addAll(this.admins);
+        temp.addAll(this.posts);
         return temp;
     }
 
-    public ArrayList<String> getPendingPosts() {
-        return pendingPosts;
+    public ArrayList<String> getAllPendingPosts() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.pendingPosts);
+        return temp;
     }
      
 }
