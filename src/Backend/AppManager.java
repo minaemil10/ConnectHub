@@ -17,16 +17,18 @@ public class AppManager {
     private ArrayList<Post> posts;
     private ArrayList<Story> stories;
     private ArrayList<friendRequest> request;
+    private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
+    
 
-    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request) {
+    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request,ArrayList<Group> groups) {
         currentUser = null;
         this.Data = Data;
         this.posts = posts;
         this.stories = stories;
         this.request = request;
-        
+        this.groups = groups;
     }
 
     /*accessing app*/
@@ -397,4 +399,71 @@ temp.addAll(currentUser.getSent());
         }
 
     }
+    
+    
+    /*Group Managment methods*/
+    //Group creation and attribute editing
+   public void createGroup(String name){
+       Group group = new Group(name, currentUser.getUserId());
+       currentUser.addGroupRequest(group.getGroupID());
+       currentUser.joinGroup(group.getGroupID());
+       groups.add(group);
+   }
+   
+   public void changeGroupPhoto(String photoPath,String groupID){
+       Group group = null;
+       for(Group g : groups){
+           if(g.getGroupID().equals(groupID)){
+               group = g;
+               break;
+           }
+       }
+       group.setGroupPhoto(photoPath);
+   }
+   
+   public void changeGroupName(String name,String groupID){
+       Group group = null;
+       for(Group g : groups){
+           if(g.getGroupID().equals(groupID)){
+               group = g;
+               break;
+           }
+       }
+       group.setGroupName(name);
+   }
+   
+   public void changeGroupDescription(String description,String groupID){
+       Group group = null;
+       for(Group g : groups){
+           if(g.getGroupID().equals(groupID)){
+               group = g;
+               break;
+           }
+       }
+       group.setDescription(description);
+   }
+   
+   public GroupString getCroupInfo(String id){
+       Group group = null;
+       for(Group g : groups){
+           if(g.getGroupID().equals(id)){
+               group = g;
+               break;
+           }
+       }
+       return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID());
+   }
+   
+   public ArrayList<GroupString> getMyGroups(){
+        ArrayList<GroupString> data = new ArrayList<>();
+       for(String groupId : currentUser.getAllMyGroups()){
+           for(Group group : groups){
+               if(group.getGroupID().equals(groupId)){
+                   data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID()));
+               }
+           }
+       }
+       return data;
+   }
+   
 }
