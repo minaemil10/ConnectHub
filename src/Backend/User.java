@@ -37,7 +37,7 @@ public class User implements DataBaseOBJ {
     private ArrayList<Relationship> Blocked;
     private ArrayList<Relationship> received;
     private ArrayList<Relationship> sent;
-    
+
 
     /*m7tagen arraylist ll friend 3lshan deh el httn3t lama a7tag a3rf men el online*/
  /*lw 3mlna keda hn8yr fel relations w m7tagen nn2l kol relation l arraylist*/
@@ -51,6 +51,7 @@ public class User implements DataBaseOBJ {
         Blocked = new ArrayList<>();
         received = new ArrayList<>();
         sent = new ArrayList<>();
+
         myStories = new ArrayList<>();
         this.myGroups = new ArrayList<>();
         this.groupsLeftByMe = new ArrayList<>();
@@ -261,9 +262,35 @@ public class User implements DataBaseOBJ {
         }
         
     }
-    
-    
-    /*groups functionionality methods*/
+    boolean isFriend(String key){
+        for(int i=0;i<friends.size();i++){
+            if(key.equalsIgnoreCase(friends.get(i).getrelationWith())){
+              return true;
+            }
+        }
+    return false;
+    }
+    boolean isBlock(String key){
+        for(int i=0;i<Blocked.size();i++){
+            if(key.equalsIgnoreCase(Blocked.get(i).getrelationWith())){
+              return true;
+            }
+        }
+    return false;
+    }
+    boolean isPending(String key){
+        for(int i=0;i<sent.size();i++){
+            if(key.equalsIgnoreCase(sent.get(i).getrelationWith())){
+              return true;
+            }
+        }
+        for(int i=0;i<received.size();i++){
+            if(key.equalsIgnoreCase(received.get(i).getrelationWith())){
+              return true;
+            }
+        }
+    return false;
+    }
 
     public ArrayList<String> getAllMyGroups() {
         ArrayList<String> temp = new ArrayList<>();
@@ -286,17 +313,17 @@ public class User implements DataBaseOBJ {
     public void addGroupRequest(String groupID){
         groupRequests.add(groupID);
     }
-   
+
     public void removeGroupRequest(String groupID){
         groupRequests.remove(groupID);
     }
-    
+
     public void joinGroup(String groupID){
         groupRequests.remove(groupID);
         myGroups.add(groupID);
         groupsLeftByMe.remove(groupID);
     }
-    
+
     public void leaveGroup(String groupID){
         myGroups.remove(groupID);
         groupsLeftByMe.add(groupID);
@@ -315,13 +342,13 @@ public class User implements DataBaseOBJ {
     public void removeNotification(String notificationId) {
 
     for (int i = 0; i < notifications.size(); i++) {
-        
+
         if (notifications.get(i).getId() == notificationId) {
             notifications.remove(i);
-            i--; 
+            i--;
         }
     }
-    
+
 }
-    
+
 }

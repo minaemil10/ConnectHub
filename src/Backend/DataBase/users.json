@@ -10,15 +10,10 @@
     "coverPhoto": "C:\\Users\\User\\Desktop\\1_NdZYCyf_RZTf6NOM6AnFhQ.png",
     "myPosts": [],
     "myStories": [
-      "S-0"
+      
     ],
     "friends": [
-      {
-        "relationWith": "U2",
-        "relation": {
-          "relation": "Friend"
-        }
-      }
+      
     ],
     "Blocked": [],
     "received": [],
@@ -32,16 +27,11 @@
     "DateOfBirth": "06,12,2003",
     "status": false,
     "myPosts": [
-      "P-0"
+      
     ],
     "myStories": [],
     "friends": [
-      {
-        "relationWith": "U1",
-        "relation": {
-          "relation": "Friend"
-        }
-      }
+      
     ],
     "Blocked": [],
     "received": [],

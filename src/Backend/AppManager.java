@@ -4,6 +4,7 @@ import Backend.Friend_Management.PostString;
 import Backend.Friend_Management.RelationString;
 
 import Backend.Friend_Management.Relationship;
+import Backend.Friend_Management.UserSearch;
 import Backend.Friend_Management.friendRequest;
 import java.time.Duration;
 
@@ -22,7 +23,7 @@ public class AppManager {
     private ProfileManger profileManger;
     private ArrayList<Notification> notifications = new ArrayList<>();
 
-    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request, ArrayList<Group> groups) {
+    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request) {
         currentUser = null;
         this.Data = Data;
         this.posts = posts;
@@ -100,7 +101,8 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.cancelFriendRequest(senderID);
                 request.get(i).decline();
-
+                
+                
                 return true;
             }
 
@@ -109,6 +111,7 @@ public class AppManager {
         return true;
     }
 
+    
     public boolean blockFriend(String userID) {
         clearCancel();
 
@@ -116,7 +119,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(userID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.blockFriend(userID);
                 request.get(i).blockAndSwitch();
-
+                
                 return true;
             } else if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
                 request.get(i).block();
@@ -130,6 +133,7 @@ public class AppManager {
     }
 
     /*Profile Manager*/
+
     public boolean changePassword(String password) {
         currentUser.setPassword(password);
         return true;
@@ -217,13 +221,13 @@ public class AppManager {
         LocalDateTime currentTime = LocalDateTime.now();
         for (int i = 0; i < stories.size(); i++) {
             Content temp = stories.get(i);
-
+            
             Duration duration = Duration.between(temp.getTimePosted(), currentTime);
             //System.out.print(duration.toHours());
-            if (duration.toHours() >= 24) {
+            if (duration.toHours()>=24) {
                 currentUser.removeContent(temp.getContentID());
                 stories.remove(temp);
-
+                
             }
         }
     }
@@ -301,7 +305,7 @@ public class AppManager {
                 }
             }
         }
-
+        System.out.print(posts.size());
         return posts;
     }
 
@@ -350,7 +354,7 @@ public class AppManager {
                 }
             }
         }
-        // System.out.print(stories.size());
+       // System.out.print(stories.size());
         return stories;
     }
 
@@ -361,7 +365,7 @@ public class AppManager {
         temp.addAll(currentUser.getFriends());
         temp.addAll(currentUser.getBlocked());
         temp.addAll(currentUser.getReceived());
-        temp.addAll(currentUser.getSent());
+temp.addAll(currentUser.getSent());
         if (temp.isEmpty()) {
 
             for (int i = 0; i < Data.size(); i++) {
@@ -383,8 +387,8 @@ public class AppManager {
         for (int i = 0; i < suggestion.size(); i++) {
             for (int k = 0; k < request.size(); k++) {
                 /*check if the user is receiver to block*/
-                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block") && suggestion.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
-                    suggestion.remove(suggestion.get(i));
+                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block")&&suggestion.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
+                        suggestion.remove(suggestion.get(i));
                 }
             }
         }
@@ -546,7 +550,7 @@ public class AppManager {
         }
     }
 
-    //admins and owner specific actions 
+    //admins and owner specific actions
     public void approveRequest(String userId, String groupId) {
         Group group = getGroup(groupId);
         User user = getUser(userId);
@@ -639,7 +643,7 @@ public class AppManager {
         }
     }
 
-    public void joinGroup(String groupId) { //function to be used to send notification to all admins that the user needs to join 
+    public void joinGroup(String groupId) { //function to be used to send notification to all admins that the user needs to join
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId())) {
             group.addMember(groupId);
@@ -697,9 +701,38 @@ public class AppManager {
                 if(!temp.get(i).equalsIgnoreCase(this.groups.get(j).getGroupID())){
                     groups.add(new RelationString(this.groups.get(j).getGroupName(),this.groups.get(j).getGroupPhoto(),this.groups.get(j).getGroupID()));
                 }
-               
+
             }
        }
         return groups;
     }
+
+    public ArrayList<UserSearch> SearchFriend(String key) {
+        ArrayList<UserSearch> found = new ArrayList();
+        ArrayList<RelationString> friends = getFriends();
+
+        for (int i = 0; i < Data.size(); i++) {
+            if (key.equalsIgnoreCase(Data.get(i).getUserName())) {
+                if (currentUser.isFriend(Data.get(i).getUserId())) {
+                    found.add(new UserSearch(Data.get(i).getUserName(), "Friend", Data.get(i).getUserId(), Data.get(i).getProfilePhoto()));
+                } else if (currentUser.isBlock(Data.get(i).getUserId())) {
+                    found.add(new UserSearch(Data.get(i).getUserName(), "Blocked", Data.get(i).getUserId(), Data.get(i).getProfilePhoto()));
+                } else if (currentUser.isPending(Data.get(i).getUserId())) {
+                    found.add(new UserSearch(Data.get(i).getUserName(), "Pending", Data.get(i).getUserId(), Data.get(i).getProfilePhoto()));
+                } else {
+                    found.add(new UserSearch(Data.get(i).getUserName(), "No Relation", Data.get(i).getUserId(), Data.get(i).getProfilePhoto()));
+                }
+            }
+        }
+        for (int i = 0; i < found.size(); i++) {
+            for (int k = 0; k < request.size(); k++) {
+                /*check if the user is receiver to block*/
+                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block") && found.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
+                    found.remove(found.get(i));
+                }
+            }
+        }
+        return found;
+    }
+
 }
