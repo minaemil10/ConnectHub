@@ -35,32 +35,4 @@ public abstract class JsonFileReader implements FilePaths {
 
     abstract public ArrayList<? extends DataBaseOBJ> readAll();
 }
-//    public ArrayList<User> readAllUsers(){
-//        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-//        ArrayList<User> users = new ArrayList<>();
-//        try (FileReader fileReader = new FileReader(filePath)) {
-//            Type userListType = new TypeToken<ArrayList<User>>() {
-//            }.getType();
-//            users = gson.fromJson(fileReader, userListType);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return users;
-//    }
-//
-//
-//
-//    public ArrayList<friendRequest> readAllRequests(){
-//        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
-//        ArrayList<friendRequest> req = new ArrayList<>();
-//        try (FileReader fileReader = new FileReader(filePath)) {
-//            Type reqListType = new TypeToken<ArrayList<friendRequest>>() {
-//            }.getType();
-//            req = gson.fromJson(fileReader, reqListType);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return req;
-//    }
 

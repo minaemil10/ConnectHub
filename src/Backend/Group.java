@@ -4,13 +4,14 @@
  */
 package Backend;
 
+import Backend.DataBase.DataBaseOBJ;
 import java.util.ArrayList;
 
 /**
  *
  * @author Mnw Emile
  */
-public class Group {
+public class Group implements DataBaseOBJ {
 
     private String groupName;
     private String groupID;
