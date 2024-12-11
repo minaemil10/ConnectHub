@@ -301,4 +301,7 @@ public class User implements DataBaseOBJ {
         groupsLeftByMe.add(groupID);
     }
 
+    public void removeGroup(String groupID){
+         myGroups.remove(groupID);
+    }
 }
