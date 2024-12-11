@@ -20,9 +20,9 @@ public class AppManager {
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
-    
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
-    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request,ArrayList<Group> groups) {
+    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request, ArrayList<Group> groups) {
         currentUser = null;
         this.Data = Data;
         this.posts = posts;
@@ -72,6 +72,9 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
+                Notification notification = new Notification(currentUser.getUserName(),currentUser.getUserId(),currentUser.getProfilePhoto());
+                temp.setNotificationId(notification.getId());
+                Data.get(i).addNotification(notification);
                 return true;
             }
         }
@@ -97,8 +100,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.cancelFriendRequest(senderID);
                 request.get(i).decline();
-                
-                
+
                 return true;
             }
 
@@ -107,7 +109,6 @@ public class AppManager {
         return true;
     }
 
-    
     public boolean blockFriend(String userID) {
         clearCancel();
 
@@ -115,7 +116,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(userID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.blockFriend(userID);
                 request.get(i).blockAndSwitch();
-                
+
                 return true;
             } else if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
                 request.get(i).block();
@@ -129,7 +130,6 @@ public class AppManager {
     }
 
     /*Profile Manager*/
-
     public boolean changePassword(String password) {
         currentUser.setPassword(password);
         return true;
@@ -217,13 +217,13 @@ public class AppManager {
         LocalDateTime currentTime = LocalDateTime.now();
         for (int i = 0; i < stories.size(); i++) {
             Content temp = stories.get(i);
-            
+
             Duration duration = Duration.between(temp.getTimePosted(), currentTime);
             //System.out.print(duration.toHours());
-            if (duration.toHours()>=24) {
+            if (duration.toHours() >= 24) {
                 currentUser.removeContent(temp.getContentID());
                 stories.remove(temp);
-                
+
             }
         }
     }
@@ -349,7 +349,7 @@ public class AppManager {
                 }
             }
         }
-       // System.out.print(stories.size());
+        // System.out.print(stories.size());
         return stories;
     }
 
@@ -360,7 +360,7 @@ public class AppManager {
         temp.addAll(currentUser.getFriends());
         temp.addAll(currentUser.getBlocked());
         temp.addAll(currentUser.getReceived());
-temp.addAll(currentUser.getSent());
+        temp.addAll(currentUser.getSent());
         if (temp.isEmpty()) {
 
             for (int i = 0; i < Data.size(); i++) {
@@ -382,8 +382,8 @@ temp.addAll(currentUser.getSent());
         for (int i = 0; i < suggestion.size(); i++) {
             for (int k = 0; k < request.size(); k++) {
                 /*check if the user is receiver to block*/
-                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block")&&suggestion.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
-                        suggestion.remove(suggestion.get(i));
+                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block") && suggestion.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
+                    suggestion.remove(suggestion.get(i));
                 }
             }
         }
@@ -399,71 +399,235 @@ temp.addAll(currentUser.getSent());
         }
 
     }
+
+    private Group getGroup(String id) {
+        Group group = null;
+        for (Group g : groups) {
+            if (g.getGroupID().equals(id)) {
+                group = g;
+                break;
+            }
+        }
+        return group;
+    }
+
+    private User getUser(String id) {
+        User user = null;
+        for (User u : Data) {
+            if (u.getUserId().equals(id)) {
+                user = u;
+                break;
+            }
+        }
+        return user;
+    }
     
-    
+    private Post getPost(String id){
+        Post post = null;
+        for (Post p : posts) {
+            if (p.getContentID().equals(id)) {
+                post = p;
+                break;
+            }
+        }
+        return post;
+    }
+
+
     /*Group Managment methods*/
     //Group creation and attribute editing
-   public void createGroup(String name){
-       Group group = new Group(name, currentUser.getUserId());
-       currentUser.addGroupRequest(group.getGroupID());
-       currentUser.joinGroup(group.getGroupID());
-       groups.add(group);
-   }
-   
-   public void changeGroupPhoto(String photoPath,String groupID){
-       Group group = null;
-       for(Group g : groups){
-           if(g.getGroupID().equals(groupID)){
-               group = g;
-               break;
-           }
-       }
-       group.setGroupPhoto(photoPath);
-   }
-   
-   public void changeGroupName(String name,String groupID){
-       Group group = null;
-       for(Group g : groups){
-           if(g.getGroupID().equals(groupID)){
-               group = g;
-               break;
-           }
-       }
-       group.setGroupName(name);
-   }
-   
-   public void changeGroupDescription(String description,String groupID){
-       Group group = null;
-       for(Group g : groups){
-           if(g.getGroupID().equals(groupID)){
-               group = g;
-               break;
-           }
-       }
-       group.setDescription(description);
-   }
-   
-   public GroupString getCroupInfo(String id){
-       Group group = null;
-       for(Group g : groups){
-           if(g.getGroupID().equals(id)){
-               group = g;
-               break;
-           }
-       }
-       return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID());
-   }
-   
-   public ArrayList<GroupString> getMyGroups(){
+    public void createGroup(String name) {
+        Group group = new Group(name, currentUser.getUserId());
+        currentUser.addGroupRequest(group.getGroupID());
+        currentUser.joinGroup(group.getGroupID());
+        groups.add(group);
+    }
+
+    public void changeGroupPhoto(String photoPath, String groupID) {
+        Group group = null;
+        for (Group g : groups) {
+            if (g.getGroupID().equals(groupID)) {
+                group = g;
+                break;
+            }
+        }
+        group.setGroupPhoto(photoPath);
+    }
+
+    public void changeGroupName(String name, String groupID) {
+        Group group = getGroup(groupID);
+        group.setGroupName(name);
+    }
+
+    public void changeGroupDescription(String description, String groupID) {
+        Group group = getGroup(groupID);
+        group.setDescription(description);
+    }
+
+    public GroupString getCroupInfo(String id) {
+        Group group = getGroup(id);
+        return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(), group.checkUser(currentUser.getUserId()));
+    }
+
+    public ArrayList<GroupString> getMyGroups() {
         ArrayList<GroupString> data = new ArrayList<>();
-       for(String groupId : currentUser.getAllMyGroups()){
-           for(Group group : groups){
-               if(group.getGroupID().equals(groupId)){
-                   data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID()));
-               }
-           }
-       }
-       return data;
-   }
-   
+        for (String groupId : currentUser.getAllMyGroups()) {
+            for (Group group : groups) {
+                if (group.getGroupID().equals(groupId)) {
+                    data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(), group.checkUser(currentUser.getUserId())));
+                }
+            }
+        }
+        return data;
+    }
+
+    public boolean createGroupPost(String groupId, String photo, String text) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) == null) {
+            return false;
+        } else if (group.checkUser(currentUser.getUserId()).equals("user")) {
+            Post post = new Post(photo, currentUser.getUserId(), text);
+            userAddGroupPost(post.getContentID(), groupId);
+            posts.add(post);
+            return true;
+        }else{
+            Post post = new Post(photo, currentUser.getUserId(), text);
+            adminAddGroupPost(post.getContentID(), groupId);
+            posts.add(post);
+            return true;
+        }
+    }
+
+    //group Managment Special for Owner
+    public void promoteUser(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        //owner only can make this action
+        if (group.checkUser(currentUser.getUserId()) != null && group.isOwner(currentUser.getUserId())) {
+            group.promoteUserToAdmin(userId);
+        }
+    }
+
+    public void demoteAdmin(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        //owner only can make this action
+        if (group.checkUser(currentUser.getUserId()) != null && group.isOwner(currentUser.getUserId())) {
+            group.demoteAdminToUser(userId);
+        }
+    }
+
+    public void deleteGroup(String groupId) {
+        Group group = getGroup(groupId);
+        //owner only can make this action
+        if (group.checkUser(currentUser.getUserId()) != null && group.isOwner(currentUser.getUserId())) {
+            for (User user : Data) {
+                user.removeGroup(groupId);//remove it from groupsIDs in all users
+            }
+            groups.remove(group); //remove it from the system data
+        }
+    }
+
+    public void removeAdminFromGroup(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) != null && group.isOwner(currentUser.getUserId())) {
+            demoteAdmin(userId, groupId); //demote him to normal user
+            removeMember(userId, groupId);  //removeNormalUser
+        }
+    }
+
+    //admins and owner specific actions 
+    public void approveRequest(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        User user = getUser(userId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if (group.isPendingRequest(userId)) {
+                user.joinGroup(groupId); //change group to mygroups array
+                group.acceptMember(userId); //change user from requests to users
+                
+            }
+        }
+
+    }
+
+    public void declineRequest(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        User user = getUser(userId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if (group.isPendingRequest(userId)) {
+                user.removeGroupRequest(groupId); //remove request from grouprequests
+                group.declineMember(userId); //remove user from requests
+            }
+        }
+
+    }
+
+    public void removeMember(String userId, String groupId) {
+        Group group = getGroup(groupId);
+        User user = getUser(userId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if (group.isUser(userId)) { //admins can only remove normal users
+                user.removeGroup(groupId); //remove request from grouprequests
+                group.removeMember(userId); //remove user from requests
+            }
+        }
+    }
+
+    public void deletePost(String postId, String groupId) {
+        Group group = getGroup(groupId);
+
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            group.removePost(postId);
+        }
+    }
+
+    private void adminAddGroupPost(String postId, String groupId) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            group.addPostOfAdmin(postId);
+            
+        }
+    }
+
+    // TODO: add editPost code
+    
+    public boolean editPost(String postId , String groupId , String text, String photo){
+        Group group = getGroup(groupId);       
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if(group.isPost(postId)){
+                   Post post = getPost(postId);
+                   post.setPhoto(photo);
+                   post.setText(text);
+                   return true;
+            }  
+        }
+        return false;
+    }
+
+    //user specific actions
+    private void userAddGroupPost(String postId, String groupId) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
+            group.addPostOfUser(postId);
+            ArrayList<String> admins = group.getAllAdmins();
+        }
+    }
+
+    public void leaveGroup(String groupId) {
+        Group group = getGroup(groupId);
+        if (group.isOwner(currentUser.getUserId())) {
+            // TODO: code to handle owner Leaving the group
+        } else if (group.checkUser(currentUser.getUserId()) != null) {
+            group.removeMember(currentUser.getUserId());
+            currentUser.leaveGroup(groupId);
+        }
+    }
+
+    public void removeNotification(String notificationId) {
+        for (User u: Data){
+            u.removeNotification(notificationId);
+        }
+        //remove notification from app manager
+    } 
+
+
+
 }

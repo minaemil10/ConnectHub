@@ -27,6 +27,7 @@ public class User implements DataBaseOBJ {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
+    private ArrayList<Notification> notifications = new ArrayList<>();
     private ArrayList<String> myPosts = new ArrayList<>();
     private ArrayList<String> myStories;
     private ArrayList<String> myGroups;
@@ -301,4 +302,26 @@ public class User implements DataBaseOBJ {
         groupsLeftByMe.add(groupID);
     }
 
+    public void removeGroup(String groupID){
+         myGroups.remove(groupID);
+    }
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        notifications.add(notification);
+    }
+    public void removeNotification(String notificationId) {
+
+    for (int i = 0; i < notifications.size(); i++) {
+        
+        if (notifications.get(i).getId() == notificationId) {
+            notifications.remove(i);
+            i--; 
+        }
+    }
+    
+}
+    
 }
