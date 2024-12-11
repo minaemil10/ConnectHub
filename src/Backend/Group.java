@@ -6,6 +6,8 @@ package Backend;
 
 import Backend.DataBase.DataBaseOBJ;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Group implements DataBaseOBJ {
     private ArrayList<String> admins;
     private ArrayList<String> users;
     private ArrayList<String> pendingRequests;
+    private Map<String,String> notifactionsId;
     private ArrayList<String> posts;
     private ArrayList<String> pendingPosts;
     private static int groupsCount = 0;
@@ -35,6 +38,7 @@ public class Group implements DataBaseOBJ {
         this.pendingPosts = new ArrayList<>();
         this.pendingRequests = new ArrayList<>();
         this.posts = new ArrayList<>();
+        this.notifactionsId = new HashMap<>();
     }
 
     public Group(String groupName, String description, String groupPhoto, String CREATOR_ID) {
@@ -263,6 +267,14 @@ public class Group implements DataBaseOBJ {
         ArrayList<String> temp = new ArrayList<>();
         temp.addAll(this.pendingPosts);
         return temp;
+    }
+    
+    public void setRequestNotifcation(String id,String notificationID){
+        notifactionsId.put(id,notificationID);
+    }
+    
+    public String getRequestNotifcation(String id){
+        return notifactionsId.get(id);
     }
      
 }
