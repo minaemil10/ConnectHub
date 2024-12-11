@@ -135,6 +135,7 @@ public class FriendRequest extends javax.swing.JPanel {
         accept.setText("Accepted");
         accept.setEnabled(false);
         remove.setEnabled(false);
+        
     }//GEN-LAST:event_acceptActionPerformed
 
 

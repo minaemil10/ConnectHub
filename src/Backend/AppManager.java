@@ -20,6 +20,7 @@ public class AppManager {
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request, ArrayList<Group> groups) {
         currentUser = null;
@@ -71,6 +72,9 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
+                Notification notification = new Notification(currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
+                temp.setNotificationId(notification.getId());
+                Data.get(i).addNotification(notification);
                 return true;
             }
         }
@@ -297,7 +301,7 @@ public class AppManager {
                 }
             }
         }
-        System.out.print(posts.size());
+
         return posts;
     }
 
@@ -311,6 +315,7 @@ public class AppManager {
 
             }
         }
+
         return posts;
     }
 
@@ -550,6 +555,7 @@ public class AppManager {
             if (group.isPendingRequest(userId)) {
                 user.joinGroup(groupId); //change group to mygroups array
                 group.acceptMember(userId); //change user from requests to users
+
             }
         }
 
@@ -607,6 +613,7 @@ public class AppManager {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
             group.addPostOfAdmin(postId);
+
         }
     }
 
@@ -629,6 +636,7 @@ public class AppManager {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
             group.addPostOfUser(postId);
+            ArrayList<String> admins = group.getAllAdmins();
         }
     }
 
@@ -650,4 +658,49 @@ public class AppManager {
         }
     }
 
+    public void removeNotification(String notificationId) {
+        for (User u : Data) {
+            u.removeNotification(notificationId);
+        }
+        //remove notification from app manager
+    }
+
+    public ArrayList<PostString> getGroupPosts() {
+        ArrayList<PostString> posts = new ArrayList();
+        for (int i = 0; i < currentUser.getAllMyGroups().size(); i++) {
+            for (int j = 0; j < groups.size(); j++) {
+                if (currentUser.getAllMyGroups().get(i).equalsIgnoreCase(groups.get(j).getGroupID())) {
+                    for (int k = 0; j < groups.get(j).getAllPosts().size(); k++) {
+                        for (int l = 0; l < this.posts.size(); l++) {
+                            for (int m = 0; m < Data.size(); m++) {
+                                if (Data.get(m).getUserId().equalsIgnoreCase(this.posts.get(l).getAuthorID())) {
+                                    posts.add(new PostString(Data.get(m).getUserName(), this.posts.get(l).getText(), this.posts.get(l).getPhoto(), this.posts.get(l).getTimePosted().toString()));
+
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+            }
+        }
+        return posts;
+    }
+    public ArrayList<RelationString> groupSuggest(){
+       ArrayList<String>temp=new ArrayList();
+       temp.addAll(currentUser.getAllGroupRequests());
+       temp.addAll(currentUser.getAllGroupsLeftByMe());
+       temp.addAll(currentUser.getAllMyGroups());
+        ArrayList<RelationString> groups=new ArrayList();
+        for(int i=0;i<temp.size();i++){
+            for(int j=0;j<this.groups.size();j++){
+                if(!temp.get(i).equalsIgnoreCase(this.groups.get(j).getGroupID())){
+                    groups.add(new RelationString(this.groups.get(j).getGroupName(),this.groups.get(j).getGroupPhoto(),this.groups.get(j).getGroupID()));
+                }
+               
+            }
+       }
+        return groups;
+    }
 }
