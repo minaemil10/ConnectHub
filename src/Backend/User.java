@@ -27,12 +27,17 @@ public class User implements DataBaseOBJ {
     private String profilePhoto;
     private String coverPhoto;
     private String bio;
+    private ArrayList<Notification> notifications = new ArrayList<>();
     private ArrayList<String> myPosts = new ArrayList<>();
     private ArrayList<String> myStories;
+    private ArrayList<String> myGroups;
+    private ArrayList<String> groupRequests;
+    private ArrayList<String> groupsLeftByMe;
     private ArrayList<Relationship> friends;
     private ArrayList<Relationship> Blocked;
     private ArrayList<Relationship> received;
     private ArrayList<Relationship> sent;
+
 
     /*m7tagen arraylist ll friend 3lshan deh el httn3t lama a7tag a3rf men el online*/
  /*lw 3mlna keda hn8yr fel relations w m7tagen nn2l kol relation l arraylist*/
@@ -48,6 +53,9 @@ public class User implements DataBaseOBJ {
         sent = new ArrayList<>();
 
         myStories = new ArrayList<>();
+        this.myGroups = new ArrayList<>();
+        this.groupsLeftByMe = new ArrayList<>();
+        this.groupRequests = new ArrayList<>();
         moveFriends();
     }
 
@@ -257,31 +265,90 @@ public class User implements DataBaseOBJ {
     boolean isFriend(String key){
         for(int i=0;i<friends.size();i++){
             if(key.equalsIgnoreCase(friends.get(i).getrelationWith())){
-              return true;  
+              return true;
             }
         }
-    return false;   
-    } 
+    return false;
+    }
     boolean isBlock(String key){
         for(int i=0;i<Blocked.size();i++){
             if(key.equalsIgnoreCase(Blocked.get(i).getrelationWith())){
-              return true;  
+              return true;
             }
         }
-    return false;   
-    } 
+    return false;
+    }
     boolean isPending(String key){
         for(int i=0;i<sent.size();i++){
             if(key.equalsIgnoreCase(sent.get(i).getrelationWith())){
-              return true;  
+              return true;
             }
         }
         for(int i=0;i<received.size();i++){
             if(key.equalsIgnoreCase(received.get(i).getrelationWith())){
-              return true;  
+              return true;
             }
         }
-    return false;   
-    } 
+    return false;
+    }
+
+    public ArrayList<String> getAllMyGroups() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.myGroups);
+        return temp;
+    }
+
+    public ArrayList<String> getAllGroupsLeftByMe() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.groupsLeftByMe);
+        return temp;
+    }
+
+    public ArrayList<String> getAllGroupRequests() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(this.groupRequests);
+        return temp;
+    }
+
+    public void addGroupRequest(String groupID){
+        groupRequests.add(groupID);
+    }
+
+    public void removeGroupRequest(String groupID){
+        groupRequests.remove(groupID);
+    }
+
+    public void joinGroup(String groupID){
+        groupRequests.remove(groupID);
+        myGroups.add(groupID);
+        groupsLeftByMe.remove(groupID);
+    }
+
+    public void leaveGroup(String groupID){
+        myGroups.remove(groupID);
+        groupsLeftByMe.add(groupID);
+    }
+
+    public void removeGroup(String groupID){
+         myGroups.remove(groupID);
+    }
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        notifications.add(notification);
+    }
+    public void removeNotification(String notificationId) {
+
+    for (int i = 0; i < notifications.size(); i++) {
+
+        if (notifications.get(i).getId() == notificationId) {
+            notifications.remove(i);
+            i--;
+        }
+    }
+
+}
 
 }
