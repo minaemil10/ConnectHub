@@ -451,7 +451,7 @@ public class AppManager {
 
     public GroupString getCroupInfo(String id) {
         Group group = getGroup(id);
-        return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID());
+        return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(),group.checkUser(currentUser.getUserId()));
     }
 
     public ArrayList<GroupString> getMyGroups() {
@@ -459,7 +459,7 @@ public class AppManager {
         for (String groupId : currentUser.getAllMyGroups()) {
             for (Group group : groups) {
                 if (group.getGroupID().equals(groupId)) {
-                    data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID()));
+                    data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(),group.checkUser(currentUser.getUserId())));
                 }
             }
         }
