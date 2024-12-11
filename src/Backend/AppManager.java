@@ -421,6 +421,17 @@ public class AppManager {
         }
         return user;
     }
+    
+    private Post getPost(String id){
+        Post post = null;
+        for (Post p : posts) {
+            if (p.getContentID().equals(id)) {
+                post = p;
+                break;
+            }
+        }
+        return post;
+    }
 
 
     /*Group Managment methods*/
@@ -455,7 +466,7 @@ public class AppManager {
 
     public GroupString getCroupInfo(String id) {
         Group group = getGroup(id);
-        return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID());
+        return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(), group.checkUser(currentUser.getUserId()));
     }
 
     public ArrayList<GroupString> getMyGroups() {
@@ -463,11 +474,28 @@ public class AppManager {
         for (String groupId : currentUser.getAllMyGroups()) {
             for (Group group : groups) {
                 if (group.getGroupID().equals(groupId)) {
-                    data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID()));
+                    data.add(new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(), group.checkUser(currentUser.getUserId())));
                 }
             }
         }
         return data;
+    }
+
+    public boolean createGroupPost(String groupId, String photo, String text) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) == null) {
+            return false;
+        } else if (group.checkUser(currentUser.getUserId()).equals("user")) {
+            Post post = new Post(photo, currentUser.getUserId(), text);
+            userAddGroupPost(post.getContentID(), groupId);
+            posts.add(post);
+            return true;
+        }else{
+            Post post = new Post(photo, currentUser.getUserId(), text);
+            adminAddGroupPost(post.getContentID(), groupId);
+            posts.add(post);
+            return true;
+        }
     }
 
     //group Managment Special for Owner
@@ -551,7 +579,7 @@ public class AppManager {
         }
     }
 
-    public void adminAddGroupPost(String postId, String groupId) {
+    private void adminAddGroupPost(String postId, String groupId) {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
             group.addPostOfAdmin(postId);
@@ -560,40 +588,46 @@ public class AppManager {
     }
 
     // TODO: add editPost code
-    /*
-    public void editPost(String postId , String groupId){
+    
+    public boolean editPost(String postId , String groupId , String text, String photo){
         Group group = getGroup(groupId);       
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
-            if(group.isPost(postid){
-                code to edit Posts
+            if(group.isPost(postId)){
+                   Post post = getPost(postId);
+                   post.setPhoto(photo);
+                   post.setText(text);
+                   return true;
             }  
         }
+        return false;
     }
-     */
-    
-    
+
     //user specific actions
-    public void userAddGroupPost(String postId, String groupId){
+    private void userAddGroupPost(String postId, String groupId) {
         Group group = getGroup(groupId);
-         if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
+        if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
             group.addPostOfUser(postId);
             ArrayList<String> admins = group.getAllAdmins();
         }
     }
-    
-    public void leaveGroup(String groupId){
+
+    public void leaveGroup(String groupId) {
         Group group = getGroup(groupId);
-        if(group.isOwner(currentUser.getUserId())){
+        if (group.isOwner(currentUser.getUserId())) {
             // TODO: code to handle owner Leaving the group
-        }else if(group.checkUser(currentUser.getUserId()) != null){
+        } else if (group.checkUser(currentUser.getUserId()) != null) {
             group.removeMember(currentUser.getUserId());
             currentUser.leaveGroup(groupId);
-         }
+        }
     }
+
     public void removeNotification(String notificationId) {
         for (User u: Data){
             u.removeNotification(notificationId);
         }
         //remove notification from app manager
     } 
+
+
+
 }

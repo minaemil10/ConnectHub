@@ -96,6 +96,7 @@ public class ProfileDetails extends javax.swing.JFrame {
         newPasword = new javax.swing.JPasswordField();
         saveBio = new javax.swing.JButton();
         user_post_story = new javax.swing.JButton();
+        CreateGroupButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -226,6 +227,16 @@ public class ProfileDetails extends javax.swing.JFrame {
             }
         });
 
+        CreateGroupButton.setBackground(new java.awt.Color(0, 153, 255));
+        CreateGroupButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CreateGroupButton.setForeground(new java.awt.Color(255, 255, 255));
+        CreateGroupButton.setText("Create Group");
+        CreateGroupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateGroupButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,8 +277,10 @@ public class ProfileDetails extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(378, 378, 378)
+                .addGap(252, 252, 252)
                 .addComponent(user_post_story)
+                .addGap(36, 36, 36)
+                .addComponent(CreateGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -306,9 +319,11 @@ public class ProfileDetails extends javax.swing.JFrame {
                                     .addComponent(editBio_btn)
                                     .addComponent(changePassword_btn)))))
                     .addComponent(newPasswordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(user_post_story)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(user_post_story)
+                    .addComponent(CreateGroupButton))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -500,6 +515,10 @@ public class ProfileDetails extends javax.swing.JFrame {
     frame.setVisible(true); // Make the frame visible
         //new window for displaying user's post and stories
     }//GEN-LAST:event_user_post_storyActionPerformed
+
+    private void CreateGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateGroupButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateGroupButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -538,6 +557,7 @@ public class ProfileDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateGroupButton;
     private javax.swing.JTextField bioText;
     private javax.swing.JButton changePassword_btn;
     private javax.swing.JPasswordField checkNewPass;
