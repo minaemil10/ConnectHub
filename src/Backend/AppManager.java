@@ -416,12 +416,14 @@ public class AppManager {
         for (int i = 0; i < found.size(); i++) {
             for (int k = 0; k < request.size(); k++) {
                 /*check if the user is receiver to block*/
-                if (currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block") && found.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
+                if (currentUser.getUserId().equalsIgnoreCase(found.get(i).getIdString())||currentUser.getUserId().equalsIgnoreCase(request.get(k).getReceiverID()) && request.get(k).getStatus().getRelation().equalsIgnoreCase("Block") && found.get(i).getIdString().equalsIgnoreCase(request.get(k).getSenderID())) {
                     found.remove(found.get(i));
                 }
             }
         }
+        
         return found;
     }
+    
 
 }
