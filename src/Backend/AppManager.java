@@ -590,10 +590,12 @@ public class AppManager {
             currentUser.leaveGroup(groupId);
          }
     }
+
     public void removeNotification(String notificationId) {
         for (User u: Data){
             u.removeNotification(notificationId);
         }
         //remove notification from app manager
     } 
+
 }
