@@ -417,8 +417,8 @@ public class AppManager {
         }
         return user;
     }
-    
-    private Post getPost(String id){
+
+    private Post getPost(String id) {
         Post post = null;
         for (Post p : posts) {
             if (p.getContentID().equals(id)) {
@@ -486,24 +486,20 @@ public class AppManager {
             userAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
             return true;
-        }else{
+        } else {
             Post post = new Post(photo, currentUser.getUserId(), text);
             adminAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
             return true;
         }
     }
-    
-    
-    public ArrayList<PostString> getAllGroupPost(String groupId){
+
+    public ArrayList<PostString> getAllGroupPost(String groupId) {
         Group group = getGroup(groupId);
         ArrayList<PostString> tempPosts = new ArrayList<>();
-        {
-            for (Post post : posts ) {
-                if (group.isPost(post.getContentID())) {
-                    tempPosts.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString()));
-                }
-
+        for (Post post : posts) {
+            if (group.isPost(post.getContentID())) { //check if it is a post inside the group
+                tempPosts.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString()));
             }
         }
         return tempPosts;
@@ -557,7 +553,7 @@ public class AppManager {
         }
 
     }
-    
+
     public void approvePostRequest(String postId, String groupId) {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
@@ -577,7 +573,7 @@ public class AppManager {
             }
         }
     }
-    
+
     public void declinePostRequest(String postId, String groupId) {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
@@ -614,16 +610,15 @@ public class AppManager {
     }
 
     // TODO: add editPost code
-    
-    public boolean editPost(String postId , String groupId , String text, String photo){
-        Group group = getGroup(groupId);       
+    public boolean editPost(String postId, String groupId, String text, String photo) {
+        Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
-            if(group.isPost(postId)){
-                   Post post = getPost(postId);
-                   post.setPhoto(photo);
-                   post.setText(text);
-                   return true;
-            }  
+            if (group.isPost(postId)) {
+                Post post = getPost(postId);
+                post.setPhoto(photo);
+                post.setText(text);
+                return true;
+            }
         }
         return false;
     }
@@ -635,10 +630,10 @@ public class AppManager {
             group.addPostOfUser(postId);
         }
     }
-    
-    public void joinGroup(String groupId){ //function to be used to send notification to all admins that the user needs to join 
+
+    public void joinGroup(String groupId) { //function to be used to send notification to all admins that the user needs to join 
         Group group = getGroup(groupId);
-        if(group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId()) ){
+        if (group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId())) {
             group.addMember(groupId);
             currentUser.addGroupRequest(groupId);
         }
