@@ -735,6 +735,22 @@ temp.addAll(currentUser.getSent());
         
         return found;
     }
+    public ArrayList<UserSearch> SearchGroup(String key) {
+        ArrayList<UserSearch> found = new ArrayList();
+        for (int i = 0; i < groups.size(); i++) {
+            if (key.equalsIgnoreCase(groups.get(i).getGroupID())) {
+                if (currentUser.isMember(groups.get(i).getGroupID())) {
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                } else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Pending", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                } else {
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "No Relation", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                }
+            }
+        }
+
+        return found;
+    }
     
 
 }
