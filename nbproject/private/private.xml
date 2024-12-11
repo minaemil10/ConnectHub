@@ -3,9 +3,63 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Mnw%20Emile/Desktop/Prog_Labs/prog2_lab8_socialApp/ConnectHub/src/Backend/AppManager.java</file>
-            <file>file:/C:/Users/Mnw%20Emile/Desktop/Prog_Labs/prog2_lab8_socialApp/ConnectHub/src/Backend/Group.java</file>
-            <file>file:/C:/Users/Mnw%20Emile/Desktop/Prog_Labs/prog2_lab8_socialApp/ConnectHub/src/Backend/User.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/DataBaseOBJ.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Story.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/ContentFileWriter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/UserFileWriter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Validation/Validator.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/ContentFileReader.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/LoginWindow.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForMember.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/PostText.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/FriendList.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForAdmins.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/GroupString.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/UserFileReader.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/CreateGroup.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/MembersForAdmin.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Server.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/Relation.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupPostText.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/FriendRequestFileReader.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/JsonFileWriter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Login.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/LocalDateAdapter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/SignUp.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/FilePaths.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/users.json</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/FriendRequest.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/connecthub/ConnectHub.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/ProfileDetails.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/PostImage.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/ManagePosts.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupPostImage.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/PendingMembers.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Logout.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/Relationship.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Post.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/FriendManagement.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupSuggestions.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForCreator.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/MembersForCreator.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Content.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/content.json</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/PostString.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/User.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/StoryImage.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/SignUpWindow.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/MyGroups.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/friendRequest.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/AppManager.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/friendRequests.json</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/RelationString.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/ProfileManger.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Group.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForUserNotMember.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/Admins.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/FriendRequestFileWriter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/JsonFileReader.java</file>
         </group>
     </open-files>
 </project-private>
