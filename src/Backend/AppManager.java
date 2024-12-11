@@ -17,6 +17,7 @@ public class AppManager {
     private ArrayList<Post> posts;
     private ArrayList<Story> stories;
     private ArrayList<friendRequest> request;
+    //private ArrayList<Notification> notifications = new ArrayList<>();
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
@@ -72,6 +73,7 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
+                Data.get(i).addNotification(new Notification(currentUser.getUserName(), currentUser.getUserId(),currentUser.getProfilePhoto()));
                 return true;
             }
         }
@@ -253,7 +255,7 @@ public class AppManager {
                 /*searching for the user using id*/
                 if (Data.get(j).getUserId().equalsIgnoreCase(currentUser.getFriends().get(i).getrelationWith())) {
                     relationStrings.add(new RelationString(Data.get(j).getUserName(), Data.get(j).getProfilePhoto(), Data.get(j).getUserId()));
-
+                    
                 }
             }
         }
@@ -267,6 +269,7 @@ public class AppManager {
                 /*searching for the user using id*/
                 if (Data.get(j).getUserId().equalsIgnoreCase(currentUser.getReceived().get(i).getrelationWith())) {
                     relationStrings.add(new RelationString(Data.get(j).getUserName(), Data.get(j).getProfilePhoto(), Data.get(j).getUserId()));
+                    
                 }
             }
         }
@@ -465,5 +468,16 @@ temp.addAll(currentUser.getSent());
        }
        return data;
    }
+//    public ArrayList<Notification> getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void addNotification(Notification notification) {
+//        notifications.add(notification);
+//    }
+//
+//    public void removeNotification(int notificationId) {
+//        notifications.removeIf(notification -> notification.getId() == notificationId);
+//    }
    
 }
