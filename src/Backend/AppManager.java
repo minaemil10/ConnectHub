@@ -417,6 +417,17 @@ public class AppManager {
         }
         return user;
     }
+    
+    private Post getPost(String id){
+        Post post = null;
+        for (Post p : posts) {
+            if (p.getContentID().equals(id)) {
+                post = p;
+                break;
+            }
+        }
+        return post;
+    }
 
 
     /*Group Managment methods*/
@@ -571,16 +582,20 @@ public class AppManager {
     }
 
     // TODO: add editPost code
-    /*
-    public void editPost(String postId , String groupId){
+    
+    public boolean editPost(String postId , String groupId , String text, String photo){
         Group group = getGroup(groupId);       
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
-            if(group.isPost(postid){
-                code to edit Posts
+            if(group.isPost(postId)){
+                   Post post = getPost(postId);
+                   post.setPhoto(photo);
+                   post.setText(text);
+                   return true;
             }  
         }
+        return false;
     }
-     */
+
     //user specific actions
     private void userAddGroupPost(String postId, String groupId) {
         Group group = getGroup(groupId);
