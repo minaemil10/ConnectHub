@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/DataBaseOBJ.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/ViewProfile.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Story.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/ContentFileWriter.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/UserFileWriter.java</file>
@@ -15,6 +16,7 @@
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/FriendList.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForAdmins.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/NonFriendPanel.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/GroupString.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/UserFileReader.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/CreateGroup.java</file>
@@ -52,6 +54,7 @@
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/MyGroups.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/friendRequest.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/AppManager.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/FriendsPanel.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/friendRequests.json</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/Friend_Management/RelationString.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/ProfileManger.java</file>
@@ -59,6 +62,7 @@
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/GroupForUserNotMember.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/Admins.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/FriendRequestFileWriter.java</file>
+            <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Frontend/SearchResult.java</file>
             <file>file:/C:/Users/carls/OneDrive/Documents/NetBeansProjects/ConnectHub/src/Backend/DataBase/JsonFileReader.java</file>
         </group>
     </open-files>

@@ -4,6 +4,13 @@
  */
 package Frontend;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import Backend.AppManager;
+
 /**
  *
  * @author carls
@@ -13,6 +20,8 @@ public class CreateGroup extends javax.swing.JFrame {
     /**
      * Creates new form CreateGroup
      */
+    private String GroupPhoto = "";
+    private AppManager a;
     public CreateGroup() {
         initComponents();
     }
@@ -30,7 +39,7 @@ public class CreateGroup extends javax.swing.JFrame {
         UneditableDescriptionText = new javax.swing.JTextField();
         UneditablePhotoText = new javax.swing.JTextField();
         jNameField = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        DescriptionField = new javax.swing.JTextField();
         jPhotoLabel1 = new javax.swing.JLabel();
         UploadPhotoButton = new javax.swing.JButton();
         CreateGroupButton1 = new javax.swing.JButton();
@@ -58,9 +67,9 @@ public class CreateGroup extends javax.swing.JFrame {
         UneditablePhotoText.setText("Photo");
         UneditablePhotoText.setFocusable(false);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        DescriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                DescriptionFieldActionPerformed(evt);
             }
         });
 
@@ -72,11 +81,21 @@ public class CreateGroup extends javax.swing.JFrame {
         UploadPhotoButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         UploadPhotoButton.setForeground(new java.awt.Color(255, 255, 255));
         UploadPhotoButton.setText("Upload photo");
+        UploadPhotoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadPhotoButtonActionPerformed(evt);
+            }
+        });
 
         CreateGroupButton1.setBackground(new java.awt.Color(0, 153, 255));
         CreateGroupButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CreateGroupButton1.setForeground(new java.awt.Color(255, 255, 255));
         CreateGroupButton1.setText("Create Group");
+        CreateGroupButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateGroupButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +112,7 @@ public class CreateGroup extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(UploadPhotoButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPhotoLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -112,7 +131,7 @@ public class CreateGroup extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UneditableDescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UneditablePhotoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,9 +146,63 @@ public class CreateGroup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void DescriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_DescriptionFieldActionPerformed
+
+    private void CreateGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateGroupButton1ActionPerformed
+        // TODO add your handling code here:
+        String GroupName = jNameField.getText().trim();
+        String Description= DescriptionField.getText().trim();
+        if(GroupName.isEmpty() || Description.isEmpty()){
+             JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        if(!GroupPhoto.isEmpty()){
+         //    a.changeGroupPhoto(GroupName, GroupName);
+             GroupPhoto = "";
+             }
+    }//GEN-LAST:event_CreateGroupButton1ActionPerformed
+
+    private void UploadPhotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadPhotoButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory() || file.getName().toLowerCase().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "PNG Images (*.png)";
+            }
+        });
+        
+        int result = fileChooser.showOpenDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+             GroupPhoto = selectedFile.getAbsolutePath();
+             if(GroupPhoto.endsWith(".png")){
+            ImageIcon imageIcon = new ImageIcon(GroupPhoto);
+            Image image = imageIcon.getImage().getScaledInstance(
+                jPhotoLabel1.getWidth(), 
+                jPhotoLabel1.getHeight(), 
+                Image.SCALE_SMOOTH
+            );
+            jPhotoLabel1.setIcon(new ImageIcon(image));
+            jPhotoLabel1.setText(""); 
+            
+           JOptionPane.showMessageDialog(this, "photo uploaded successfully");
+             }
+             else{
+             JOptionPane.showMessageDialog(null, "Selected file is not png image", "Warning", JOptionPane.WARNING_MESSAGE);
+             }
+        } else {
+        JOptionPane.showMessageDialog(null, "No image selected", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_UploadPhotoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,12 +241,12 @@ public class CreateGroup extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateGroupButton1;
+    private javax.swing.JTextField DescriptionField;
     private javax.swing.JTextField UneditableDescriptionText;
     private javax.swing.JTextField UneditableNameText;
     private javax.swing.JTextField UneditablePhotoText;
     private javax.swing.JButton UploadPhotoButton;
     private javax.swing.JTextField jNameField;
     private javax.swing.JLabel jPhotoLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
