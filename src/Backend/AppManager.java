@@ -563,7 +563,7 @@ public class AppManager {
         }
     }
 
-    public void adminAddGroupPost(String postId, String groupId) {
+    private void adminAddGroupPost(String postId, String groupId) {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
             group.addPostOfAdmin(postId);
@@ -582,7 +582,7 @@ public class AppManager {
     }
      */
     //user specific actions
-    public void userAddGroupPost(String postId, String groupId) {
+    private void userAddGroupPost(String postId, String groupId) {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
             group.addPostOfUser(postId);
