@@ -493,6 +493,21 @@ public class AppManager {
             return true;
         }
     }
+    
+    
+    public ArrayList<PostString> getAllGroupPost(String groupId){
+        Group group = getGroup(groupId);
+        ArrayList<PostString> tempPosts = new ArrayList<>();
+        {
+            for (Post post : posts ) {
+                if (group.isPost(post.getContentID())) {
+                    tempPosts.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString()));
+                }
+
+            }
+        }
+        return tempPosts;
+    }
 
     //group Managment Special for Owner
     public void promoteUser(String userId, String groupId) {
