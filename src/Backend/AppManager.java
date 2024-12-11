@@ -432,11 +432,12 @@ public class AppManager {
 
     /*Group Managment methods*/
     //Group creation and attribute editing
-    public void createGroup(String name) {
+    public String createGroup(String name) {
         Group group = new Group(name, currentUser.getUserId());
         currentUser.addGroupRequest(group.getGroupID());
         currentUser.joinGroup(group.getGroupID());
         groups.add(group);
+        return group.getGroupID();
     }
 
     public void changeGroupPhoto(String photoPath, String groupID) {
