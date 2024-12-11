@@ -73,7 +73,7 @@ public class GroupSuggestions extends javax.swing.JPanel {
                             .addComponent(ViewGroupButton)
                             .addComponent(jButton1)))
                     .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
