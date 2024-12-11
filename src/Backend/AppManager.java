@@ -542,6 +542,15 @@ public class AppManager {
         }
 
     }
+    
+    public void approvePostRequest(String postId, String groupId) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if (group.isPendingPost(postId)) {
+                group.acceptPost(postId); //change user from requests to users
+            }
+        }
+    }
 
     public void declineRequest(String userId, String groupId) {
         Group group = getGroup(groupId);
@@ -552,7 +561,15 @@ public class AppManager {
                 group.declineMember(userId); //remove user from requests
             }
         }
-
+    }
+    
+    public void declinePostRequest(String postId, String groupId) {
+        Group group = getGroup(groupId);
+        if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
+            if (group.isPendingPost(postId)) {
+                group.declinePost(postId); //remove post from requests
+            }
+        }
     }
 
     public void removeMember(String userId, String groupId) {
@@ -601,6 +618,14 @@ public class AppManager {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
             group.addPostOfUser(postId);
+        }
+    }
+    
+    public void joinGroup(String groupId){ //function to be used to send notification to all admins that the user needs to join 
+        Group group = getGroup(groupId);
+        if(group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId()) ){
+            group.addMember(groupId);
+            currentUser.addGroupRequest(groupId);
         }
     }
 
