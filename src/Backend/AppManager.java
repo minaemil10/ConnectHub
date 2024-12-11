@@ -20,6 +20,7 @@ public class AppManager {
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request, ArrayList<Group> groups) {
         currentUser = null;
@@ -71,6 +72,9 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
+                Notification notification = new Notification(currentUser.getUserName(),currentUser.getUserId(),currentUser.getProfilePhoto());
+                temp.setNotificationId(notification.getId());
+                Data.get(i).addNotification(notification);
                 return true;
             }
         }
@@ -510,6 +514,7 @@ public class AppManager {
             if (group.isPendingRequest(userId)) {
                 user.joinGroup(groupId); //change group to mygroups array
                 group.acceptMember(userId); //change user from requests to users
+                
             }
         }
 
@@ -550,6 +555,7 @@ public class AppManager {
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))) {
             group.addPostOfAdmin(postId);
+            
         }
     }
 
@@ -571,6 +577,7 @@ public class AppManager {
         Group group = getGroup(groupId);
          if (group.checkUser(currentUser.getUserId()) != null && group.isUser(currentUser.getUserId())) {
             group.addPostOfUser(postId);
+            ArrayList<String> admins = group.getAllAdmins();
         }
     }
     
@@ -583,5 +590,10 @@ public class AppManager {
             currentUser.leaveGroup(groupId);
          }
     }
-    
+    public void removeNotification(String notificationId) {
+        for (User u: Data){
+            u.removeNotification(notificationId);
+        }
+        //remove notification from app manager
+    } 
 }

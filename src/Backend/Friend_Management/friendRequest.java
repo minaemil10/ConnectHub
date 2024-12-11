@@ -7,6 +7,7 @@ public class friendRequest implements DataBaseOBJ {
 private String senderID;
 private String receiverID;
 private Relation status;
+private String notificationId;
 
     public friendRequest(String senderID, String receiverID) {
         this.senderID = senderID;
@@ -23,6 +24,14 @@ private Relation status;
     }
     public void decline(){
         status.setCanceled();
+    }
+
+    public void setNotificationId(String notificationId) {
+        this.notificationId = notificationId;
+    }
+
+    public String getNotificationId() {
+        return notificationId;
     }
 
     public Relation getStatus() {
@@ -45,4 +54,5 @@ private Relation status;
         receiverID=temp;
         status.setBlock();
     }
+    
 }
