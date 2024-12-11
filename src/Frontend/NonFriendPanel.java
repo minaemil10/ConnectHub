@@ -26,19 +26,86 @@ public class NonFriendPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PhotoLabel1 = new javax.swing.JLabel();
+        ViewProfileButton = new javax.swing.JButton();
+        NameField = new javax.swing.JTextField();
+        AddFriendButton = new javax.swing.JButton();
+        BlockButton1 = new javax.swing.JButton();
+
+        PhotoLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        ViewProfileButton.setBackground(new java.awt.Color(51, 153, 255));
+        ViewProfileButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ViewProfileButton.setForeground(new java.awt.Color(255, 255, 255));
+        ViewProfileButton.setText("View profile");
+        ViewProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProfileButtonActionPerformed(evt);
+            }
+        });
+
+        NameField.setEditable(false);
+
+        AddFriendButton.setBackground(new java.awt.Color(51, 153, 255));
+        AddFriendButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddFriendButton.setForeground(new java.awt.Color(255, 255, 255));
+        AddFriendButton.setText("Add friend");
+
+        BlockButton1.setBackground(new java.awt.Color(51, 153, 255));
+        BlockButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BlockButton1.setForeground(new java.awt.Color(255, 255, 255));
+        BlockButton1.setText("Block");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(PhotoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ViewProfileButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(AddFriendButton))
+                            .addComponent(NameField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(BlockButton1)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PhotoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ViewProfileButton)
+                            .addComponent(AddFriendButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BlockButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ViewProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProfileButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewProfileButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddFriendButton;
+    private javax.swing.JButton BlockButton1;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JLabel PhotoLabel1;
+    private javax.swing.JButton ViewProfileButton;
     // End of variables declaration//GEN-END:variables
 }
