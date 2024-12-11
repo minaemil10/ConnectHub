@@ -64,7 +64,7 @@ public class MyGroups extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(LeaveGroupButton))
                     .addComponent(GroupName))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +78,7 @@ public class MyGroups extends javax.swing.JPanel {
                             .addComponent(ViewGroupButton)
                             .addComponent(LeaveGroupButton)))
                     .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 200, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
