@@ -4,6 +4,9 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.GroupString;
+
 /**
  *
  * @author carls
@@ -13,8 +16,12 @@ public class GroupForMember extends javax.swing.JFrame {
     /**
      * Creates new form GroupForMember
      */
-    public GroupForMember() {
+     private GroupString gs;
+    private AppManager a ;
+    public GroupForMember(AppManager a, GroupString gs) {
         initComponents();
+        this.a = a;
+        this.gs = gs;
     }
 
     /**
@@ -124,7 +131,7 @@ public class GroupForMember extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupForMember().setVisible(true);
+              //  new GroupForMember().setVisible(true);
             }
         });
     }

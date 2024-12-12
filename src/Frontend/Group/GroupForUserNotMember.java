@@ -32,6 +32,7 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         GroupPhotoLabel.setBackground(new java.awt.Color(255, 255, 255));
+        GroupPhotoLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         GroupNameTextField1.setEditable(false);
 

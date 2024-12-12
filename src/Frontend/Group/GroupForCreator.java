@@ -4,6 +4,7 @@
  */
 package Frontend;
 import Backend.AppManager;
+import Backend.GroupString;
 
 /**
  *
@@ -14,10 +15,12 @@ public class GroupForCreator extends javax.swing.JFrame {
     /**
      * Creates new form GroupForCreator
      */
+    private GroupString gs;
     private AppManager a ;
-    public GroupForCreator() {
+    public GroupForCreator(AppManager a, GroupString gs) {
         initComponents();
-        
+        this.a = a;
+        this.gs = gs;
     }
 
     /**
@@ -259,7 +262,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupForCreator().setVisible(true);
+           //     new GroupForCreator().setVisible(true);
             }
         });
     }

@@ -4,6 +4,15 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.Friend_Management.PostString;
+import Backend.GroupString;
+import static Frontend.MyPosts_Stories.showCustomDialog;
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author carls
@@ -13,8 +22,46 @@ public class GroupForAdmins extends javax.swing.JFrame {
     /**
      * Creates new form GroupForAdmins
      */
-    public GroupForAdmins() {
+    private AppManager a;
+    private GroupString gs;
+    public GroupForAdmins(AppManager a, GroupString gs) {
         initComponents();
+        this.a = a;
+        this.gs = gs;
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+        String photo = gs.getPhoto();
+        String groupName = gs.getName();
+        GroupNameField.setText(groupName);
+        String groupD = gs.getDescription();
+        GroupDescriptionField.setText(groupD);
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+        GroupPhoto.setIcon(new ImageIcon(image));
+        GroupPhoto.setText("");
+        ArrayList<PostString>posts = a.getGroupPosts();
+        for(PostString p : posts){
+            String text = p.getText();
+            String postPhoto = p.getPhoto();
+            String name = p.getAuthor();
+            String date = p.getDate();
+            if(postPhoto.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+                postPanel.add(pt);
+            }
+            else{
+                PostImage pi = new PostImage(text, photo, name, date);
+                postPanel.add(pi);
+            }
+            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            postPanel.revalidate();
+            postPanel.repaint(); 
+        }
+   
+        
     }
 
     /**
@@ -26,29 +73,52 @@ public class GroupForAdmins extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GroupPhotoLabel = new javax.swing.JLabel();
+        GroupPhoto = new javax.swing.JLabel();
         GroupNameField = new javax.swing.JTextField();
         GroupDescriptionField = new javax.swing.JTextField();
         GroupPostsPane = new javax.swing.JScrollPane();
+        postPanel = new javax.swing.JPanel();
         CreatepostButton = new javax.swing.JButton();
         ManagepostButton = new javax.swing.JButton();
         PendingMembersLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         MembersLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 1000));
+        setPreferredSize(new java.awt.Dimension(1000, 615));
+        setSize(new java.awt.Dimension(1000, 0));
 
-        GroupPhotoLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         GroupNameField.setEditable(false);
 
         GroupDescriptionField.setEditable(false);
 
+        javax.swing.GroupLayout postPanelLayout = new javax.swing.GroupLayout(postPanel);
+        postPanel.setLayout(postPanelLayout);
+        postPanelLayout.setHorizontalGroup(
+            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 474, Short.MAX_VALUE)
+        );
+        postPanelLayout.setVerticalGroup(
+            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 438, Short.MAX_VALUE)
+        );
+
+        GroupPostsPane.setViewportView(postPanel);
+
         CreatepostButton.setBackground(new java.awt.Color(51, 153, 255));
         CreatepostButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CreatepostButton.setForeground(new java.awt.Color(255, 255, 255));
         CreatepostButton.setText("Create post");
+        CreatepostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreatepostButtonActionPerformed(evt);
+            }
+        });
 
         ManagepostButton.setBackground(new java.awt.Color(51, 153, 255));
         ManagepostButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -63,75 +133,121 @@ public class GroupForAdmins extends javax.swing.JFrame {
         MembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MembersLabel1.setText("Members");
 
+        jButton2.setText("Refresh");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))))
+                        .addGap(70, 70, 70)
+                        .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CreatepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150)
+                        .addComponent(ManagepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CreatepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150)
-                                .addComponent(ManagepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
-                                .addComponent(GroupNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                            .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(GroupNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(GroupNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CreatepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ManagepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GroupPostsPane)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2)))
-                        .addContainerGap())))
+                                .addComponent(jScrollPane2)
+                                .addContainerGap())
+                            .addComponent(GroupPostsPane, javax.swing.GroupLayout.Alignment.TRAILING)))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CreatepostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatepostButtonActionPerformed
+        // TODO add your handling code here:
+            MyPosts_Stories.Result result = showCustomDialog();
+            
+            if(result.userText.equals("")){
+                JOptionPane.showMessageDialog(null, "Text can't be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                a.createGroupPost(gs.getId(), result.imagePath, result.userText);
+               
+            }
+            postPanel.removeAll();
+    }//GEN-LAST:event_CreatepostButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<PostString>posts = a.getGroupPosts();
+        for(PostString p : posts){
+            String text = p.getText();
+            String postPhoto = p.getPhoto();
+            String name = p.getAuthor();
+            String date = p.getDate();
+            if(postPhoto.equals("No file selected")){
+                PostText pt = new PostText(text, name, date);
+                postPanel.add(pt);
+            }
+            else{
+                PostImage pi = new PostImage(text, postPhoto, name, date);
+                postPanel.add(pi);
+            }
+        }
+            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            postPanel.revalidate();
+            postPanel.repaint(); 
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +279,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupForAdmins().setVisible(true);
+               // new GroupForAdmins().setVisible(true);
             }
         });
     }
@@ -172,12 +288,14 @@ public class GroupForAdmins extends javax.swing.JFrame {
     private javax.swing.JButton CreatepostButton;
     private javax.swing.JTextField GroupDescriptionField;
     private javax.swing.JTextField GroupNameField;
-    private javax.swing.JLabel GroupPhotoLabel;
+    private javax.swing.JLabel GroupPhoto;
     private javax.swing.JScrollPane GroupPostsPane;
     private javax.swing.JButton ManagepostButton;
     private javax.swing.JLabel MembersLabel1;
     private javax.swing.JLabel PendingMembersLabel1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel postPanel;
     // End of variables declaration//GEN-END:variables
 }

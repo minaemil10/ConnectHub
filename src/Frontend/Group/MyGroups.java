@@ -4,6 +4,9 @@
  */
 package Frontend.Group;
 import Backend.AppManager;
+import Backend.GroupString;
+import Frontend.GroupForAdmins;
+import Frontend.GroupForCreator;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 /**
@@ -64,11 +67,21 @@ public class MyGroups extends javax.swing.JPanel {
         ViewGroupButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ViewGroupButton.setForeground(new java.awt.Color(255, 255, 255));
         ViewGroupButton.setText("view group");
+        ViewGroupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewGroupButtonActionPerformed(evt);
+            }
+        });
 
         LeaveGroupButton.setBackground(new java.awt.Color(0, 153, 255));
         LeaveGroupButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LeaveGroupButton.setForeground(new java.awt.Color(255, 255, 255));
         LeaveGroupButton.setText("Leave group");
+        LeaveGroupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveGroupButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,9 +102,9 @@ public class MyGroups extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(GroupName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -105,6 +118,26 @@ public class MyGroups extends javax.swing.JPanel {
     private void GroupNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GroupNameActionPerformed
+
+    private void ViewGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButtonActionPerformed
+        // TODO add your handling code here:
+        GroupString gs =a.getCroupInfo(groupId);
+        switch(gs.getDescription()){
+            case "admin":
+                new GroupForAdmins(a, gs).setVisible(true);
+                
+            case "owner":
+                new GroupForCreator(a, gs).setVisible(true);
+            case "user":
+            
+                
+        }
+    }//GEN-LAST:event_ViewGroupButtonActionPerformed
+
+    private void LeaveGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveGroupButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_LeaveGroupButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

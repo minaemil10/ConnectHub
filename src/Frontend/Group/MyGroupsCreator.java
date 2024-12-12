@@ -64,6 +64,11 @@ public class MyGroupsCreator extends javax.swing.JPanel {
         ViewGroupButton1.setBackground(new java.awt.Color(51, 153, 255));
         ViewGroupButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ViewGroupButton1.setText("View Group");
+        ViewGroupButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewGroupButton1ActionPerformed(evt);
+            }
+        });
 
         ViewGroupButton2.setBackground(new java.awt.Color(51, 153, 255));
         ViewGroupButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -74,37 +79,41 @@ public class MyGroupsCreator extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(GroupPhotoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ViewGroupButton1)
+                        .addComponent(ViewGroupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ViewGroupButton2))
+                        .addComponent(ViewGroupButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(GroupNameField1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GroupPhotoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(GroupNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ViewGroupButton1)
-                            .addComponent(ViewGroupButton2))))
+                .addGap(19, 19, 19)
+                .addComponent(GroupNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ViewGroupButton1)
+                    .addComponent(ViewGroupButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(GroupPhotoLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void GroupNameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupNameField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GroupNameField1ActionPerformed
+
+    private void ViewGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewGroupButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
