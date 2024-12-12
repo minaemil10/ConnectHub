@@ -99,5 +99,7 @@ public class Server {
     private ArrayList<Group> loadGroups() {
         return new GroupFileReader(groupsDataBase).readAll();
     }
-
+    public static void writeGroups() {
+        new GroupFileWriter(groupsDataBase).writeAll(groups);
+    }
 }

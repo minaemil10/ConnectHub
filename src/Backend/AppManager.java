@@ -62,6 +62,7 @@ public class AppManager {
         Server.writeUsers();
         Server.writeContent();
         Server.writeRelationShips();
+        Server.writeGroups();
     }
 
     /*friend requests*/
