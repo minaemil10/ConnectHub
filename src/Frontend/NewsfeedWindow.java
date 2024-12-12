@@ -367,6 +367,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         //status.removeAll();
         storyPanel.removeAll();
+        postPanel.removeAll();
+        GroupPanel1.removeAll();
         DefaultTableModel model = (DefaultTableModel) status.getModel();
         model.setRowCount(0);
         
