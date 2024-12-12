@@ -495,11 +495,14 @@ temp.addAll(currentUser.getSent());
         }
     }
 
+    
+    //group data getting 
     public GroupString getCroupInfo(String id) {
         Group group = getGroup(id);
         return new GroupString(group.getGroupName(), group.getGroupPhoto(), group.getDescription(), group.getGroupID(), group.checkUser(currentUser.getUserId()));
     }
 
+    
     public ArrayList<GroupString> getMyGroups() {
         ArrayList<GroupString> data = new ArrayList<>();
         for (String groupId : currentUser.getAllMyGroups()) {
@@ -510,6 +513,50 @@ temp.addAll(currentUser.getSent());
             }
         }
         return data;
+    }
+    
+    public ArrayList<UserSearch> getAllMembersOfGroup(String groupId){
+        Group group = getGroup(groupId);
+         ArrayList<UserSearch> temp = new ArrayList<>();
+        for(User u : Data){
+            if(group.checkUser(u.getUserId()) != null){
+                temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
+            }
+        }
+        return temp;
+    }
+    
+    public ArrayList<UserSearch> getAllAdminsOfGroup(String groupId){
+        Group group = getGroup(groupId);
+         ArrayList<UserSearch> temp = new ArrayList<>();
+        for(User u : Data){
+            if(group.checkUser(u.getUserId()).equals("admin") ){
+                temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
+            }
+        }
+        return temp;
+    }
+    
+    public ArrayList<UserSearch> getAllUsersOfGroup(String groupId){
+        Group group = getGroup(groupId);
+         ArrayList<UserSearch> temp = new ArrayList<>();
+        for(User u : Data){
+            if(group.checkUser(u.getUserId()).equals("user") ){
+                temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
+            }
+        }
+        return temp;
+    }
+    
+    public UserSearch getOwnerOfGroup(String groupId){
+        Group group = getGroup(groupId);
+         ArrayList<UserSearch> temp = new ArrayList<>();
+        for(User u : Data){
+            if(group.checkUser(u.getUserId()).equals("owner") ){
+                return new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto());
+            }
+        }
+        return null;
     }
 
     public boolean createGroupPost(String groupId, String photo, String text) {
