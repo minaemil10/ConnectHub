@@ -1,11 +1,13 @@
 package Backend;
 
 import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.ProfileDetailsBack;
 import Backend.Friend_Management.RelationString;
 
 import Backend.Friend_Management.Relationship;
 import Backend.Friend_Management.UserSearch;
 import Backend.Friend_Management.friendRequest;
+import Frontend.ProfileDetails;
 import java.time.Duration;
 
 import java.time.LocalDate;
@@ -128,6 +130,21 @@ public class AppManager {
             } else if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
                 request.get(i).block();
                 currentUser.blockFriend(userID);
+                return true;
+            }
+
+        }
+
+        return true;
+    }
+    //m7taga tzbet
+        public boolean blockNonFriend(String userID) {
+        clearCancel();
+        sendFriendRequest(userID);
+        for (int i = 0; i < request.size(); i++) {
+           if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
+                request.get(i).block();
+                currentUser.blockNonFriend(userID);
                 return true;
             }
 
@@ -939,6 +956,12 @@ temp.addAll(currentUser.getSent());
 
         return found;
     }
-    
-
+    public ProfileDetailsBack getProfile(String key){
+        for(int i=0;i<Data.size();i++){
+            if(key.equalsIgnoreCase(Data.get(i).getUserId())){       
+             return new ProfileDetailsBack(Data.get(i).getUserId(),Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getBio())  ; 
+            }
+        }
+      return null;  
+    }
 }
