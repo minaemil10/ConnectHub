@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+
 /**
  *
  * @author carls
@@ -13,8 +15,13 @@ public class ManagePosts extends javax.swing.JFrame {
     /**
      * Creates new form ManagePosts
      */
-    public ManagePosts() {
+    AppManager a;
+    String gpId;
+    public ManagePosts(AppManager a, String gpId) {
         initComponents();
+        this.a=a;
+        this.gpId= gpId;
+        
     }
 
     /**
@@ -80,7 +87,7 @@ public class ManagePosts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagePosts().setVisible(true);
+        //        new ManagePosts().setVisible(true);
             }
         });
     }
