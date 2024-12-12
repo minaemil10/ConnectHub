@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Frontend;
-
+package Frontend.Group;
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author carls
@@ -13,9 +15,27 @@ public class MyGroups extends javax.swing.JPanel {
     /**
      * Creates new form MyGroups
      */
-    public MyGroups() {
+    private AppManager a;
+    private String groupId;
+    private String groupPhoto;
+    private String groupName;
+    public MyGroups(AppManager a , String groupId , String groupPhoto , String groupName) {
         initComponents();
+        this.a = a;
+        this.groupName = groupName;
+        this.groupId = groupId;
+        this.groupPhoto = groupPhoto;
+        GroupName.setText(groupName);
+        ImageIcon imageIcon = new ImageIcon(groupPhoto);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            GroupPhoto.setIcon(new ImageIcon(image));
+            GroupPhoto.setText("");
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +76,7 @@ public class MyGroups extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -77,7 +97,7 @@ public class MyGroups extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ViewGroupButton)
                             .addComponent(LeaveGroupButton)))
-                    .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
