@@ -4,11 +4,13 @@
  */
 package Backend;
 
+import Backend.DataBase.DataBaseOBJ;
+
 /**
  *
  * @author User
  */
-public class Notification {
+public class Notification implements DataBaseOBJ{
     private String name;
     private String type;
     private String userId;

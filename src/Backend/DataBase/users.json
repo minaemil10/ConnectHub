@@ -1,48 +1,25 @@
 [
   {
     "userId": "U1",
-    "email": "rober@gmail.com",
-    "userName": "rober",
+    "email": "carl@gmail.com",
+    "userName": "carl",
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "DateOfBirth": "06,12,2010",
+    "DateOfBirth": "01,07,2004",
     "status": false,
-    "profilePhoto": "C:\\Users\\User\\Desktop\\1_NdZYCyf_RZTf6NOM6AnFhQ.png",
-    "coverPhoto": "C:\\Users\\User\\Desktop\\1_NdZYCyf_RZTf6NOM6AnFhQ.png",
+    "profilePhoto": "C:\\Users\\carls\\OneDrive\\Desktop\\ibn el haitham.png",
+    "coverPhoto": "C:\\Users\\carls\\OneDrive\\Desktop\\الخدمة\\Screenshot 2024-11-07 184845.png",
+    "notifications": [],
     "myPosts": [],
-    "myStories": [
-      "S-0"
-    ],
-    "friends": [
-      {
-        "relationWith": "U2",
-        "relation": {
-          "relation": "Friend"
-        }
-      }
-    ],
-    "Blocked": [],
-    "received": [],
-    "sent": []
-  },
-  {
-    "userId": "U2",
-    "email": "mina@gmail.com",
-    "userName": "mina",
-    "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
-    "DateOfBirth": "06,12,2003",
-    "status": false,
-    "myPosts": [
-      "P-0"
-    ],
     "myStories": [],
-    "friends": [
-      {
-        "relationWith": "U1",
-        "relation": {
-          "relation": "Friend"
-        }
-      }
+    "myGroups": [
+      "G1",
+      "G1",
+      "G1",
+      "G1"
     ],
+    "groupRequests": [],
+    "groupsLeftByMe": [],
+    "friends": [],
     "Blocked": [],
     "received": [],
     "sent": []

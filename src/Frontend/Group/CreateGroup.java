@@ -21,9 +21,11 @@ public class CreateGroup extends javax.swing.JFrame {
      * Creates new form CreateGroup
      */
     private String GroupPhoto = "";
+    private String groupId = "";
     private AppManager a;
-    public CreateGroup() {
+    public CreateGroup(AppManager a) {
         initComponents();
+        this.a = a;
     }
 
     /**
@@ -156,11 +158,15 @@ public class CreateGroup extends javax.swing.JFrame {
         String Description= DescriptionField.getText().trim();
         if(GroupName.isEmpty() || Description.isEmpty()){
              JOptionPane.showMessageDialog(null, "there are empty fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
         }
+         groupId = a.createGroup(GroupName);
         if(!GroupPhoto.isEmpty()){
-         //    a.changeGroupPhoto(GroupName, GroupName);
+             a.changeGroupPhoto(GroupPhoto,groupId);
              GroupPhoto = "";
              }
+         JOptionPane.showMessageDialog(this, "Group created successfully");
+         this.dispose();
     }//GEN-LAST:event_CreateGroupButton1ActionPerformed
 
     private void UploadPhotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadPhotoButtonActionPerformed
@@ -234,7 +240,7 @@ public class CreateGroup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateGroup().setVisible(true);
+      //          new CreateGroup(a).setVisible(true);
             }
         });
     }
