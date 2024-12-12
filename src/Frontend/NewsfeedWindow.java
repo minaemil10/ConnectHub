@@ -119,7 +119,8 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             String name = r.getUsernameString();
             String photo = r.getRelationString();
             String id = r.getIdString();
-            
+            GroupSuggestions gs = new GroupSuggestions(a, name, photo, id);
+            groupSuggestPanel.add(gs);
         }
     }
     

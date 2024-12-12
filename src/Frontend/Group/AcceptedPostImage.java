@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,8 +17,25 @@ public class AcceptedPostImage extends javax.swing.JPanel {
     /**
      * Creates new form AcceptedPostImage
      */
-    public AcceptedPostImage() {
+    private AppManager a;
+    private String postId;
+    private String GroupId;
+    public AcceptedPostImage(String photoPath,String text,String name, String date,AppManager a,String postId,String GroupId) {
         initComponents();
+        Date.setText(date);
+        this.textArea.setText(text);
+        Name.setText(name);
+        ImageIcon imageIcon = new ImageIcon(photoPath);
+            Image image = imageIcon.getImage().getScaledInstance(
+                216, 
+                277, 
+                Image.SCALE_SMOOTH
+            );
+            postPhoto.setIcon(new ImageIcon(image));
+            postPhoto.setText("");
+            this.postId = postId;
+        this.GroupId = GroupId;
+        this.a = a;
     }
 
     /**
@@ -26,25 +47,50 @@ public class AcceptedPostImage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NameField1 = new javax.swing.JTextField();
-        DateField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        PostImageLabel1 = new javax.swing.JLabel();
+        Name = new javax.swing.JTextField();
+        Date = new javax.swing.JTextField();
+        textArea = new javax.swing.JTextField();
+        postPhoto = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         EditButton1 = new javax.swing.JButton();
         EditButton2 = new javax.swing.JButton();
+        save = new javax.swing.JButton();
 
-        PostImageLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Name.setEnabled(false);
+
+        Date.setEnabled(false);
+
+        textArea.setFocusable(false);
+
+        postPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
         EditButton1.setBackground(new java.awt.Color(51, 153, 255));
         EditButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         EditButton1.setText("Edit");
+        EditButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButton1ActionPerformed(evt);
+            }
+        });
 
         EditButton2.setBackground(new java.awt.Color(51, 153, 255));
         EditButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         EditButton2.setText("Remove");
+        EditButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButton2ActionPerformed(evt);
+            }
+        });
+
+        save.setText("Save");
+        save.setEnabled(false);
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,49 +100,71 @@ public class AcceptedPostImage extends javax.swing.JPanel {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1)
-                    .addComponent(PostImageLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
+                    .addComponent(textArea)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(NameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DateField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(postPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(19, 19, 19)
                 .addComponent(EditButton1)
-                .addGap(39, 39, 39)
+                .addGap(13, 13, 13)
+                .addComponent(save)
+                .addGap(18, 18, 18)
                 .addComponent(EditButton2)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(0, 84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PostImageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EditButton1)
-                    .addComponent(EditButton2))
+                    .addComponent(EditButton2)
+                    .addComponent(save))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        // TODO add your handling code here:
+       a.editPost(postId, GroupId, textArea.getText(), "No file selected");
+        save.setEnabled(false);
+        textArea.setFocusable(false);
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void EditButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButton1ActionPerformed
+        // TODO add your handling code here:
+        save.setEnabled(true);
+        textArea.setFocusable(true);
+    }//GEN-LAST:event_EditButton1ActionPerformed
+
+    private void EditButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButton2ActionPerformed
+        // TODO add your handling code here:
+        a.deletePost(postId, GroupId);
+    }//GEN-LAST:event_EditButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField DateField2;
+    private javax.swing.JTextField Date;
     private javax.swing.JButton EditButton1;
     private javax.swing.JButton EditButton2;
-    private javax.swing.JTextField NameField1;
-    private javax.swing.JLabel PostImageLabel1;
+    private javax.swing.JTextField Name;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel postPhoto;
+    private javax.swing.JButton save;
+    private javax.swing.JTextField textArea;
     // End of variables declaration//GEN-END:variables
 }

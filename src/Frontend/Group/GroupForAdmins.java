@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.UserSearch;
 import Backend.GroupString;
 import static Frontend.MyPosts_Stories.showCustomDialog;
 import java.awt.Image;
@@ -23,7 +24,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
      * Creates new form GroupForAdmins
      */
     private AppManager a;
-    private GroupString gs;
+    GroupString gs;
     public GroupForAdmins(AppManager a, GroupString gs) {
         initComponents();
         this.a = a;
@@ -42,26 +43,34 @@ public class GroupForAdmins extends javax.swing.JFrame {
             );
         GroupPhoto.setIcon(new ImageIcon(image));
         GroupPhoto.setText("");
-        ArrayList<PostString>posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getGroupPosts();
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
             String name = p.getAuthor();
             String date = p.getDate();
             if(postPhoto.equals("No file selected")){
-                PostText pt = new PostText(text, name, date);
-                postPanel.add(pt);
+                AcceptedPostText ap =new AcceptedPostText(text, name, date, a, p., gs.getId());
+                postPanel.add(ap);
             }
             else{
-                PostImage pi = new PostImage(text, photo, name, date);
-                postPanel.add(pi);
+                AcceptedPostImage ap = new AcceptedPostImage(photo, text, name, date, a, photo, gs.getId());
+                postPanel.add(ap);
             }
+            
+        }
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
             postPanel.revalidate();
             postPanel.repaint(); 
+        ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+        for(UserSearch u : members){
+            String name= u.getUsernameString();
+            String userPhoto = u.getPhotoString();
+            String relation = u.getRelationString();
+            String id = u.getIdString();
+            MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
+            membersPanel.add(m);
         }
-   
-        
     }
 
     /**
@@ -84,7 +93,8 @@ public class GroupForAdmins extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         MembersLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jButton2 = new javax.swing.JButton();
+        membersPanel = new javax.swing.JPanel();
+        refresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 1000));
@@ -124,6 +134,11 @@ public class GroupForAdmins extends javax.swing.JFrame {
         ManagepostButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ManagepostButton.setForeground(new java.awt.Color(255, 255, 255));
         ManagepostButton.setText("Manage posts");
+        ManagepostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManagepostButtonActionPerformed(evt);
+            }
+        });
 
         PendingMembersLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         PendingMembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,10 +148,23 @@ public class GroupForAdmins extends javax.swing.JFrame {
         MembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MembersLabel1.setText("Members");
 
-        jButton2.setText("Refresh");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout membersPanelLayout = new javax.swing.GroupLayout(membersPanel);
+        membersPanel.setLayout(membersPanelLayout);
+        membersPanelLayout.setHorizontalGroup(
+            membersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 222, Short.MAX_VALUE)
+        );
+        membersPanelLayout.setVerticalGroup(
+            membersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 376, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(membersPanel);
+
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                refreshActionPerformed(evt);
             }
         });
 
@@ -145,18 +173,17 @@ public class GroupForAdmins extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(761, 761, 761)
+                .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -172,7 +199,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(GroupNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(refresh)
                 .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
@@ -187,27 +214,27 @@ public class GroupForAdmins extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
+                            .addComponent(refresh))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CreatepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ManagepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ManagepostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(PendingMembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(GroupPostsPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2)
-                                .addContainerGap())
-                            .addComponent(GroupPostsPane, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
 
         pack();
@@ -227,7 +254,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             postPanel.removeAll();
     }//GEN-LAST:event_CreatepostButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
         ArrayList<PostString>posts = a.getGroupPosts();
         for(PostString p : posts){
@@ -246,8 +273,22 @@ public class GroupForAdmins extends javax.swing.JFrame {
         }
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
             postPanel.revalidate();
-            postPanel.repaint(); 
-    }//GEN-LAST:event_jButton2ActionPerformed
+            postPanel.repaint();
+         ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+        for(UserSearch u : members){
+            String name= u.getUsernameString();
+            String userPhoto = u.getPhotoString();
+            String relation = u.getRelationString();
+            String id = u.getIdString();
+            MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
+            membersPanel.add(m);
+        }
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void ManagepostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagepostButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ManagepostButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,9 +334,10 @@ public class GroupForAdmins extends javax.swing.JFrame {
     private javax.swing.JButton ManagepostButton;
     private javax.swing.JLabel MembersLabel1;
     private javax.swing.JLabel PendingMembersLabel1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel membersPanel;
     private javax.swing.JPanel postPanel;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }

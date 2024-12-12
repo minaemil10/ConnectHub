@@ -581,7 +581,7 @@ temp.addAll(currentUser.getSent());
         ArrayList<PostString> tempPosts = new ArrayList<>();
         for (Post post : posts) {
             if (group.isPost(post.getContentID())) { //check if it is a post inside the group
-                tempPosts.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString()));
+                tempPosts.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString(), post.getContentID()));
             }
         }
         return tempPosts;

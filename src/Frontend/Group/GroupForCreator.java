@@ -5,6 +5,8 @@
 package Frontend;
 import Backend.AppManager;
 import Backend.GroupString;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,6 +23,18 @@ public class GroupForCreator extends javax.swing.JFrame {
         initComponents();
         this.a = a;
         this.gs = gs;
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
+        String photo = gs.getPhoto();
+        String groupName = gs.getName();
+        GroupNameField.setText(groupName);
+        String groupD = gs.getDescription();
+        GroupDescriptionField.setText(groupD);
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
     }
 
     /**
@@ -38,16 +52,20 @@ public class GroupForCreator extends javax.swing.JFrame {
         DeleteGroupButton = new javax.swing.JButton();
         CreatePostButton = new javax.swing.JButton();
         GroupPostsPane = new javax.swing.JScrollPane();
+        postPanel = new javax.swing.JPanel();
         AdminsScrollPane = new javax.swing.JScrollPane();
+        adminsPanel = new javax.swing.JPanel();
         AdminsLabel = new javax.swing.JLabel();
         ManagePostsButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        membersPanel = new javax.swing.JPanel();
         MembersLabel1 = new javax.swing.JLabel();
         EditNameButton = new javax.swing.JButton();
         SaveNameButton = new javax.swing.JButton();
         EditDescriptionButton = new javax.swing.JButton();
         SaveDescriptionButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
+        pendingMPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,6 +94,12 @@ public class GroupForCreator extends javax.swing.JFrame {
             }
         });
 
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.LINE_AXIS));
+        GroupPostsPane.setViewportView(postPanel);
+
+        adminsPanel.setLayout(new javax.swing.BoxLayout(adminsPanel, javax.swing.BoxLayout.LINE_AXIS));
+        AdminsScrollPane.setViewportView(adminsPanel);
+
         AdminsLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AdminsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminsLabel.setText("Admins");
@@ -84,6 +108,9 @@ public class GroupForCreator extends javax.swing.JFrame {
         ManagePostsButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ManagePostsButton.setForeground(new java.awt.Color(255, 255, 255));
         ManagePostsButton.setText("Manage posts");
+
+        membersPanel.setLayout(new javax.swing.BoxLayout(membersPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane1.setViewportView(membersPanel);
 
         MembersLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         MembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,6 +138,9 @@ public class GroupForCreator extends javax.swing.JFrame {
         SaveDescriptionButton.setText("Save");
         SaveDescriptionButton.setFocusable(false);
 
+        pendingMPanel.setLayout(new javax.swing.BoxLayout(pendingMPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane2.setViewportView(pendingMPanel);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pending Members");
@@ -121,7 +151,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(GroupNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
@@ -141,13 +171,12 @@ public class GroupForCreator extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)))
+                        .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DeleteGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +220,7 @@ public class GroupForCreator extends javax.swing.JFrame {
                             .addComponent(SaveDescriptionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -209,7 +238,7 @@ public class GroupForCreator extends javax.swing.JFrame {
                         .addComponent(MembersLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(GroupPostsPane)
                         .addGap(8, 8, 8))
@@ -282,8 +311,12 @@ public class GroupForCreator extends javax.swing.JFrame {
     private javax.swing.JLabel MembersLabel1;
     private javax.swing.JButton SaveDescriptionButton;
     private javax.swing.JButton SaveNameButton;
+    private javax.swing.JPanel adminsPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel membersPanel;
+    private javax.swing.JPanel pendingMPanel;
+    private javax.swing.JPanel postPanel;
     // End of variables declaration//GEN-END:variables
 }

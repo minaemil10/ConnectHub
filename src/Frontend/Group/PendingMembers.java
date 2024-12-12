@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,8 +17,27 @@ public class PendingMembers extends javax.swing.JPanel {
     /**
      * Creates new form PendingMembers
      */
-    public PendingMembers() {
+    private AppManager a;
+    private String name;
+    private String photo;
+    private String userId;
+    private String gpId ;
+    public PendingMembers(AppManager a, String name, String photo ,String userId, String gpId ) {
         initComponents();
+        this.a = a;
+        this.photo = photo;
+        this.name = name;
+        this.userId = userId;
+        this.gpId = gpId;
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            PendingMemberPhoto.setIcon(new ImageIcon(image));
+            PendingMemberPhoto.setText("");
+        PendingMemberPhoto.setText(name);
     }
 
     /**
@@ -26,12 +49,12 @@ public class PendingMembers extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PendingMemberPhotoLabel = new javax.swing.JLabel();
+        PendingMemberPhoto = new javax.swing.JLabel();
         PendingMemberNameField = new javax.swing.JTextField();
         AcceptButton = new javax.swing.JButton();
         DeclineButton2 = new javax.swing.JButton();
 
-        PendingMemberPhotoLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PendingMemberPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         PendingMemberNameField.setEditable(false);
 
@@ -50,27 +73,26 @@ public class PendingMembers extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(PendingMemberPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addComponent(PendingMemberPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(AcceptButton)
                         .addGap(18, 18, 18)
                         .addComponent(DeclineButton2))
-                    .addComponent(PendingMemberNameField))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(PendingMemberNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PendingMemberPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PendingMemberPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
                         .addComponent(PendingMemberNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AcceptButton)
                             .addComponent(DeclineButton2))))
@@ -83,6 +105,6 @@ public class PendingMembers extends javax.swing.JPanel {
     private javax.swing.JButton AcceptButton;
     private javax.swing.JButton DeclineButton2;
     private javax.swing.JTextField PendingMemberNameField;
-    private javax.swing.JLabel PendingMemberPhotoLabel;
+    private javax.swing.JLabel PendingMemberPhoto;
     // End of variables declaration//GEN-END:variables
 }

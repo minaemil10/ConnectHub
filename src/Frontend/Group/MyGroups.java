@@ -7,6 +7,7 @@ import Backend.AppManager;
 import Backend.GroupString;
 import Frontend.GroupForAdmins;
 import Frontend.GroupForCreator;
+import Frontend.GroupForMember;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 /**
@@ -124,12 +125,13 @@ public class MyGroups extends javax.swing.JPanel {
         GroupString gs =a.getCroupInfo(groupId);
         switch(gs.getDescription()){
             case "admin":
-                new GroupForAdmins(a, gs).setVisible(true);
-                
+                new GroupForAdmins(a, gs).setVisible(true); 
             case "owner":
                 new GroupForCreator(a, gs).setVisible(true);
             case "user":
+                new GroupForMember(a, gs).setVisible(true);
             
+                
                 
         }
     }//GEN-LAST:event_ViewGroupButtonActionPerformed
