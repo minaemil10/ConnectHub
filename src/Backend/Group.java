@@ -26,7 +26,7 @@ public class Group implements DataBaseOBJ {
     private Map<String,String> notifactionsId;
     private ArrayList<String> posts;
     private ArrayList<String> pendingPosts;
-    private static int groupsCount = 0;
+    public static int groupsCount = 0;
 
     public Group(String groupName, String CREATOR_ID) {
         this.groupName = groupName;
@@ -54,6 +54,20 @@ public class Group implements DataBaseOBJ {
         this.pendingRequests = new ArrayList<>();
         this.posts = new ArrayList<>();
     }
+        public Group(String groupName,String groupID, String description, String groupPhoto, String CREATOR_ID) {
+        this.groupName = groupName;
+        this.description = description;
+        this.groupPhoto = groupPhoto;
+        this.CREATOR_ID = CREATOR_ID;
+  
+        this.groupID = groupID;
+        this.users = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.pendingPosts = new ArrayList<>();
+        this.pendingRequests = new ArrayList<>();
+        this.posts = new ArrayList<>();
+    }
+
 
     /*checking if id Exist in the group*/
     public boolean isUser(String id) {

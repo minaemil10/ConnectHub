@@ -1,3 +1,24 @@
 [
-  
+  {
+    "groupName": "test",
+    "groupID": "G1",
+    "CREATOR_ID": "U1",
+    "admins": [],
+    "users": [],
+    "pendingRequests": [],
+    "notifactionsId": {},
+    "posts": [],
+    "pendingPosts": []
+  },
+  {
+    "groupName": "test2",
+    "groupID": "G2",
+    "CREATOR_ID": "U1",
+    "admins": [],
+    "users": [],
+    "pendingRequests": [],
+    "notifactionsId": {},
+    "posts": [],
+    "pendingPosts": []
+  }
 ]
