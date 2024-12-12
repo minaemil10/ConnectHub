@@ -6,27 +6,14 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Friend_Management.PostString;
-import Backend.Friend_Management.RelationString;
+import Backend.GroupString;
 import Backend.Online;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Frame;
+import Frontend.Group.MyGroups;
+import Frontend.Group.MyGroupsCreator;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -104,6 +91,28 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             storyPanel.revalidate();
             storyPanel.repaint(); 
         }
+        ArrayList<GroupString> groupString = a.getMyGroups();
+        for(GroupString g : groupString){
+            if(g.getRule().equalsIgnoreCase("owner")){
+                System.out.println("carl");
+                String groupPhoto = g.getPhoto();
+                String groupName = g.getName();
+                String groupID = g.getId();
+                MyGroupsCreator myGroup = new MyGroupsCreator(a,groupID,groupPhoto,groupName);
+                GroupPanel1.add(myGroup);
+            }
+            else{
+                System.out.println("mina");
+                String groupPhoto = g.getPhoto();
+                String groupName = g.getName();
+                String groupID = g.getId();
+                MyGroups myGroup = new MyGroups(a,groupID,groupPhoto,groupName);
+                GroupPanel1.add(myGroup);
+            }
+        }
+        GroupPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        GroupPanel1.revalidate();
+        GroupPanel1.repaint();
     }
 
     /**
@@ -130,6 +139,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         SearchUserBtn = new javax.swing.JButton();
         MyGroupsLabel = new javax.swing.JLabel();
         MyGroupsPane = new javax.swing.JScrollPane();
+        GroupPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         GroupSuggestPane = new javax.swing.JScrollPane();
         NotificitionButton = new javax.swing.JButton();
@@ -243,6 +253,11 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         MyGroupsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MyGroupsLabel.setText("My Groups");
 
+        MyGroupsPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        GroupPanel1.setLayout(new javax.swing.BoxLayout(GroupPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        MyGroupsPane.setViewportView(GroupPanel1);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Group Suggestions");
 
@@ -269,17 +284,17 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GroupSuggestPane)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(43, 43, 43)
                                         .addComponent(MyGroupsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(MyGroupsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(41, 41, 41)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 1, Short.MAX_VALUE))
-                            .addComponent(GroupSuggestPane))
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(MyGroupsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 1, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -413,6 +428,31 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             storyPanel.repaint(); 
         }
         status.repaint();
+        ArrayList<GroupString> groupString = a.getMyGroups();
+        for(GroupString g : groupString){
+            if(g.getRule().equalsIgnoreCase("owner")){
+                                System.out.println("carl");
+
+                String groupPhoto = g.getPhoto();
+                String groupName = g.getName();
+                String groupID = g.getId();
+                MyGroupsCreator myGroup = new MyGroupsCreator(a,groupID,groupPhoto,groupName);
+                GroupPanel1.add(myGroup);
+            }
+            else{
+                                System.out.println("mina");
+
+                String groupPhoto = g.getPhoto();
+                String groupName = g.getName();
+                String groupID = g.getId();
+                MyGroups myGroup = new MyGroups(a,groupID,groupPhoto,groupName);
+                GroupPanel1.add(myGroup);
+            }
+        }
+        GroupPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        GroupPanel1.revalidate();
+        GroupPanel1.repaint();
+    
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
     private void profileMangmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileMangmentButtonActionPerformed
@@ -491,6 +531,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel GroupPanel1;
     private javax.swing.JScrollPane GroupSuggestPane;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JLabel MyGroupsLabel;
