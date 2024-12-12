@@ -59,9 +59,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             }
             
         }
-            postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
-            postPanel.revalidate();
-            postPanel.repaint(); 
+            
         ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
@@ -275,11 +273,14 @@ public class GroupForAdmins extends javax.swing.JFrame {
                 a.createGroupPost(gs.getId(), result.imagePath, result.userText);
                
             }
-            postPanel.removeAll();
+            
     }//GEN-LAST:event_CreatepostButtonActionPerformed
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
+        postPanel.removeAll();
+        pendingPanel.removeAll();
+        membersPanel.removeAll();
         ArrayList<PostString>posts = a.getGroupPosts();
         for(PostString p : posts){
             String text = p.getText();
@@ -307,11 +308,26 @@ public class GroupForAdmins extends javax.swing.JFrame {
             MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
             membersPanel.add(m);
         }
+        membersPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            membersPanel.revalidate();
+            membersPanel.repaint();
+               ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
+        for(UserSearch u : members){
+            String name= u.getUsernameString();
+            String userPhoto = u.getPhotoString();
+            String relation = u.getRelationString();
+            String id = u.getIdString();
+            PendingMembers pm = new PendingMembers(a, name, userPhoto, id, gs.getId());
+            pendingPanel.add(pm);
+    }
+        pendingPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+            pendingPanel.revalidate();
+            pendingPanel.repaint();
     }//GEN-LAST:event_refreshActionPerformed
 
     private void ManagepostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagepostButtonActionPerformed
         // TODO add your handling code here:
-        ManagePosts m = new ManagePosts();
+        ManagePosts m = new ManagePosts(a, gs.getId());
         m.setVisible(true);
     }//GEN-LAST:event_ManagepostButtonActionPerformed
 
