@@ -75,6 +75,7 @@ public class AppManager {
                 Notification notification = new Notification("send friend request", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
                 temp.setNotificationId(notification.getId());
                 Data.get(i).addNotification(notification);
+                
                 return true;
             }
         }
@@ -87,6 +88,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 request.get(i).accept();
                 currentUser.acceptFriendRequest(senderID);
+                removeNotification(request.get(i).getNotificationId());
                 return true;
             }
 
@@ -100,7 +102,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.cancelFriendRequest(senderID);
                 request.get(i).decline();
-
+                removeNotification(request.get(i).getNotificationId());
                 return true;
             }
 
