@@ -350,5 +350,22 @@ public class User implements DataBaseOBJ {
     }
 
 }
+public boolean isMember(String key){
+    for (int i = 0; i < myGroups.size(); i++) {
+        if(myGroups.get(i).equalsIgnoreCase(key)){
+            return true;
+        }
+
+    }
+        return false;
+}
+    public boolean isPendingGroup(String key){
+        for (int i = 0; i < groupRequests.size(); i++) {
+            if(groupRequests.get(i).equalsIgnoreCase(key)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
