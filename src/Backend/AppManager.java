@@ -23,7 +23,7 @@ public class AppManager {
     private ProfileManger profileManger;
     private ArrayList<Notification> notifications = new ArrayList<>();
 
-    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request) {
+    public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request ,ArrayList<Group> groups) {
         currentUser = null;
         this.Data = Data;
         this.posts = posts;
