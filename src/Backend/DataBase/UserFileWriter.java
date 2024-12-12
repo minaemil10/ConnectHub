@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UserFileWriter extends JsonFileWriter<User> {
@@ -17,7 +18,7 @@ public class UserFileWriter extends JsonFileWriter<User> {
 
     @Override
     public void writeAll(ArrayList<User> users) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         //check for relations set to "cancel" and remove them
         for (User user : users) {
             ArrayList<Relationship> relations = user.getFriends();
