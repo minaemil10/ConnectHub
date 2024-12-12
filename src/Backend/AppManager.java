@@ -23,7 +23,7 @@ public class AppManager {
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
-    private ArrayList<NotificationString> notifications = new ArrayList<>();
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request ,ArrayList<Group> groups) {
         currentUser = null;
@@ -817,7 +817,6 @@ temp.addAll(currentUser.getSent());
             ArrayList<String> admins = group.getAllAdmins();
             Content post = getPostWithID(postId);
             Notification  notification = new Notification("User added post to group" , currentUser.getUserName(),post );
-            group.setRequestNotifcation(postId, notification.getId());
             for(User u : Data){
                 if(!currentUser.getUserId().equals(u.getUserId()))
                 if(group.checkUser(u.getUserId()) != null && !group.checkUser(u.getUserId()).equals("user")){
@@ -826,7 +825,7 @@ temp.addAll(currentUser.getSent());
                 }
                 
             }
-
+            group.setRequestNotifcation(postId, notification.getId());
         }
     }
 
@@ -836,7 +835,6 @@ temp.addAll(currentUser.getSent());
             group.addMember(groupId);
             currentUser.addGroupRequest(groupId);
             Notification  notification = new Notification("Join Group", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
-            removeNotification(group.getRequestNotifcation(currentUser.getUserId()));
             for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null && !group.checkUser(u.getUserId()).equals("user")){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -958,16 +956,12 @@ temp.addAll(currentUser.getSent());
 
         return found;
     }
-    public ArrayList<Notification> getNotifications() {
-        return currentUser.getNotifications();
-    }
-
     public ProfileDetailsBack getProfile(String key){
         for(int i=0;i<Data.size();i++){
-            if(key.equalsIgnoreCase(Data.get(i).getUserId())){
-             return new ProfileDetailsBack(Data.get(i).getUserId(),Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getBio())  ;
+            if(key.equalsIgnoreCase(Data.get(i).getUserId())){       
+             return new ProfileDetailsBack(Data.get(i).getUserId(),Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getBio())  ; 
             }
         }
-      return null;
+      return null;  
     }
 }
