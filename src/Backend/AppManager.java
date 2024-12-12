@@ -569,6 +569,17 @@ temp.addAll(currentUser.getSent());
         }
         return temp;
     }
+     
+     public ArrayList<PostString> getAllPendingPostsOfGroup(String groupId){
+        Group group = getGroup(groupId);
+         ArrayList<PostString> temp = new ArrayList<>();
+        for(Post post : posts){
+            if(group.isPendingPost(post.getContentID())){
+                temp.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString(), post.getContentID()));
+            }
+        }
+        return temp;
+    }
     
 
     public boolean createGroupPost(String groupId, String photo, String text) {
