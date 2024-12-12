@@ -95,7 +95,8 @@ public class AppManager {
         }
         return false;
     }
-
+    
+    //function used to CancelFriend requests
     public boolean cancelFriendRequest(String senderID) {
         clearCancel();
         for (int i = 0; i < request.size(); i++) {
