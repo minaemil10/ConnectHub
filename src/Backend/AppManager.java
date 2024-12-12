@@ -575,7 +575,7 @@ temp.addAll(currentUser.getSent());
          ArrayList<PostString> temp = new ArrayList<>();
         for(Post post : posts){
             if(group.isPendingPost(post.getContentID())){
-                temp.add(new PostString(post.getAuthorID(), post.getText(), post.getPhoto(), post.getTimePosted().toString(), post.getContentID()));
+                temp.add(new PostString(getUser(post.getAuthorID()), post.getText(), post.getPhoto(), post.getTimePosted().toString(), post.getContentID()));
             }
         }
         return temp;
