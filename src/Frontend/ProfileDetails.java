@@ -518,6 +518,8 @@ public class ProfileDetails extends javax.swing.JFrame {
 
     private void CreateGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateGroupButtonActionPerformed
         // TODO add your handling code here:
+        CreateGroup createGroup = new CreateGroup(a);
+        createGroup.setVisible(true);
     }//GEN-LAST:event_CreateGroupButtonActionPerformed
     
     /**
