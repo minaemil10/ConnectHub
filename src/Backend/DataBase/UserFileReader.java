@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UserFileReader extends JsonFileReader {
@@ -22,7 +23,7 @@ public class UserFileReader extends JsonFileReader {
 
     @Override
     public ArrayList<User> readAll() {
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         ArrayList<User> users = new ArrayList<>(); //create users array
         try (FileReader fileReader = new FileReader(getFilePath())) {
             Type userListType = new TypeToken<ArrayList<User>>() { //create typetoken to be used in reading
