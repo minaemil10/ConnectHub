@@ -38,6 +38,7 @@ public class PendingMembers extends javax.swing.JPanel {
             PendingMemberPhoto.setIcon(new ImageIcon(image));
             PendingMemberPhoto.setText("");
         PendingMemberPhoto.setText(name);
+        PendingMemberName.setText(name);
     }
 
     /**
@@ -50,23 +51,33 @@ public class PendingMembers extends javax.swing.JPanel {
     private void initComponents() {
 
         PendingMemberPhoto = new javax.swing.JLabel();
-        PendingMemberNameField = new javax.swing.JTextField();
+        PendingMemberName = new javax.swing.JTextField();
         AcceptButton = new javax.swing.JButton();
         DeclineButton2 = new javax.swing.JButton();
 
         PendingMemberPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        PendingMemberNameField.setEditable(false);
+        PendingMemberName.setEditable(false);
 
         AcceptButton.setBackground(new java.awt.Color(51, 153, 255));
         AcceptButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AcceptButton.setForeground(new java.awt.Color(255, 255, 255));
         AcceptButton.setText("Accept");
+        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptButtonActionPerformed(evt);
+            }
+        });
 
         DeclineButton2.setBackground(new java.awt.Color(51, 153, 255));
         DeclineButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DeclineButton2.setForeground(new java.awt.Color(255, 255, 255));
         DeclineButton2.setText("Decline");
+        DeclineButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeclineButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,7 +92,7 @@ public class PendingMembers extends javax.swing.JPanel {
                         .addComponent(AcceptButton)
                         .addGap(18, 18, 18)
                         .addComponent(DeclineButton2))
-                    .addComponent(PendingMemberNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PendingMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,7 +102,7 @@ public class PendingMembers extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PendingMemberPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PendingMemberNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PendingMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AcceptButton)
@@ -100,11 +111,21 @@ public class PendingMembers extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
+        // TODO add your handling code here:
+        a.approveRequest(userId, gpId);
+    }//GEN-LAST:event_AcceptButtonActionPerformed
+
+    private void DeclineButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineButton2ActionPerformed
+        // TODO add your handling code here:
+        a.declineRequest(userId, gpId);
+    }//GEN-LAST:event_DeclineButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton;
     private javax.swing.JButton DeclineButton2;
-    private javax.swing.JTextField PendingMemberNameField;
+    private javax.swing.JTextField PendingMemberName;
     private javax.swing.JLabel PendingMemberPhoto;
     // End of variables declaration//GEN-END:variables
 }
