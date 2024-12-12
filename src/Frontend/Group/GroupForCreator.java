@@ -40,7 +40,9 @@ public class GroupForCreator extends javax.swing.JFrame {
                 90, 
                 Image.SCALE_SMOOTH
             );
-            ArrayList<PostString> posts = a.getGroupPosts();
+        GroupPhoto.setIcon(new ImageIcon(image));
+        GroupPhoto.setText("");
+        ArrayList<PostString> posts = a.getGroupPosts();
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -94,7 +96,7 @@ public class GroupForCreator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GroupPhotoLabel = new javax.swing.JLabel();
+        GroupPhoto = new javax.swing.JLabel();
         GroupName = new javax.swing.JTextField();
         GroupDescriptionField = new javax.swing.JTextField();
         DeleteGroupButton = new javax.swing.JButton();
@@ -119,7 +121,7 @@ public class GroupForCreator extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        GroupPhotoLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         GroupName.setEditable(false);
         GroupName.setFocusable(false);
@@ -238,7 +240,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(GroupName, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
@@ -315,7 +317,7 @@ public class GroupForCreator extends javax.swing.JFrame {
                                 .addGap(19, 19, 19))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -518,7 +520,7 @@ public class GroupForCreator extends javax.swing.JFrame {
     private javax.swing.JButton EditNameButton;
     private javax.swing.JTextField GroupDescriptionField;
     private javax.swing.JTextField GroupName;
-    private javax.swing.JLabel GroupPhotoLabel;
+    private javax.swing.JLabel GroupPhoto;
     private javax.swing.JScrollPane GroupPostsPane;
     private javax.swing.JButton ManagePostsButton;
     private javax.swing.JLabel MembersLabel1;
