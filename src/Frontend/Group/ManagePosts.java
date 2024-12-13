@@ -53,7 +53,7 @@ public class ManagePosts extends javax.swing.JFrame {
         ManagePostsPane = new javax.swing.JScrollPane();
         managePost = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout managePostLayout = new javax.swing.GroupLayout(managePost);
         managePost.setLayout(managePostLayout);

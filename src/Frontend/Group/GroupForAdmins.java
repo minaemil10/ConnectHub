@@ -60,7 +60,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             
         }
             
-        ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+        ArrayList<UserSearch> members = a.getAllUsersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
@@ -70,7 +70,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             membersPanel.add(m);
         }
         ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : pendingMembers){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();

@@ -8,6 +8,8 @@ import Backend.Friend_Management.Relationship;
 import Backend.Friend_Management.UserSearch;
 import Backend.Friend_Management.friendRequest;
 import Frontend.ProfileDetails;
+
+import Backend.Group;
 import java.time.Duration;
 
 import java.time.LocalDate;
@@ -76,7 +78,7 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
-                Notification notification = new Notification("send friend request", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
+                Notification notification = new Notification("Friend request", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
                 temp.setNotificationId(notification.getId());
                 Data.get(i).addNotification(notification);
                 
@@ -479,7 +481,7 @@ temp.addAll(currentUser.getSent());
             }
         }
         group.setGroupPhoto(photoPath);
-        Notification notification = new Notification("Change group photo", photoPath);
+        Notification notification = new Notification("Group Photo Changed", photoPath);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -491,7 +493,7 @@ temp.addAll(currentUser.getSent());
     public void changeGroupName(String name, String groupID) {
         Group group = getGroup(groupID);
         group.setGroupName(name);
-        Notification notification = new Notification("Change group name", name);
+        Notification notification = new Notification("Group Name Changed", name);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -503,7 +505,7 @@ temp.addAll(currentUser.getSent());
     public void changeGroupDescription(String description, String groupID) {
         Group group = getGroup(groupID);
         group.setDescription(description);
-        Notification notification = new Notification("Change group name", description);
+        Notification notification = new Notification("Group Description Changed", description);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -547,7 +549,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.checkUser(u.getUserId()).equals("admin") ){
+            if((group.checkUser(u.getUserId())!= null) && group.checkUser(u.getUserId()).equals("admin") ){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -558,7 +560,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.checkUser(u.getUserId()).equals("user") ){
+            if((group.checkUser(u.getUserId())!= null) &&group.checkUser(u.getUserId()).equals("user")){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -580,7 +582,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.isPendingRequest(u.getUserId())){
+            if((group.checkUser(u.getUserId())!= null) &&group.isPendingRequest(u.getUserId())){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -607,13 +609,28 @@ temp.addAll(currentUser.getSent());
             Post post = new Post(photo, currentUser.getUserId(), text);
             userAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            for(User u : Data){
+            if(group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))){
+                Notification n = new Notification("New post need to be Approved", currentUser.getUserName(), post,groupId);
+                u.addNotification(n);
+                group.setRequestNotifcation(post.getContentID(), n.getId());
+            }
+            }
             return true;
         } else {
             Post post = new Post(photo, currentUser.getUserId(), text);
             adminAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            for(User u : Data){
+              if(group.checkUser(currentUser.getUserId()) != null){
+                Notification n = new Notification("New post added to group", currentUser.getUserName(), post);
+                u.addNotification(n);
+                }  
+            }
+            
             return true;
         }
+        
     }
 
     public ArrayList<PostString> getAllGroupPost(String groupId) {
@@ -725,6 +742,7 @@ temp.addAll(currentUser.getSent());
                 Content post = getPostWithID(postId);
                 group.declinePost(postId); //remove post from requests
                 Notification  notification = new Notification("decline post request" , currentUser.getUserName(),post );
+                currentUser.addNotification(notification);
             }
             removeNotification(group.getRequestNotifcation(postId));
         }
@@ -737,7 +755,7 @@ temp.addAll(currentUser.getSent());
             if (group.isUser(userId)) { //admins can only remove normal users
                 user.removeGroup(groupId); //remove request from grouprequests
                 group.removeMember(userId); //remove user from requests
-                Notification  notification = new Notification("Delete post", currentUser.getUserName()+" Removed "+ user.getUserName() +"From Group");
+                Notification  notification = new Notification("Remove member", currentUser.getUserName()+" Removed "+ user.getUserName() +"From Group");
              for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -902,14 +920,12 @@ temp.addAll(currentUser.getSent());
        temp.addAll(currentUser.getAllGroupsLeftByMe());
        temp.addAll(currentUser.getAllMyGroups());
         ArrayList<RelationString> groups=new ArrayList();
-        for(int i=0;i<temp.size();i++){
-            for(int j=0;j<this.groups.size();j++){
-                if(!temp.get(i).equalsIgnoreCase(this.groups.get(j).getGroupID())){
-                    groups.add(new RelationString(this.groups.get(j).getGroupName(),this.groups.get(j).getGroupPhoto(),this.groups.get(j).getGroupID()));
-                }
-
-            }
-       }
+        for (Group group : this.groups) { 
+        if (!temp.contains(group.getGroupID())) {
+            groups.add(new RelationString(group.getGroupName(), group.getGroupPhoto(), group.getGroupID()));
+        }
+    }
+       
         return groups;
     }
 

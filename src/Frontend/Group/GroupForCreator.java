@@ -42,7 +42,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             );
         GroupPhoto.setIcon(new ImageIcon(image));
         GroupPhoto.setText("");
-        ArrayList<PostString> posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -58,17 +58,17 @@ public class GroupForCreator extends javax.swing.JFrame {
             }
             
         }
-          ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+          ArrayList<UserSearch> members = a.getAllUsersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
             String id = u.getIdString();
-            MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
+            MembersForCreator m = new MembersForCreator(a, name, userPhoto, id, gs.getId());
             membersPanel.add(m);
         }
         ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : pendingMembers){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -77,7 +77,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             pendingMPanel.add(pm);
     }  
         ArrayList<UserSearch> admins = a.getAllAdminsOfGroup(gs.getId());
-            for(UserSearch u : members){
+            for(UserSearch u : admins){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -119,15 +119,25 @@ public class GroupForCreator extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         refresh = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         GroupName.setEditable(false);
         GroupName.setFocusable(false);
+        GroupName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroupNameActionPerformed(evt);
+            }
+        });
 
         GroupDescriptionField.setEditable(false);
         GroupDescriptionField.setFocusable(false);
+        GroupDescriptionField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroupDescriptionFieldActionPerformed(evt);
+            }
+        });
 
         DeleteGroupButton.setBackground(new java.awt.Color(51, 153, 255));
         DeleteGroupButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -386,7 +396,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         pendingMPanel.removeAll();
         membersPanel.removeAll();
         adminsPanel.removeAll();
-        ArrayList<PostString>posts = a.getGroupPosts();
+        ArrayList<PostString>posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -404,7 +414,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
             postPanel.revalidate();
             postPanel.repaint();
-         ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+         ArrayList<UserSearch> members = a.getAllUsersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
@@ -417,7 +427,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             membersPanel.revalidate();
             membersPanel.repaint();
                ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : pendingMembers){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -429,7 +439,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             pendingMPanel.revalidate();
             pendingMPanel.repaint();
         ArrayList<UserSearch> admins = a.getAllAdminsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : admins){
         String name= u.getUsernameString();
         String userPhoto = u.getPhotoString();
         String relation = u.getRelationString();
@@ -446,6 +456,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         // TODO add your handling code here:
         SaveName.setEnabled(true);
         GroupName.setFocusable(true);
+        GroupName.setEditable(true);
     }//GEN-LAST:event_EditNameButtonActionPerformed
 
     private void SaveNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveNameActionPerformed
@@ -460,6 +471,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         // TODO add your handling code here:
         SaveDescriptionButton.setEnabled(true);
         GroupDescriptionField.setFocusable(true);
+        GroupDescriptionField.setEditable(true);
     }//GEN-LAST:event_EditDescriptionButtonActionPerformed
 
     private void SaveDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveDescriptionButtonActionPerformed
@@ -475,6 +487,14 @@ public class GroupForCreator extends javax.swing.JFrame {
         ManagePosts m = new ManagePosts(a, gs.getId());
         m.setVisible(true);
     }//GEN-LAST:event_ManagePostsButtonActionPerformed
+
+    private void GroupNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GroupNameActionPerformed
+
+    private void GroupDescriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupDescriptionFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GroupDescriptionFieldActionPerformed
 
     /**
      * @param args the command line arguments

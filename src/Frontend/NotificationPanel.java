@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Notification;
+import Frontend.Group.MemberNotification;
 import java.util.ArrayList;
 
 /**
@@ -30,17 +31,55 @@ public class NotificationPanel extends javax.swing.JPanel {
     AppManager a;
     public NotificationPanel(AppManager a) {
         initComponents();
-//        ArrayList<Notification> notifications =  a.getNotifications();
-//        for(Notification n : notifications){
-//            String type = n.getType();
-//            switch(type){
-//                case "Join Group":
-//                case "Leave Group":
-//                    NotificationText nt = new NotificationText(n.getStatus());
-//                    notificationPanel.add(nt);
-//                    break;
-//            }
-//        }
+
+        ArrayList<Notification> notifications =  a.getNotifications();
+        for(Notification n : notifications){
+            String type = n.getType();
+            switch(type){
+                case "Group Name Changed":
+                case "Group Description Changed":
+                case "Group Photo Changed":
+                case "decline user request":
+                case "Remove member":
+                case "Delete post":
+                case "Join Group":
+                case "Leave Group":
+                case "Edit post":
+                    NotificationText nt = new NotificationText(n.getStatus());
+                    notificationPanel.add(nt);
+                    break;
+                case "New post added to group":
+                case "approve post request":
+                case "decline post request":
+                case "Admin added post to Group":
+                    if(n.getPost().getPhoto().equals("No file selected")){
+                        PostText pt = new PostText(n.getPost().getText(), n.getUser(), type);
+                        notificationPanel.add(pt);
+                    }
+                    else{
+                            PostImage pi = new PostImage(n.getPost().getText(), n.getPost().getPhoto(), n.getUser(), type);
+                            notificationPanel.add(pi);
+                            }
+                    break;
+                 case "New post need to be Approved":
+                      if(n.getPost().getPhoto().equals("No file selected")){
+                        GroupPostText gp = new GroupPostText(a, n.getUser(), type, n.getPost().getText(), n.getPost().getContentID(), n.getGpId());
+                        notificationPanel.add(gp);
+                    }
+                    else{
+                            GroupPostImage gp = new GroupPostImage(a, n.getUser(), n.getPost().getPhoto(), type, n.getPost().getText(), n.getPost().getContentID(), n.getGpId());
+                            notificationPanel.add(gp);
+                            }
+                    break;
+                case "approve request":
+                    MemberNotification m = new MemberNotification(n.getUser(),n.getName() ,type );
+                    notificationPanel.add(m);
+                    break;
+                
+                
+                    
+            }
+        }
     }
 
     /**
@@ -54,6 +93,7 @@ public class NotificationPanel extends javax.swing.JPanel {
 
         NotificationScrollPane = new javax.swing.JScrollPane();
         notificationPanel = new javax.swing.JPanel();
+        refresh = new javax.swing.JButton();
 
         NotificationScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -70,27 +110,94 @@ public class NotificationPanel extends javax.swing.JPanel {
 
         NotificationScrollPane.setViewportView(notificationPanel);
 
+        refresh.setText("Refresh");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(38, 38, 38)
                 .addComponent(NotificationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refresh)
+                .addGap(322, 322, 322))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(NotificationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(refresh)
+                .addGap(18, 18, 18)
+                .addComponent(NotificationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        notificationPanel.removeAll();
+        ArrayList<Notification> notifications =  a.getNotifications();
+        for(Notification n : notifications){
+            String type = n.getType();
+            switch(type){
+                case "Group Name Changed":
+                case "Group Description Changed":
+                case "Group Photo Changed":
+                case "decline user request":
+                case "Remove member":
+                case "Delete post":
+                case "Join Group":
+                case "Leave Group":
+                case "Edit post":
+                    NotificationText nt = new NotificationText(n.getStatus());
+                    notificationPanel.add(nt);
+                    break;
+                case "New post added to group":
+                case "approve post request":
+                case "decline post request":
+                case "Admin added post to Group":
+                    if(n.getPost().getPhoto().equals("No file selected")){
+                        PostText pt = new PostText(n.getPost().getText(), n.getUser(), type);
+                        notificationPanel.add(pt);
+                    }
+                    else{
+                            PostImage pi = new PostImage(n.getPost().getText(), n.getPost().getPhoto(), n.getUser(), type);
+                            notificationPanel.add(pi);
+                            }
+                    break;
+                 case "New post need to be Approved":
+                      if(n.getPost().getPhoto().equals("No file selected")){
+                        GroupPostText gp = new GroupPostText(a, n.getUser(), type, n.getPost().getText(), n.getPost().getContentID(), n.getGpId());
+                        notificationPanel.add(gp);
+                    }
+                    else{
+                            GroupPostImage gp = new GroupPostImage(a, n.getUser(), n.getPost().getPhoto(), type, n.getPost().getText(), n.getPost().getContentID(), n.getGpId());
+                            notificationPanel.add(gp);
+                            }
+                    break;
+                case "approve request":
+                    MemberNotification m = new MemberNotification(n.getUser(),n.getName() ,type );
+                    notificationPanel.add(m);
+                    break;
+                case "Friend request":
+                    FriendRequest f = new FriendRequest(a, n.getUserId(), n.getName(), n.getProfilePhoto());
+                    notificationPanel.add(f);
+            }
+        }
+    }//GEN-LAST:event_refreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane NotificationScrollPane;
     private javax.swing.JPanel notificationPanel;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }

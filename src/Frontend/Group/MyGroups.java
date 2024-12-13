@@ -6,10 +6,11 @@ package Frontend.Group;
 import Backend.AppManager;
 import Backend.GroupString;
 import Frontend.GroupForAdmins;
-import Frontend.GroupForCreator;
 import Frontend.GroupForMember;
+import Frontend.GroupForCreator;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  *
  * @author carls
@@ -138,6 +139,16 @@ public class MyGroups extends javax.swing.JPanel {
 
     private void LeaveGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveGroupButtonActionPerformed
         // TODO add your handling code here:
+         int response = JOptionPane.showConfirmDialog(
+            null,                       
+            "Do you want to leave group",                    
+            "Leave Group",                      
+            JOptionPane.YES_NO_OPTION,  
+            JOptionPane.QUESTION_MESSAGE  
+        );
+        if (response == JOptionPane.YES_OPTION) {
+            a.leaveGroup(groupId);
+        }
         
     }//GEN-LAST:event_LeaveGroupButtonActionPerformed
 
