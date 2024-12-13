@@ -591,13 +591,28 @@ temp.addAll(currentUser.getSent());
             Post post = new Post(photo, currentUser.getUserId(), text);
             userAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            for(User u : Data){
+            if(group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))){
+                Notification n = new Notification("New post need to be Approved", currentUser.getUserName(), post,groupId);
+                u.addNotification(n);
+                group.setRequestNotifcation(post.getContentID(), n.getId());
+            }
+            }
             return true;
         } else {
             Post post = new Post(photo, currentUser.getUserId(), text);
             adminAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            for(User u : Data){
+              if(group.checkUser(currentUser.getUserId()) != null){
+                Notification n = new Notification("New post added to group", currentUser.getUserName(), post);
+                u.addNotification(n);
+                }  
+            }
+            
             return true;
         }
+        
     }
 
     public ArrayList<PostString> getAllGroupPost(String groupId) {
@@ -709,6 +724,7 @@ temp.addAll(currentUser.getSent());
                 Content post = getPostWithID(postId);
                 group.declinePost(postId); //remove post from requests
                 Notification  notification = new Notification("decline post request" , currentUser.getUserName(),post );
+                currentUser.addNotification(notification);
             }
             removeNotification(group.getRequestNotifcation(postId));
         }
@@ -721,7 +737,7 @@ temp.addAll(currentUser.getSent());
             if (group.isUser(userId)) { //admins can only remove normal users
                 user.removeGroup(groupId); //remove request from grouprequests
                 group.removeMember(userId); //remove user from requests
-                Notification  notification = new Notification("Delete post", currentUser.getUserName()+" Removed "+ user.getUserName() +"From Group");
+                Notification  notification = new Notification("Remove member", currentUser.getUserName()+" Removed "+ user.getUserName() +"From Group");
              for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null){
                     if(!currentUser.getUserId().equals(u.getUserId()))
