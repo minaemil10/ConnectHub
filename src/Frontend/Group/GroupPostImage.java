@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,8 +17,28 @@ public class GroupPostImage extends javax.swing.JPanel {
     /**
      * Creates new form GroupPostImage
      */
-    public GroupPostImage() {
+    AppManager a;
+    String name;
+    String photo;
+    String date;
+    String text;
+    String postId;
+    String gpId;
+    public GroupPostImage(AppManager a, String name, String photo, String date, String text, String postId, String gpId) {
         initComponents();
+        this.a = a;
+        this.name = name;
+        this.date = date;
+        this.photo = photo;
+        textArea.setText(text);
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                276, 
+                274, 
+                Image.SCALE_SMOOTH
+            );
+            postPhoto.setIcon(new ImageIcon(image));
+            postPhoto.setText("");
     }
 
     /**
@@ -28,8 +52,8 @@ public class GroupPostImage extends javax.swing.JPanel {
 
         UserNameField = new javax.swing.JTextField();
         DateField = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        PostImageLabel1 = new javax.swing.JLabel();
+        textArea = new javax.swing.JTextField();
+        postPhoto = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         AcceptButton1 = new javax.swing.JButton();
         DeclineButton2 = new javax.swing.JButton();
@@ -38,13 +62,20 @@ public class GroupPostImage extends javax.swing.JPanel {
 
         DateField.setEditable(false);
 
-        jTextField3.setEditable(false);
+        textArea.setEditable(false);
+
+        postPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
         AcceptButton1.setBackground(new java.awt.Color(51, 153, 255));
         AcceptButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AcceptButton1.setText("Accept");
+        AcceptButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptButton1ActionPerformed(evt);
+            }
+        });
 
         DeclineButton2.setBackground(new java.awt.Color(51, 153, 255));
         DeclineButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -58,12 +89,12 @@ public class GroupPostImage extends javax.swing.JPanel {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addComponent(PostImageLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textArea, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(UserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                        .addComponent(DateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(postPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                 .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
@@ -80,9 +111,9 @@ public class GroupPostImage extends javax.swing.JPanel {
                     .addComponent(UserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PostImageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
@@ -93,14 +124,19 @@ public class GroupPostImage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AcceptButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButton1ActionPerformed
+        // TODO add your handling code here:
+        a.approvePostRequest(postId, gpId);
+    }//GEN-LAST:event_AcceptButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton1;
     private javax.swing.JTextField DateField;
     private javax.swing.JButton DeclineButton2;
-    private javax.swing.JLabel PostImageLabel1;
     private javax.swing.JTextField UserNameField;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel postPhoto;
+    private javax.swing.JTextField textArea;
     // End of variables declaration//GEN-END:variables
 }

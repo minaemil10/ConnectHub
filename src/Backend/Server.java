@@ -97,7 +97,17 @@ public class Server {
     }
 
     private ArrayList<Group> loadGroups() {
-        return new GroupFileReader(groupsDataBase).readAll();
+        ArrayList<Group> temp=new GroupFileReader(groupsDataBase).readAll();
+         try {
+        Group.setGroupsCount(Integer.parseInt(temp.getLast().getGroupID().split("G")[1]));
+        return temp;
+         }catch (Exception e) {
+            return temp;
+        }
+        
+        
     }
-
+    public static void writeGroups() {
+        new GroupFileWriter(groupsDataBase).writeAll(groups);
+    }
 }

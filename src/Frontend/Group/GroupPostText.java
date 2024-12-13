@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+
 /**
  *
  * @author carls
@@ -13,8 +15,20 @@ public class GroupPostText extends javax.swing.JPanel {
     /**
      * Creates new form GroupPostText
      */
-    public GroupPostText() {
+    AppManager a;
+    String name;
+   
+    
+    String postId;
+    String gpId;
+    public GroupPostText(AppManager a, String name, String date, String text, String postId, String gpId) {
         initComponents();
+        this.a = a;
+        this.gpId = gpId;
+        this.postId = postId;
+        UserName.setText(name);
+        DateField.setText(date);
+        textArea.setText(text);
     }
 
     /**
@@ -26,18 +40,21 @@ public class GroupPostText extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        UserNameField1 = new javax.swing.JTextField();
+        UserName = new javax.swing.JTextField();
         DateField = new javax.swing.JTextField();
-        PostTextField = new javax.swing.JTextField();
+        textArea = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         AcceptButton1 = new javax.swing.JButton();
         DeclineButton2 = new javax.swing.JButton();
 
-        UserNameField1.setEditable(false);
+        UserName.setEditable(false);
+        UserName.setFocusable(false);
 
         DateField.setEditable(false);
+        DateField.setFocusable(false);
 
-        PostTextField.setEditable(false);
+        textArea.setEditable(false);
+        textArea.setFocusable(false);
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
@@ -53,6 +70,11 @@ public class GroupPostText extends javax.swing.JPanel {
         DeclineButton2.setBackground(new java.awt.Color(51, 153, 255));
         DeclineButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DeclineButton2.setText("Decline");
+        DeclineButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeclineButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,9 +84,9 @@ public class GroupPostText extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1)
-                    .addComponent(PostTextField)
+                    .addComponent(textArea)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(UserNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                         .addComponent(DateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64))
@@ -80,10 +102,10 @@ public class GroupPostText extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PostTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -96,15 +118,21 @@ public class GroupPostText extends javax.swing.JPanel {
 
     private void AcceptButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButton1ActionPerformed
         // TODO add your handling code here:
+        a.approvePostRequest(postId, gpId);
     }//GEN-LAST:event_AcceptButton1ActionPerformed
+
+    private void DeclineButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineButton2ActionPerformed
+        // TODO add your handling code here:
+        a.declinePostRequest(postId, gpId);
+    }//GEN-LAST:event_DeclineButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton1;
     private javax.swing.JTextField DateField;
     private javax.swing.JButton DeclineButton2;
-    private javax.swing.JTextField PostTextField;
-    private javax.swing.JTextField UserNameField1;
+    private javax.swing.JTextField UserName;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField textArea;
     // End of variables declaration//GEN-END:variables
 }

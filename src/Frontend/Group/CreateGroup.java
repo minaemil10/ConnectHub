@@ -161,6 +161,7 @@ public class CreateGroup extends javax.swing.JFrame {
              return;
         }
          groupId = a.createGroup(GroupName);
+         a.changeGroupDescription(Description, groupId);
         if(!GroupPhoto.isEmpty()){
              a.changeGroupPhoto(GroupPhoto,groupId);
              GroupPhoto = "";

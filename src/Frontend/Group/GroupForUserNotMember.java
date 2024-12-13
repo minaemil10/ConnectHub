@@ -4,6 +4,11 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.GroupString;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,9 +18,23 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
     /**
      * Creates new form GroupForUser
      */
-    public GroupForUserNotMember() {
+     private GroupString gs;
+    private AppManager a ;
+    public GroupForUserNotMember(AppManager a, GroupString gs) {
         initComponents();
-    }
+        this.a = a;
+        this.gs = gs;
+         ImageIcon imageIcon = new ImageIcon(gs.getPhoto());
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+        GroupPhoto.setIcon(new ImageIcon(image));
+        GroupPhoto.setText("");
+        GroupName.setText(gs.getName());
+        GroupDescription.setText(gs.getDescription());
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +45,27 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GroupPhotoLabel = new javax.swing.JLabel();
-        GroupNameTextField1 = new javax.swing.JTextField();
-        GroupDescriptionTextField = new javax.swing.JTextField();
+        GroupPhoto = new javax.swing.JLabel();
+        GroupName = new javax.swing.JTextField();
+        GroupDescription = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        GroupPhotoLabel.setBackground(new java.awt.Color(255, 255, 255));
+        GroupPhoto.setBackground(new java.awt.Color(255, 255, 255));
+        GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        GroupNameTextField1.setEditable(false);
+        GroupName.setEditable(false);
 
-        GroupDescriptionTextField.setEditable(false);
+        GroupDescription.setEditable(false);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Join Group");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,12 +75,12 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(306, 306, 306)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GroupNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GroupDescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(GroupName, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GroupDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -65,16 +90,23 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(GroupPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GroupNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(GroupDescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GroupDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        a.joinGroup(gs.getId());
+        jButton1.setText("Pending request");
+        jButton1.setEnabled(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -103,14 +135,14 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupForUserNotMember().setVisible(true);
+            //    new GroupForUserNotMember().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField GroupDescriptionTextField;
-    private javax.swing.JTextField GroupNameTextField1;
-    private javax.swing.JLabel GroupPhotoLabel;
+    private javax.swing.JTextField GroupDescription;
+    private javax.swing.JTextField GroupName;
+    private javax.swing.JLabel GroupPhoto;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.Friend_Management.PostString;
+import java.util.ArrayList;
+
 /**
  *
  * @author carls
@@ -13,8 +17,28 @@ public class ManagePosts extends javax.swing.JFrame {
     /**
      * Creates new form ManagePosts
      */
-    public ManagePosts() {
+    AppManager a;
+    String gpId;
+    public ManagePosts(AppManager a, String gpId) {
         initComponents();
+        this.a=a;
+        this.gpId= gpId;
+        ArrayList<PostString> pendingPosts = a.getAllPendingPostsOfGroup(gpId);
+        for(PostString p : pendingPosts){
+            String text = p.getText();
+            String date = p.getDate();
+            String id= p.getPostId();
+            String photo = p.getPhoto();
+            String name  = p.getAuthor();
+            if(photo.equals("No file selected")){
+               GroupPostText gp = new GroupPostText(a, name, date, text, p.getPostId(), gpId);
+               managePost.add(gp);
+            }
+            else{
+                GroupPostImage gp = new GroupPostImage(a, name, photo, date, text, p.getPostId(), gpId);
+                managePost.add(gp);
+            }
+        }
     }
 
     /**
@@ -27,8 +51,22 @@ public class ManagePosts extends javax.swing.JFrame {
     private void initComponents() {
 
         ManagePostsPane = new javax.swing.JScrollPane();
+        managePost = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        javax.swing.GroupLayout managePostLayout = new javax.swing.GroupLayout(managePost);
+        managePost.setLayout(managePostLayout);
+        managePostLayout.setHorizontalGroup(
+            managePostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 683, Short.MAX_VALUE)
+        );
+        managePostLayout.setVerticalGroup(
+            managePostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 527, Short.MAX_VALUE)
+        );
+
+        ManagePostsPane.setViewportView(managePost);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,12 +118,13 @@ public class ManagePosts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagePosts().setVisible(true);
+        //        new ManagePosts().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ManagePostsPane;
+    private javax.swing.JPanel managePost;
     // End of variables declaration//GEN-END:variables
 }
