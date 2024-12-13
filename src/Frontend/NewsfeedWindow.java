@@ -10,6 +10,7 @@ import Backend.Friend_Management.RelationString;
 import Backend.Friend_Management.UserSearch;
 import Backend.GroupString;
 import Backend.Online;
+import Frontend.Group.GroupSuggestions;
 import Frontend.Group.MyGroups;
 import Frontend.Group.MyGroupsCreator;
 import java.awt.Image;

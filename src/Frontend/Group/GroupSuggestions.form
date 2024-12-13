@@ -24,7 +24,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="ViewGroupButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="joinGroupButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="joinGroupBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -46,7 +46,7 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ViewGroupButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="joinGroupButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="joinGroupBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="GroupPhoto" min="-2" pref="90" max="-2" attributes="0"/>
@@ -94,7 +94,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewGroupButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="joinGroupButton1">
+    <Component class="javax.swing.JButton" name="joinGroupBtn">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="0" type="rgb"/>
@@ -108,7 +108,7 @@
         <Property name="text" type="java.lang.String" value="Join Group"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinGroupBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

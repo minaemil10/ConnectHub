@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Frontend;
-
+package Frontend.Group;
+import Frontend.*;
 import Backend.AppManager;
 import Backend.GroupString;
 import java.awt.Image;
@@ -19,7 +19,7 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
      * Creates new form GroupForUser
      */
      private GroupString gs;
-    private AppManager a ;
+     private AppManager a ;
     public GroupForUserNotMember(AppManager a, GroupString gs) {
         initComponents();
         this.a = a;
@@ -48,7 +48,7 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
         GroupPhoto = new javax.swing.JLabel();
         GroupName = new javax.swing.JTextField();
         GroupDescription = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        joinButton1 = new javax.swing.JButton();
 
         GroupPhoto.setBackground(new java.awt.Color(255, 255, 255));
         GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -57,13 +57,13 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
 
         GroupDescription.setEditable(false);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Join Group");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        joinButton1.setBackground(new java.awt.Color(0, 153, 255));
+        joinButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        joinButton1.setForeground(new java.awt.Color(255, 255, 255));
+        joinButton1.setText("Join Group");
+        joinButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                joinButton1ActionPerformed(evt);
             }
         });
 
@@ -83,7 +83,7 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
                             .addComponent(GroupDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(joinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 206, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,17 +96,17 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(GroupDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(joinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void joinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButton1ActionPerformed
         // TODO add your handling code here:
         a.joinGroup(gs.getId());
-        jButton1.setText("Pending request");
-        jButton1.setEnabled(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        joinButton1.setText("Pending request");
+        joinButton1.setEnabled(false);
+    }//GEN-LAST:event_joinButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -143,6 +143,6 @@ public class GroupForUserNotMember extends javax.swing.JFrame {
     private javax.swing.JTextField GroupDescription;
     private javax.swing.JTextField GroupName;
     private javax.swing.JLabel GroupPhoto;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton joinButton1;
     // End of variables declaration//GEN-END:variables
 }

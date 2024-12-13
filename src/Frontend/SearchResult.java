@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Friend_Management.UserSearch;
+import Frontend.Group.GroupSuggestions;
 import Frontend.Group.MyGroups;
 import Frontend.Search.BlockedSearch;
 import Frontend.Search.FriendListSearch;
