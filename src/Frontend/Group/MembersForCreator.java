@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,8 +17,27 @@ public class MembersForCreator extends javax.swing.JPanel {
     /**
      * Creates new form Members
      */
-    public MembersForCreator() {
+    private AppManager a ;
+    private String name;
+    private String photo;
+    String userId;
+    String gpId ;
+    public MembersForCreator(AppManager a, String name, String photo ,String userId, String gpId) {
         initComponents();
+        this.a = a;
+        this.photo = photo;
+        this.name = name;
+        this.userId = userId;
+        this.gpId = gpId;
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            MemberPhotoLabel1.setIcon(new ImageIcon(image));
+            MemberPhotoLabel1.setText("");
+        MemberNameField.setText(name);
     }
 
     /**
@@ -39,11 +62,21 @@ public class MembersForCreator extends javax.swing.JPanel {
         RemoveMemberButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         RemoveMemberButton.setForeground(new java.awt.Color(255, 255, 255));
         RemoveMemberButton.setText("Remove");
+        RemoveMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveMemberButtonActionPerformed(evt);
+            }
+        });
 
         MakeAdminButton1.setBackground(new java.awt.Color(51, 153, 255));
         MakeAdminButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         MakeAdminButton1.setForeground(new java.awt.Color(255, 255, 255));
         MakeAdminButton1.setText("Make admin");
+        MakeAdminButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MakeAdminButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,6 +111,16 @@ public class MembersForCreator extends javax.swing.JPanel {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RemoveMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveMemberButtonActionPerformed
+        // TODO add your handling code here:
+         a.removeMember(userId ,gpId);
+    }//GEN-LAST:event_RemoveMemberButtonActionPerformed
+
+    private void MakeAdminButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MakeAdminButton1ActionPerformed
+        // TODO add your handling code here:
+        a.promoteUser(userId, gpId);
+    }//GEN-LAST:event_MakeAdminButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

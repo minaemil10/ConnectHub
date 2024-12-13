@@ -1,13 +1,16 @@
 [
   {
-    "groupName": "drbfgn",
-    "groupID": "G3",
-    "description": "rwzgtxbr",
-    "CREATOR_ID": "U2",
+    "groupName": "Messi lovers",
+    "groupID": "G1",
+    "description": "M10",
+    "CREATOR_ID": "U1",
     "admins": [],
     "users": [],
     "pendingRequests": [
-      "G3"
+      "G1",
+      "G1",
+      "G1",
+      "G1"
     ],
     "notifactionsId": {},
     "posts": [],

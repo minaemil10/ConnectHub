@@ -8,19 +8,27 @@
     "notificationId": "n1"
   },
   {
-    "senderID": "U3",
-    "receiverID": "U1",
+    "senderID": "U1",
+    "receiverID": "U3",
     "status": {
-      "relation": "Friend"
+      "relation": "pending"
     },
     "notificationId": "n2"
   },
   {
-    "senderID": "U3",
-    "receiverID": "U2",
+    "senderID": "U1",
+    "receiverID": "U4",
     "status": {
       "relation": "pending"
     },
     "notificationId": "n3"
+  },
+  {
+    "senderID": "U2",
+    "receiverID": "U4",
+    "status": {
+      "relation": "pending"
+    },
+    "notificationId": "n8"
   }
 ]

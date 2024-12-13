@@ -1,18 +1,39 @@
 [
   {
     "userId": "U1",
-    "email": "rober@g.com",
-    "userName": "roby",
+    "email": "carl@g.com",
+    "userName": "carl",
     "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
-    "DateOfBirth": "13,12,2004",
+    "DateOfBirth": "01,07,2004",
     "status": false,
-    "notifications": [],
+    "notifications": [
+      {
+        "name": "dodo",
+        "userId": "U2",
+        "Id": "n4"
+      },
+      {
+        "name": "dodo",
+        "userId": "U2",
+        "Id": "n5"
+      },
+      {
+        "name": "dodo",
+        "userId": "U2",
+        "Id": "n6"
+      },
+      {
+        "name": "dodo",
+        "userId": "U2",
+        "Id": "n7"
+      }
+    ],
     "myPosts": [],
     "myStories": [],
-    "myGroups": [],
-    "groupRequests": [
-      "G3"
+    "myGroups": [
+      "G1"
     ],
+    "groupRequests": [],
     "groupsLeftByMe": [],
     "friends": [
       {
@@ -20,75 +41,42 @@
         "relation": {
           "relation": "Friend"
         }
-      },
-      {
-        "relationWith": "U3",
-        "relation": {
-          "relation": "Friend"
-        }
       }
     ],
     "Blocked": [],
     "received": [],
-    "sent": []
-  },
-  {
-    "userId": "U2",
-    "email": "carl@g.com",
-    "userName": "carl",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "DateOfBirth": "01,07,2004",
-    "status": false,
-    "notifications": [
-      {
-        "name": "mina",
-        "userId": "U3",
-        "Id": "n3"
-      },
-      {
-        "name": "roby",
-        "userId": "U1",
-        "Id": "n1"
-      }
-    ],
-    "myPosts": [],
-    "myStories": [],
-    "myGroups": [
-      "G3"
-    ],
-    "groupRequests": [],
-    "groupsLeftByMe": [],
-    "friends": [
-      {
-        "relationWith": "U1",
-        "relation": {
-          "relation": "Friend"
-        }
-      }
-    ],
-    "Blocked": [],
-    "received": [
+    "sent": [
       {
         "relationWith": "U3",
         "relation": {
           "relation": "pending"
         }
+      },
+      {
+        "relationWith": "U4",
+        "relation": {
+          "relation": "pending"
+        }
       }
-    ],
-    "sent": []
+    ]
   },
   {
-    "userId": "U3",
-    "email": "mina@g.com",
-    "userName": "mina",
-    "password": "2ac9a6746aca543af8dff39894cfe8173afba21eb01c6fae33d52947222855ef",
-    "DateOfBirth": "13,03,2004",
+    "userId": "U2",
+    "email": "daniel@g.com",
+    "userName": "dodo",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "DateOfBirth": "22,04,2004",
     "status": false,
     "notifications": [],
     "myPosts": [],
     "myStories": [],
     "myGroups": [],
-    "groupRequests": [],
+    "groupRequests": [
+      "G1",
+      "G1",
+      "G1",
+      "G1"
+    ],
     "groupsLeftByMe": [],
     "friends": [
       {
@@ -102,11 +90,82 @@
     "received": [],
     "sent": [
       {
-        "relationWith": "U2",
+        "relationWith": "U4",
         "relation": {
           "relation": "pending"
         }
       }
     ]
+  },
+  {
+    "userId": "U3",
+    "email": "rober@g.com",
+    "userName": "roby",
+    "password": "2ac9a6746aca543af8dff39894cfe8173afba21eb01c6fae33d52947222855ef",
+    "DateOfBirth": "14,11,2004",
+    "notifications": [
+      {
+        "name": "carl",
+        "userId": "U1",
+        "Id": "n2"
+      }
+    ],
+    "myPosts": [],
+    "myStories": [],
+    "myGroups": [],
+    "groupRequests": [],
+    "groupsLeftByMe": [],
+    "friends": [],
+    "Blocked": [],
+    "received": [
+      {
+        "relationWith": "U1",
+        "relation": {
+          "relation": "pending"
+        }
+      }
+    ],
+    "sent": []
+  },
+  {
+    "userId": "U4",
+    "email": "mina@g.com",
+    "userName": "mina",
+    "password": "9b871512327c09ce91dd649b3f96a63b7408ef267c8cc5710114e629730cb61f",
+    "DateOfBirth": "13,12,2004",
+    "notifications": [
+      {
+        "name": "carl",
+        "userId": "U1",
+        "Id": "n3"
+      },
+      {
+        "name": "dodo",
+        "userId": "U2",
+        "Id": "n8"
+      }
+    ],
+    "myPosts": [],
+    "myStories": [],
+    "myGroups": [],
+    "groupRequests": [],
+    "groupsLeftByMe": [],
+    "friends": [],
+    "Blocked": [],
+    "received": [
+      {
+        "relationWith": "U1",
+        "relation": {
+          "relation": "pending"
+        }
+      },
+      {
+        "relationWith": "U2",
+        "relation": {
+          "relation": "pending"
+        }
+      }
+    ],
+    "sent": []
   }
 ]

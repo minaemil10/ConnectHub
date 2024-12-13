@@ -64,7 +64,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
             String id = u.getIdString();
-            MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
+            MembersForCreator m = new MembersForCreator(a, name, userPhoto, id, gs.getId());
             membersPanel.add(m);
         }
         ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
