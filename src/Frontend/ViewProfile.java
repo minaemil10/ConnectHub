@@ -18,8 +18,12 @@ public class ViewProfile extends javax.swing.JFrame {
     private AppManager a;
     private String id;
     public ViewProfile(AppManager a, String id) {
+                initComponents();
         ProfileDetailsBack detail=a.getProfile(id);
-        BioField.setText(detail.getBio());
+        if(detail.getBio()==null){
+        BioField.setText("");}else{
+            BioField.setText(detail.getBio());
+        }
         NameField1.setText(detail.getUserName());
         ImageIcon imageIcon = new ImageIcon(detail.getProfilePhoto());
             Image image = imageIcon.getImage().getScaledInstance(
@@ -30,7 +34,7 @@ public class ViewProfile extends javax.swing.JFrame {
             PhotoLabel1.setIcon(new ImageIcon(image));
             PhotoLabel1.setText("");
 //el posts wel stories
-        initComponents();
+
     }
 
     /**

@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "senderID": "U1",
+    "receiverID": "U2",
+    "status": {
+      "relation": "Block"
+    },
+    "notificationId": "n1"
+  }
+]
