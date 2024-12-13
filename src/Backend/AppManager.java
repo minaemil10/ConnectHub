@@ -883,13 +883,14 @@ temp.addAll(currentUser.getSent());
                             for (int m = 0; m < Data.size(); m++) {
                                 if (Data.get(m).getUserId().equalsIgnoreCase(this.posts.get(l).getAuthorID())) {
                                     posts.add(new PostString(Data.get(m).getUserName(), this.posts.get(l).getText(), this.posts.get(l).getPhoto(), this.posts.get(l).getTimePosted().toString()));
-
+                                    break;
                                 }
                             }
 
                         }
 
                     }
+                    break;
                 }
             }
         }

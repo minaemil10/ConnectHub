@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/DataBase/groups.json</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/User.java</file>
             <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/AppManager.java</file>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/Server.java</file>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupForUserNotMember.java</file>
             <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/SearchResult.java</file>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/DataBase/users.json</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
             <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/MyGroups.java</file>
             <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupSuggestions.java</file>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/DataBase/friendRequests.json</file>
-            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/FriendList.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupForMember.java</file>
             <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/MyPosts_Stories.java</file>
         </group>
     </open-files>
