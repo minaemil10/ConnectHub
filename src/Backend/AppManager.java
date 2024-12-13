@@ -75,7 +75,7 @@ public class AppManager {
                 friendRequest temp = new friendRequest(currentUser.getUserId(), Data.get(i).getUserId());
                 temp.make(currentUser, Data.get(i));
                 request.add(temp);
-                Notification notification = new Notification("send friend request", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
+                Notification notification = new Notification("Friend request", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
                 temp.setNotificationId(notification.getId());
                 Data.get(i).addNotification(notification);
                 
@@ -463,7 +463,7 @@ temp.addAll(currentUser.getSent());
             }
         }
         group.setGroupPhoto(photoPath);
-        Notification notification = new Notification("Change group photo", photoPath);
+        Notification notification = new Notification("Group Photo Changed", photoPath);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -475,7 +475,7 @@ temp.addAll(currentUser.getSent());
     public void changeGroupName(String name, String groupID) {
         Group group = getGroup(groupID);
         group.setGroupName(name);
-        Notification notification = new Notification("Change group name", name);
+        Notification notification = new Notification("Group Name Changed", name);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -487,7 +487,7 @@ temp.addAll(currentUser.getSent());
     public void changeGroupDescription(String description, String groupID) {
         Group group = getGroup(groupID);
         group.setDescription(description);
-        Notification notification = new Notification("Change group name", description);
+        Notification notification = new Notification("Group Description Changed", description);
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))

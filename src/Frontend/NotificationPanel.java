@@ -25,6 +25,9 @@ public class NotificationPanel extends javax.swing.JPanel {
         for(Notification n : notifications){
             String type = n.getType();
             switch(type){
+                case "Group Name Changed":
+                case "Group Description Changed":
+                case "Group Photo Changed":
                 case "decline user request":
                 case "Remove member":
                 case "Delete post":
@@ -134,6 +137,9 @@ public class NotificationPanel extends javax.swing.JPanel {
         for(Notification n : notifications){
             String type = n.getType();
             switch(type){
+                case "Group Name Changed":
+                case "Group Description Changed":
+                case "Group Photo Changed":
                 case "decline user request":
                 case "Remove member":
                 case "Delete post":
@@ -170,9 +176,9 @@ public class NotificationPanel extends javax.swing.JPanel {
                     MemberNotification m = new MemberNotification(n.getUser(),n.getName() ,type );
                     notificationPanel.add(m);
                     break;
-                
-                
-                    
+                case "Friend request":
+                    FriendRequest f = new FriendRequest(a, n.getUserId(), n.getName(), n.getProfilePhoto());
+                    notificationPanel.add(f);
             }
         }
     }//GEN-LAST:event_refreshActionPerformed
