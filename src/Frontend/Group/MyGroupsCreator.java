@@ -7,6 +7,9 @@ package Frontend.Group;
 import Backend.AppManager;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import Backend.GroupString;
+import Frontend.GroupForCreator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,10 +54,11 @@ public class MyGroupsCreator extends javax.swing.JPanel {
         GroupPhotoLabel1 = new javax.swing.JLabel();
         GroupNameField1 = new javax.swing.JTextField();
         ViewGroupButton1 = new javax.swing.JButton();
-        ViewGroupButton2 = new javax.swing.JButton();
+        DeleteGroupButton2 = new javax.swing.JButton();
 
         GroupPhotoLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        GroupNameField1.setEditable(false);
         GroupNameField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GroupNameField1ActionPerformed(evt);
@@ -70,9 +74,14 @@ public class MyGroupsCreator extends javax.swing.JPanel {
             }
         });
 
-        ViewGroupButton2.setBackground(new java.awt.Color(51, 153, 255));
-        ViewGroupButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ViewGroupButton2.setText("Delete Group");
+        DeleteGroupButton2.setBackground(new java.awt.Color(51, 153, 255));
+        DeleteGroupButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        DeleteGroupButton2.setText("Delete Group");
+        DeleteGroupButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteGroupButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,7 +95,7 @@ public class MyGroupsCreator extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewGroupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ViewGroupButton2)
+                        .addComponent(DeleteGroupButton2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(GroupNameField1))
                 .addContainerGap())
@@ -99,7 +108,7 @@ public class MyGroupsCreator extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ViewGroupButton1)
-                    .addComponent(ViewGroupButton2))
+                    .addComponent(DeleteGroupButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(GroupPhotoLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
@@ -113,13 +122,29 @@ public class MyGroupsCreator extends javax.swing.JPanel {
 
     private void ViewGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButton1ActionPerformed
         // TODO add your handling code here:
+         GroupString groupString = a.getCroupInfo(groupId);
+         GroupForCreator ownerGroup = new GroupForCreator(a, groupString);
+         ownerGroup.setVisible(true);
     }//GEN-LAST:event_ViewGroupButton1ActionPerformed
+
+    private void DeleteGroupButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteGroupButton2ActionPerformed
+        int response = JOptionPane.showConfirmDialog(
+            null,                       
+            "Do you want to delete group",                    
+            "Delete Group",                      
+            JOptionPane.YES_NO_OPTION,  
+            JOptionPane.QUESTION_MESSAGE  
+        );
+        if (response == JOptionPane.YES_OPTION) {
+            a.deleteGroup(groupId);
+        }
+    }//GEN-LAST:event_DeleteGroupButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteGroupButton2;
     private javax.swing.JTextField GroupNameField1;
     private javax.swing.JLabel GroupPhotoLabel1;
     private javax.swing.JButton ViewGroupButton1;
-    private javax.swing.JButton ViewGroupButton2;
     // End of variables declaration//GEN-END:variables
 }

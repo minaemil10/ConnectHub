@@ -122,6 +122,9 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             GroupSuggestions gs = new GroupSuggestions(a, name, photo, id);
             groupSuggestPanel.add(gs);
         }
+        groupSuggestPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        groupSuggestPanel.revalidate();
+        groupSuggestPanel.repaint();
     }
     
     /**

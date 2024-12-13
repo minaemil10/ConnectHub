@@ -1,25 +1,112 @@
 [
   {
     "userId": "U1",
-    "email": "carl@gmail.com",
+    "email": "rober@g.com",
+    "userName": "roby",
+    "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+    "DateOfBirth": "13,12,2004",
+    "status": false,
+    "notifications": [],
+    "myPosts": [],
+    "myStories": [],
+    "myGroups": [],
+    "groupRequests": [
+      "G3"
+    ],
+    "groupsLeftByMe": [],
+    "friends": [
+      {
+        "relationWith": "U2",
+        "relation": {
+          "relation": "Friend"
+        }
+      },
+      {
+        "relationWith": "U3",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ],
+    "Blocked": [],
+    "received": [],
+    "sent": []
+  },
+  {
+    "userId": "U2",
+    "email": "carl@g.com",
     "userName": "carl",
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
     "DateOfBirth": "01,07,2004",
     "status": false,
-    "profilePhoto": "C:\\Users\\carls\\OneDrive\\Desktop\\ibn el haitham.png",
-    "coverPhoto": "C:\\Users\\carls\\OneDrive\\Desktop\\الخدمة\\Screenshot 2024-11-07 184845.png",
-    "notifications": [],
+    "notifications": [
+      {
+        "name": "mina",
+        "userId": "U3",
+        "Id": "n3"
+      },
+      {
+        "name": "roby",
+        "userId": "U1",
+        "Id": "n1"
+      }
+    ],
     "myPosts": [],
     "myStories": [],
     "myGroups": [
-      "G1",
-      "G2"
+      "G3"
     ],
     "groupRequests": [],
     "groupsLeftByMe": [],
-    "friends": [],
+    "friends": [
+      {
+        "relationWith": "U1",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ],
+    "Blocked": [],
+    "received": [
+      {
+        "relationWith": "U3",
+        "relation": {
+          "relation": "pending"
+        }
+      }
+    ],
+    "sent": []
+  },
+  {
+    "userId": "U3",
+    "email": "mina@g.com",
+    "userName": "mina",
+    "password": "2ac9a6746aca543af8dff39894cfe8173afba21eb01c6fae33d52947222855ef",
+    "DateOfBirth": "13,03,2004",
+    "status": false,
+    "notifications": [],
+    "myPosts": [],
+    "myStories": [],
+    "myGroups": [],
+    "groupRequests": [],
+    "groupsLeftByMe": [],
+    "friends": [
+      {
+        "relationWith": "U1",
+        "relation": {
+          "relation": "Friend"
+        }
+      }
+    ],
     "Blocked": [],
     "received": [],
-    "sent": []
+    "sent": [
+      {
+        "relationWith": "U2",
+        "relation": {
+          "relation": "pending"
+        }
+      }
+    ]
   }
 ]

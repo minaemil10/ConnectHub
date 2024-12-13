@@ -1,22 +1,14 @@
 [
   {
-    "groupName": "test",
-    "groupID": "G1",
-    "CREATOR_ID": "U1",
+    "groupName": "drbfgn",
+    "groupID": "G3",
+    "description": "rwzgtxbr",
+    "CREATOR_ID": "U2",
     "admins": [],
     "users": [],
-    "pendingRequests": [],
-    "notifactionsId": {},
-    "posts": [],
-    "pendingPosts": []
-  },
-  {
-    "groupName": "test2",
-    "groupID": "G2",
-    "CREATOR_ID": "U1",
-    "admins": [],
-    "users": [],
-    "pendingRequests": [],
+    "pendingRequests": [
+      "G3"
+    ],
     "notifactionsId": {},
     "posts": [],
     "pendingPosts": []

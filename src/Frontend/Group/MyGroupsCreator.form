@@ -24,7 +24,7 @@
                   <Group type="102" attributes="0">
                       <Component id="ViewGroupButton1" min="-2" pref="102" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ViewGroupButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="DeleteGroupButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="GroupNameField1" max="32767" attributes="0"/>
@@ -41,7 +41,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ViewGroupButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ViewGroupButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeleteGroupButton2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -63,6 +63,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="GroupNameField1">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupNameField1ActionPerformed"/>
       </Events>
@@ -81,7 +84,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewGroupButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ViewGroupButton2">
+    <Component class="javax.swing.JButton" name="DeleteGroupButton2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="33" type="rgb"/>
@@ -91,6 +94,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Delete Group"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteGroupButton2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

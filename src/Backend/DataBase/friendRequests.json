@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "senderID": "U1",
+    "receiverID": "U2",
+    "status": {
+      "relation": "Friend"
+    },
+    "notificationId": "n1"
+  },
+  {
+    "senderID": "U3",
+    "receiverID": "U1",
+    "status": {
+      "relation": "Friend"
+    },
+    "notificationId": "n2"
+  },
+  {
+    "senderID": "U3",
+    "receiverID": "U2",
+    "status": {
+      "relation": "pending"
+    },
+    "notificationId": "n3"
+  }
+]

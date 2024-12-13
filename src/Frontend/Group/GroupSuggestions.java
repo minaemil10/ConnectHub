@@ -5,6 +5,7 @@
 package Frontend;
 
 import Backend.AppManager;
+import Backend.GroupString;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -27,6 +28,7 @@ public class GroupSuggestions extends javax.swing.JPanel {
         this.name=name;
         this.photo = photo;
         this.id  =id;
+        GroupName.setText(name);
         ImageIcon imageIcon = new ImageIcon(photo);
             Image image = imageIcon.getImage().getScaledInstance(
                 90, 
@@ -49,11 +51,17 @@ public class GroupSuggestions extends javax.swing.JPanel {
         GroupPhoto = new javax.swing.JLabel();
         GroupName = new javax.swing.JTextField();
         ViewGroupButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        joinGroupButton1 = new javax.swing.JButton();
 
         GroupPhoto.setBackground(new java.awt.Color(255, 255, 255));
+        GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         GroupName.setEditable(false);
+        GroupName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroupNameActionPerformed(evt);
+            }
+        });
 
         ViewGroupButton.setBackground(new java.awt.Color(0, 153, 255));
         ViewGroupButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -65,10 +73,15 @@ public class GroupSuggestions extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Join Group");
+        joinGroupButton1.setBackground(new java.awt.Color(0, 153, 255));
+        joinGroupButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        joinGroupButton1.setForeground(new java.awt.Color(255, 255, 255));
+        joinGroupButton1.setText("Join Group");
+        joinGroupButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinGroupButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,7 +95,7 @@ public class GroupSuggestions extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ViewGroupButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(joinGroupButton1)
                         .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -99,7 +112,7 @@ public class GroupSuggestions extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ViewGroupButton)
-                            .addComponent(jButton1)))
+                            .addComponent(joinGroupButton1)))
                     .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -107,14 +120,28 @@ public class GroupSuggestions extends javax.swing.JPanel {
 
     private void ViewGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButtonActionPerformed
         // TODO add your handling code here:
-        
+         GroupString groupString = a.getCroupInfo(id);
+         GroupForUserNotMember needJoin = new GroupForUserNotMember(a, groupString);
+         needJoin.setVisible(true);
+
     }//GEN-LAST:event_ViewGroupButtonActionPerformed
+
+    private void GroupNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GroupNameActionPerformed
+
+    private void joinGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinGroupButton1ActionPerformed
+        // TODO add your handling code here:
+        a.joinGroup(id);
+        joinGroupButton1.setText("Pending request");
+        joinGroupButton1.setEnabled(false);
+    }//GEN-LAST:event_joinGroupButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField GroupName;
     private javax.swing.JLabel GroupPhoto;
     private javax.swing.JButton ViewGroupButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton joinGroupButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ import Backend.Friend_Management.RelationString;
 import Backend.Friend_Management.Relationship;
 import Backend.Friend_Management.UserSearch;
 import Backend.Friend_Management.friendRequest;
+import Backend.Group;
 import java.time.Duration;
 
 import java.time.LocalDate;
@@ -530,7 +531,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.checkUser(u.getUserId()).equals("admin") ){
+            if((group.checkUser(u.getUserId())!= null) && group.checkUser(u.getUserId()).equals("admin") ){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -541,7 +542,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.checkUser(u.getUserId()).equals("user") ){
+            if((group.checkUser(u.getUserId())!= null) &&group.checkUser(u.getUserId()).equals("user")){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -563,7 +564,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if(group.isPendingRequest(u.getUserId())){
+            if((group.checkUser(u.getUserId())!= null) &&group.isPendingRequest(u.getUserId())){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -886,14 +887,12 @@ temp.addAll(currentUser.getSent());
        temp.addAll(currentUser.getAllGroupsLeftByMe());
        temp.addAll(currentUser.getAllMyGroups());
         ArrayList<RelationString> groups=new ArrayList();
-        for(int i=0;i<temp.size();i++){
-            for(int j=0;j<this.groups.size();j++){
-                if(!temp.get(i).equalsIgnoreCase(this.groups.get(j).getGroupID())){
-                    groups.add(new RelationString(this.groups.get(j).getGroupName(),this.groups.get(j).getGroupPhoto(),this.groups.get(j).getGroupID()));
-                }
-
-            }
-       }
+        for (Group group : this.groups) { 
+        if (!temp.contains(group.getGroupID())) {
+            groups.add(new RelationString(group.getGroupName(), group.getGroupPhoto(), group.getGroupID()));
+        }
+    }
+       
         return groups;
     }
 
