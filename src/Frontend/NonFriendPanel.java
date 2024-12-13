@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
@@ -13,8 +17,24 @@ public class NonFriendPanel extends javax.swing.JPanel {
     /**
      * Creates new form NonFriendPanel
      */
-    public NonFriendPanel() {
+    private AppManager a;
+    private String id;
+    private String name;
+    private String photo;
+    public NonFriendPanel(String id, String name, String photo ,AppManager a) {
         initComponents();
+        this.id=id;
+        this.a = a;
+        NameField.setText(name);
+        ImageIcon imageIcon = new ImageIcon(photo);
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            PhotoLabel1.setIcon(new ImageIcon(image));
+            PhotoLabel1.setText("");
+            
     }
 
     /**
@@ -50,11 +70,21 @@ public class NonFriendPanel extends javax.swing.JPanel {
         AddFriendButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AddFriendButton.setForeground(new java.awt.Color(255, 255, 255));
         AddFriendButton.setText("Add friend");
+        AddFriendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFriendButtonActionPerformed(evt);
+            }
+        });
 
         BlockButton1.setBackground(new java.awt.Color(51, 153, 255));
         BlockButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BlockButton1.setForeground(new java.awt.Color(255, 255, 255));
         BlockButton1.setText("Block");
+        BlockButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BlockButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,8 +127,16 @@ public class NonFriendPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProfileButtonActionPerformed
-        // TODO add your handling code here:
+        new ViewProfile(a,id).setVisible(true);
     }//GEN-LAST:event_ViewProfileButtonActionPerformed
+
+    private void AddFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFriendButtonActionPerformed
+        a.sendFriendRequest(id);
+    }//GEN-LAST:event_AddFriendButtonActionPerformed
+
+    private void BlockButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlockButton1ActionPerformed
+       a.blockNonFriend(id);
+    }//GEN-LAST:event_BlockButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

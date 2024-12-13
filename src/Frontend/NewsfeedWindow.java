@@ -7,6 +7,7 @@ package Frontend;
 import Backend.AppManager;
 import Backend.Friend_Management.PostString;
 import Backend.Friend_Management.RelationString;
+import Backend.Friend_Management.UserSearch;
 import Backend.GroupString;
 import Backend.Online;
 import Frontend.Group.MyGroups;
@@ -147,7 +148,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         status = new javax.swing.JTable();
         friendManagement_btn = new javax.swing.JButton();
-        jSearchField = new javax.swing.JTextField();
+        SearchField = new javax.swing.JTextField();
         SearchUserBtn = new javax.swing.JButton();
         MyGroupsLabel = new javax.swing.JLabel();
         MyGroupsPane = new javax.swing.JScrollPane();
@@ -256,7 +257,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
             }
         });
 
-        jSearchField.setText("Search...");
+        SearchField.setText("Search...");
 
         SearchUserBtn.setBackground(new java.awt.Color(0, 153, 255));
         SearchUserBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -332,7 +333,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(SearchUserBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -366,7 +367,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
                         .addComponent(NotificitionButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SearchUserBtn)
                             .addComponent(SearchGroupButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,12 +529,17 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_NotificitionButtonActionPerformed
 
     private void SearchUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUserBtnActionPerformed
-        // TODO add your handling code here:
+        String key=SearchField.getText();
+        ArrayList<UserSearch> found=a.SearchFriend(key);
+        new SearchResult(a,found).setVisible(true);
         
     }//GEN-LAST:event_SearchUserBtnActionPerformed
 
     private void SearchGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchGroupButton1ActionPerformed
-        // TODO add your handling code here:
+             String key=SearchField.getText();
+        ArrayList<UserSearch> found=a.SearchGroup(key);
+
+        new SearchResult(a,found).setVisible(true);
     }//GEN-LAST:event_SearchGroupButton1ActionPerformed
     
 
@@ -581,6 +587,7 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane MyGroupsPane;
     private javax.swing.JButton NotificitionButton;
     private javax.swing.JButton RefreshButton;
+    private javax.swing.JTextField SearchField;
     private javax.swing.JButton SearchGroupButton1;
     private javax.swing.JButton SearchUserBtn;
     private javax.swing.JButton friendManagement_btn;
@@ -589,7 +596,6 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jSearchField;
     private javax.swing.JLabel photoLabel;
     private javax.swing.JPanel postPanel;
     private javax.swing.JButton profileMangmentButton;

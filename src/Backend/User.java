@@ -175,6 +175,7 @@ public class User implements DataBaseOBJ {
     }
 
     public boolean acceptFriendRequest(String senderID) {
+                moveFriends();
         moveFriends();
         for (int i = 0; i < received.size(); i++) {
             if (received.get(i).getrelationWith().equalsIgnoreCase(senderID)) {
@@ -213,6 +214,18 @@ public class User implements DataBaseOBJ {
                 friends.get(i).setBlock();
                 Blocked.add(friends.get(i));
                 friends.remove(friends.get(i));
+                return true;
+            }
+        }
+        return false;
+    }
+        public boolean blockNonFriend(String receiverID) {
+        moveFriends();
+        for (int i = 0; i < sent.size(); i++) {
+            if (sent.get(i).getrelationWith().equalsIgnoreCase(receiverID)) {
+                sent.get(i).setBlock();
+                Blocked.add(sent.get(i));
+                sent.remove(sent.get(i));
                 return true;
             }
         }
@@ -260,6 +273,19 @@ public class User implements DataBaseOBJ {
             }
 
         }
+        for (int i = 0; i < received.size(); i++) {
+             if(received.get(i).getRelation().equalsIgnoreCase("Block")){
+                received.remove(i);
+            }
+
+        }
+        for (int i = 0; i < sent.size(); i++) {
+             if(sent.get(i).getRelation().equalsIgnoreCase("Block")){
+                sent.remove(i);
+            }
+
+        }
+        
         
     }
     boolean isFriend(String key){
@@ -366,6 +392,14 @@ public boolean isMember(String key){
             }
         }
         return false;
+    }
+    public void unblock(String userID){
+        for(int i=0;i<Blocked.size();i++){
+            if(Blocked.get(i).getrelationWith().equalsIgnoreCase(userID)){
+                Blocked.get(i).setCancel();
+                Blocked.remove(i);
+            }
+        }
     }
 
 }

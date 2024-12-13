@@ -1,11 +1,14 @@
 package Backend;
 
 import Backend.Friend_Management.PostString;
+import Backend.Friend_Management.ProfileDetailsBack;
 import Backend.Friend_Management.RelationString;
 
 import Backend.Friend_Management.Relationship;
 import Backend.Friend_Management.UserSearch;
 import Backend.Friend_Management.friendRequest;
+import Frontend.ProfileDetails;
+
 import Backend.Group;
 import java.time.Duration;
 
@@ -22,7 +25,7 @@ public class AppManager {
     private ArrayList<Group> groups;
     private User currentUser;
     private ProfileManger profileManger;
-    private ArrayList<NotificationString> notifications = new ArrayList<>();
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public AppManager(ArrayList<User> Data, ArrayList<Post> posts, ArrayList<Story> stories, ArrayList<friendRequest> request ,ArrayList<Group> groups) {
         currentUser = null;
@@ -129,6 +132,21 @@ public class AppManager {
             } else if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
                 request.get(i).block();
                 currentUser.blockFriend(userID);
+                return true;
+            }
+
+        }
+
+        return true;
+    }
+    //m7taga tzbet
+        public boolean blockNonFriend(String userID) {
+        clearCancel();
+        sendFriendRequest(userID);
+        for (int i = 0; i < request.size(); i++) {
+           if (request.get(i).getSenderID().equalsIgnoreCase(currentUser.getUserId()) && request.get(i).getReceiverID().equalsIgnoreCase(userID)) {
+                request.get(i).block();
+                currentUser.blockNonFriend(userID);
                 return true;
             }
 
@@ -817,7 +835,6 @@ temp.addAll(currentUser.getSent());
             ArrayList<String> admins = group.getAllAdmins();
             Content post = getPostWithID(postId);
             Notification  notification = new Notification("User added post to group" , currentUser.getUserName(),post );
-            group.setRequestNotifcation(postId, notification.getId());
             for(User u : Data){
                 if(!currentUser.getUserId().equals(u.getUserId()))
                 if(group.checkUser(u.getUserId()) != null && !group.checkUser(u.getUserId()).equals("user")){
@@ -826,7 +843,7 @@ temp.addAll(currentUser.getSent());
                 }
                 
             }
-            
+            group.setRequestNotifcation(postId, notification.getId());
         }
     }
 
@@ -836,7 +853,6 @@ temp.addAll(currentUser.getSent());
             group.addMember(groupId);
             currentUser.addGroupRequest(groupId);
             Notification  notification = new Notification("Join Group", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
-            removeNotification(group.getRequestNotifcation(currentUser.getUserId()));
             for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null && !group.checkUser(u.getUserId()).equals("user")){
                     if(!currentUser.getUserId().equals(u.getUserId()))
@@ -885,13 +901,14 @@ temp.addAll(currentUser.getSent());
                             for (int m = 0; m < Data.size(); m++) {
                                 if (Data.get(m).getUserId().equalsIgnoreCase(this.posts.get(l).getAuthorID())) {
                                     posts.add(new PostString(Data.get(m).getUserName(), this.posts.get(l).getText(), this.posts.get(l).getPhoto(), this.posts.get(l).getTimePosted().toString()));
-
+                                    break;
                                 }
                             }
 
                         }
 
                     }
+                    break;
                 }
             }
         }
@@ -943,21 +960,29 @@ temp.addAll(currentUser.getSent());
     public ArrayList<UserSearch> SearchGroup(String key) {
         ArrayList<UserSearch> found = new ArrayList();
         for (int i = 0; i < groups.size(); i++) {
-            if (key.equalsIgnoreCase(groups.get(i).getGroupID())) {
+            if (key.equalsIgnoreCase(groups.get(i).getGroupName())) {
                 if (currentUser.isMember(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
-                    found.add(new UserSearch(groups.get(i).getGroupName(), "Pending", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Pending group", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else {
-                    found.add(new UserSearch(groups.get(i).getGroupName(), "No Relation", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+          
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Not member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 }
             }
         }
 
         return found;
     }
-    public ArrayList<Notification> getNotifications() {
-        return currentUser.getNotifications();
+    public ProfileDetailsBack getProfile(String key){
+        for(int i=0;i<Data.size();i++){
+            if(key.equalsIgnoreCase(Data.get(i).getUserId())){       
+             return new ProfileDetailsBack(Data.get(i).getUserId(),Data.get(i).getUserName(),Data.get(i).getProfilePhoto(),Data.get(i).getBio())  ; 
+            }
+        }
+      return null;  
     }
-
+    public void unblock(String userID){
+        currentUser.unblock(userID);
+    }
 }

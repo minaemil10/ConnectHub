@@ -93,6 +93,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="View Profile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewProfileButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="RemoveButton">
       <Properties>
@@ -107,6 +110,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Remove"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoveButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BlockButton">
       <Properties>
@@ -121,6 +127,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Block"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BlockButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

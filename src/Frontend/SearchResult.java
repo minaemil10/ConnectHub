@@ -4,17 +4,59 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.Friend_Management.UserSearch;
+import Frontend.Group.MyGroups;
+import Frontend.Search.BlockedSearch;
+import Frontend.Search.FriendListSearch;
+import Frontend.Search.FriendRequestSearch;
+import Frontend.Search.FriendSuggestionSearch;
+import java.util.ArrayList;
+
 /**
  *
  * @author carls
  */
 public class SearchResult extends javax.swing.JFrame {
-
-    /**
-     * Creates new form SearchResult
-     */
-    public SearchResult() {
+    private AppManager a;
+    private ArrayList<UserSearch> found;
+    public SearchResult(AppManager a,ArrayList<UserSearch> found) {
+        this.a=a;
+        this.found=found;
         initComponents();
+        friendSearch.setLayout(new javax.swing.BoxLayout(friendSearch, javax.swing.BoxLayout.Y_AXIS));
+        this.found = found;
+
+        friendSearch.removeAll();
+        for (int i = 0; i < found.size(); i++) {
+            String id = found.get(i).getIdString();
+            String photo = found.get(i).getRelationString();
+            String name = found.get(i).getUsernameString();
+            switch (found.get(i).getRelationString()) {
+                case "Friend":
+                    friendSearch.add(new FriendsPanel(id, name, photo, a));
+                    break;
+                case "No Relation":
+                    friendSearch.add(new NonFriendPanel(id, name, photo, a));
+                    break;
+                case "Blocked":
+                    friendSearch.add(new BlockedSearch(id, name, photo, a));
+                    break;
+                case"Pending":
+                    friendSearch.add(new FriendRequestSearch(id, name, photo, a));
+                    break;
+                case"Member":
+
+                    friendSearch.add(new MyGroups(a,id,photo,name));
+                    break; 
+                case"Not member":
+
+                    friendSearch.add(new GroupSuggestions(a,name,photo,id));
+                    break;
+            }
+        }
+        friendSearch.revalidate();
+        friendSearch.repaint();
     }
 
     /**
@@ -27,8 +69,22 @@ public class SearchResult extends javax.swing.JFrame {
     private void initComponents() {
 
         SearchResultPane = new javax.swing.JScrollPane();
+        friendSearch = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout friendSearchLayout = new javax.swing.GroupLayout(friendSearch);
+        friendSearch.setLayout(friendSearchLayout);
+        friendSearchLayout.setHorizontalGroup(
+            friendSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+        friendSearchLayout.setVerticalGroup(
+            friendSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        SearchResultPane.setViewportView(friendSearch);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,42 +106,10 @@ public class SearchResult extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SearchResult().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane SearchResultPane;
+    private javax.swing.JPanel friendSearch;
     // End of variables declaration//GEN-END:variables
 }

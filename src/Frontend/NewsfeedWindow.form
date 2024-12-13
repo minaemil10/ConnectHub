@@ -54,7 +54,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane3" min="-2" pref="795" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jSearchField" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="SearchField" min="-2" pref="132" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="SearchUserBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jSearchField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SearchField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="SearchUserBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="SearchGroupButton1" max="32767" attributes="0"/>
                       </Group>
@@ -282,7 +282,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="friendManagement_btnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jSearchField">
+    <Component class="javax.swing.JTextField" name="SearchField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search..."/>
       </Properties>
