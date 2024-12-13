@@ -1,2 +1,19 @@
 [
+  {
+    "groupName": "fvnfdsc",
+    "groupID": "G1",
+    "description": "vdcsax",
+    "CREATOR_ID": "U1",
+    "admins": [],
+    "users": [],
+    "pendingRequests": [
+      "G1"
+    ],
+    "notifactionsId": {},
+    "posts": [
+      "P-0",
+      "P-1"
+    ],
+    "pendingPosts": []
+  }
 ]
