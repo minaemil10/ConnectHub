@@ -582,7 +582,7 @@ temp.addAll(currentUser.getSent());
         Group group = getGroup(groupId);
          ArrayList<UserSearch> temp = new ArrayList<>();
         for(User u : Data){
-            if((group.checkUser(u.getUserId())!= null) &&group.isPendingRequest(u.getUserId())){
+            if(group.isPendingRequest(u.getUserId())){
                 temp.add(new UserSearch(u.getUserName(),group.checkUser(u.getUserId()),u.getUserId(),u.getProfilePhoto()));
             }
         }
@@ -850,7 +850,7 @@ temp.addAll(currentUser.getSent());
     public void joinGroup(String groupId) { //function to be used to send notification to all admins that the user needs to join
         Group group = getGroup(groupId);
         if (group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId())) {
-            group.addMember(groupId);
+            group.addMember(currentUser.getUserId());
             currentUser.addGroupRequest(groupId);
             Notification  notification = new Notification("Join Group", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
             for(User u : Data){
@@ -965,9 +965,14 @@ temp.addAll(currentUser.getSent());
         ArrayList<UserSearch> found = new ArrayList();
         for (int i = 0; i < groups.size(); i++) {
             if (key.equalsIgnoreCase(groups.get(i).getGroupName())) {
-                if (currentUser.isMember(groups.get(i).getGroupID())) {
+                 if(groups.get(i).isOwner(currentUser.getUserId())){
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "owner", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                }
+                 else if (currentUser.isMember(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
-                } else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
+                }
+                
+                else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Pending group", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else {
           
