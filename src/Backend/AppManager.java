@@ -94,6 +94,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 request.get(i).accept();
                 currentUser.acceptFriendRequest(senderID);
+                System.out.println(request.get(i).getNotificationId());
                 removeNotification(request.get(i).getNotificationId());
                 return true;
             }
@@ -689,16 +690,18 @@ temp.addAll(currentUser.getSent());
             if (group.isPendingRequest(userId)) {
                 user.joinGroup(groupId); //change group to mygroups array
                 group.acceptMember(userId); //change user from requests to users
-                Notification notification = new Notification("approve request",user.getUserName(),user.getUserId(),user.getProfilePhoto() );
+                Notification notification = new Notification("approve request", "Your request was approved to join "+ group.getGroupName());
                 for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null ){
                     if(!currentUser.getUserId().equals(u.getUserId()))
                     u.addNotification(notification);
-                }
+                    System.out.println(notification.getId());
+                    removeNotification(group.getRequestNotifcation(currentUser.getUserId()));
                 }
             }
+            }
         }
-        removeNotification(group.getRequestNotifcation(userId));
+        
 
     }
 
@@ -852,16 +855,18 @@ temp.addAll(currentUser.getSent());
         if (group.checkUser(currentUser.getUserId()) == null && !group.isPendingRequest(currentUser.getUserId())) {
             group.addMember(currentUser.getUserId());
             currentUser.addGroupRequest(groupId);
-            Notification  notification = new Notification("Join Group", currentUser.getUserName(), currentUser.getUserId(), currentUser.getProfilePhoto());
+            Notification  notification = new Notification("Join Group", currentUser.getProfilePhoto(), currentUser.getUserId() ,currentUser.getUserName(),group.getGroupID());
             for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null && !group.checkUser(u.getUserId()).equals("user")){
                     if(!currentUser.getUserId().equals(u.getUserId()))
                     u.addNotification(notification);
+                    group.setRequestNotifcation(currentUser.getUserId(), notification.getId());
                 }
                 
             }
             
         }
+        
     }
 
     public void leaveGroup(String groupId) {

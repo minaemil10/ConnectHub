@@ -525,8 +525,12 @@ public class NewsfeedWindow extends javax.swing.JFrame {
 
     private void NotificitionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificitionButtonActionPerformed
         // TODO add your handling code here:
-        NotificationPanel notify = new NotificationPanel(a);
-        notify.setVisible(true);
+        
+       JFrame frame = new JFrame("Notifications");
+              frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close on exit
+               frame.setSize(730, 545); // Set the frame size
+             frame.add(new NotificationPanel(a)); // Add your panel
+             frame.setVisible(true);
     }//GEN-LAST:event_NotificitionButtonActionPerformed
 
     private void SearchUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUserBtnActionPerformed

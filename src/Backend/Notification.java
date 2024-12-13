@@ -31,9 +31,22 @@ public class Notification implements DataBaseOBJ{
         Id = "n"+num; 
     }
 
+    public Notification(String type, String profilePhoto, String userId, String user, String gpId) {
+        this.type = type;
+        this.profilePhoto = profilePhoto;
+        this.userId = userId;
+        this.user = user;
+        this.gpId = gpId;
+        num++;
+        Id = "n"+num; 
+    }
+    
+
     public Notification(String type, String status) {
         this.type = type;
         this.status = status;
+        num++;
+        Id = "n"+num;
     }
 
     public String getStatus() {
@@ -48,12 +61,16 @@ public class Notification implements DataBaseOBJ{
         this.type=type;
         this.user = user;
         this.post = post;
+        num++;
+        Id = "n"+num; 
     }
     public Notification(String type, String user, Content post,String gpId ) {
         this.type=type;
         this.user = user;
         this.post = post;
         this.gpId = gpId;
+        num++;
+        Id = "n"+num; 
     }
 
     public String getGpId() {

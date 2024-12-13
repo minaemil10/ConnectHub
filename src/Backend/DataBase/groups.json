@@ -1,3 +1,25 @@
 [
-  
+  {
+    "groupName": "uhfveijdckslx;\u0027",
+    "groupID": "G1",
+    "description": "fhcgdbnslka,x\u0027;",
+    "CREATOR_ID": "U1",
+    "admins": [
+      "U2"
+    ],
+    "users": [
+      "U3"
+    ],
+    "pendingRequests": [],
+    "notifactionsId": {
+      "P-2": "n14",
+      "U2": "n2",
+      "U3": "n3"
+    },
+    "posts": [
+      "P-1",
+      "P-2"
+    ],
+    "pendingPosts": []
+  }
 ]

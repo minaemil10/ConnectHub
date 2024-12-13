@@ -369,7 +369,7 @@ public class User implements DataBaseOBJ {
 
     for (int i = 0; i < notifications.size(); i++) {
 
-        if (notifications.get(i).getId() == notificationId) {
+        if (notifications.get(i).getId().equals(notificationId)) {
             notifications.remove(i);
             i--;
         }
