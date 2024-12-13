@@ -42,7 +42,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             );
         GroupPhoto.setIcon(new ImageIcon(image));
         GroupPhoto.setText("");
-        ArrayList<PostString> posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -119,7 +119,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         refresh = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -396,7 +396,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         pendingMPanel.removeAll();
         membersPanel.removeAll();
         adminsPanel.removeAll();
-        ArrayList<PostString>posts = a.getGroupPosts();
+        ArrayList<PostString>posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -414,7 +414,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
             postPanel.revalidate();
             postPanel.repaint();
-         ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+         ArrayList<UserSearch> members = a.getAllUsersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
@@ -427,7 +427,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             membersPanel.revalidate();
             membersPanel.repaint();
                ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : pendingMembers){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -439,7 +439,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             pendingMPanel.revalidate();
             pendingMPanel.repaint();
         ArrayList<UserSearch> admins = a.getAllAdminsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : admins){
         String name= u.getUsernameString();
         String userPhoto = u.getPhotoString();
         String relation = u.getRelationString();

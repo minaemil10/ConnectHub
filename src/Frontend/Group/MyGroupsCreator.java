@@ -8,8 +8,8 @@ import Backend.AppManager;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import Backend.GroupString;
-import Frontend.GroupForCreator;
 import javax.swing.JOptionPane;
+import Frontend.GroupForCreator;
 
 /**
  *
