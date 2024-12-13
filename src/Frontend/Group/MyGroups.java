@@ -124,16 +124,16 @@ public class MyGroups extends javax.swing.JPanel {
     private void ViewGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButtonActionPerformed
         // TODO add your handling code here:
         GroupString gs =a.getCroupInfo(groupId);
-        switch(gs.getDescription()){
+        switch(gs.getRule()){
             case "admin":
-                new GroupForAdmins(a, gs).setVisible(true); 
+                new GroupForAdmins(a, gs).setVisible(true);
+                break;
             case "owner":
                 new GroupForCreator(a, gs).setVisible(true);
+                break;
             case "user":
                 new GroupForMember(a, gs).setVisible(true);
-            
-                
-                
+                break;
         }
     }//GEN-LAST:event_ViewGroupButtonActionPerformed
 

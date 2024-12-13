@@ -43,7 +43,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             );
         GroupPhoto.setIcon(new ImageIcon(image));
         GroupPhoto.setText("");
-        ArrayList<PostString> posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -54,7 +54,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
                 postPanel.add(ap);
             }
             else{
-                AcceptedPostImage ap = new AcceptedPostImage(photo, text, name, date, a, p.getPostId(), gs.getId());
+                AcceptedPostImage ap = new AcceptedPostImage(postPhoto, text, name, date, a, p.getPostId(), gs.getId());
                 postPanel.add(ap);
             }
             
@@ -77,7 +77,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             String id = u.getIdString();
             PendingMembers pm = new PendingMembers(a, name, photo, id, gs.getId());
             pendingPanel.add(pm);
-    }
+    }  
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,7 +103,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
         membersPanel = new javax.swing.JPanel();
         refresh = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 1000));
         setPreferredSize(new java.awt.Dimension(1000, 615));
         setSize(new java.awt.Dimension(1000, 0));
@@ -151,34 +151,14 @@ public class GroupForAdmins extends javax.swing.JFrame {
         PendingMembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PendingMembersLabel1.setText("Pending Members");
 
-        javax.swing.GroupLayout pendingPanelLayout = new javax.swing.GroupLayout(pendingPanel);
-        pendingPanel.setLayout(pendingPanelLayout);
-        pendingPanelLayout.setHorizontalGroup(
-            pendingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
-        );
-        pendingPanelLayout.setVerticalGroup(
-            pendingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
-        );
-
+        pendingPanel.setLayout(new javax.swing.BoxLayout(pendingPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane1.setViewportView(pendingPanel);
 
         MembersLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         MembersLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MembersLabel1.setText("Members");
 
-        javax.swing.GroupLayout membersPanelLayout = new javax.swing.GroupLayout(membersPanel);
-        membersPanel.setLayout(membersPanelLayout);
-        membersPanelLayout.setHorizontalGroup(
-            membersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
-        );
-        membersPanelLayout.setVerticalGroup(
-            membersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
-        );
-
+        membersPanel.setLayout(new javax.swing.BoxLayout(membersPanel, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane2.setViewportView(membersPanel);
 
         refresh.setText("Refresh");
@@ -281,25 +261,25 @@ public class GroupForAdmins extends javax.swing.JFrame {
         postPanel.removeAll();
         pendingPanel.removeAll();
         membersPanel.removeAll();
-        ArrayList<PostString>posts = a.getGroupPosts();
+        ArrayList<PostString>posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
             String name = p.getAuthor();
             String date = p.getDate();
             if(postPhoto.equals("No file selected")){
-                PostText pt = new PostText(text, name, date);
-                postPanel.add(pt);
+                AcceptedPostText ap =new AcceptedPostText(text, name, date, a, p.getPostId(), gs.getId());
+                postPanel.add(ap);
             }
             else{
-                PostImage pi = new PostImage(text, postPhoto, name, date);
-                postPanel.add(pi);
+                AcceptedPostImage ap = new AcceptedPostImage(postPhoto, text, name, date, a, p.getPostId(), gs.getId());
+                postPanel.add(ap);
             }
         }
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
             postPanel.revalidate();
             postPanel.repaint();
-         ArrayList<UserSearch> members = a.getAllMembersOfGroup(gs.getId());
+         ArrayList<UserSearch> members = a.getAllUsersOfGroup(gs.getId());
         for(UserSearch u : members){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
@@ -312,7 +292,7 @@ public class GroupForAdmins extends javax.swing.JFrame {
             membersPanel.revalidate();
             membersPanel.repaint();
                ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
-        for(UserSearch u : members){
+        for(UserSearch u : pendingMembers){
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();

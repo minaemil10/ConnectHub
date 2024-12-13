@@ -31,6 +31,7 @@ public class GroupPostImage extends javax.swing.JPanel {
         this.date = date;
         this.photo = photo;
         textArea.setText(text);
+        UserNameField.setText(name);
         ImageIcon imageIcon = new ImageIcon(photo);
             Image image = imageIcon.getImage().getScaledInstance(
                 276, 

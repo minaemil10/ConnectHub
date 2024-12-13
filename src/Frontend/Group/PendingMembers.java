@@ -29,6 +29,7 @@ public class PendingMembers extends javax.swing.JPanel {
         this.name = name;
         this.userId = userId;
         this.gpId = gpId;
+        
         ImageIcon imageIcon = new ImageIcon(photo);
             Image image = imageIcon.getImage().getScaledInstance(
                 90, 
@@ -37,7 +38,7 @@ public class PendingMembers extends javax.swing.JPanel {
             );
             PendingMemberPhoto.setIcon(new ImageIcon(image));
             PendingMemberPhoto.setText("");
-        PendingMemberPhoto.setText(name);
+        
         PendingMemberName.setText(name);
     }
 

@@ -34,6 +34,7 @@ public class NotificationText extends javax.swing.JPanel {
 
         textArea.setColumns(20);
         textArea.setRows(5);
+        textArea.setFocusable(false);
         jScrollPane1.setViewportView(textArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
