@@ -70,13 +70,23 @@ public class Server {
 
     /*Content database*/
     private ArrayList<Post> loadPost() {
-        return new ContentFileReader(contentDataBase).readAllPosts();
+        ArrayList<Post> temp =  new ContentFileReader(contentDataBase).readAllPosts();
+        try {
+        Post.setId(Integer.parseInt(temp.getLast().getContentID().split("-")[1]));
+        return temp;
+         }catch (Exception e) {
+            return temp;
+        }
     }
 
     private ArrayList<Story> loadStory() {
         ArrayList<Story> temp = new ContentFileReader(contentDataBase).readAllStories();
-        //    Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
+        try{
+        Story.setId(Integer.parseInt( temp.getLast().getContentID().split("-")[1]));
         return temp;
+        }catch (Exception e){
+            return temp;
+        }
     }
 
     public static void writeContent() {

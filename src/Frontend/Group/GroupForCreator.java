@@ -53,7 +53,7 @@ public class GroupForCreator extends javax.swing.JFrame {
                 postPanel.add(ap);
             }
             else{
-                AcceptedPostImage ap = new AcceptedPostImage(photo, text, name, date, a, p.getPostId(), gs.getId());
+                AcceptedPostImage ap = new AcceptedPostImage(postPhoto, text, name, date, a, p.getPostId(), gs.getId());
                 postPanel.add(ap);
             }
             
@@ -69,6 +69,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         }
         ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
         for(UserSearch u : pendingMembers){
+            
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -403,12 +404,13 @@ public class GroupForCreator extends javax.swing.JFrame {
             String name = p.getAuthor();
             String date = p.getDate();
             if(postPhoto.equals("No file selected")){
-                PostText pt = new PostText(text, name, date);
-                postPanel.add(pt);
+                AcceptedPostText ap =new AcceptedPostText(text, name, date, a, p.getPostId(), gs.getId());
+                postPanel.add(ap);
+
             }
             else{
-                PostImage pi = new PostImage(text, postPhoto, name, date);
-                postPanel.add(pi);
+                AcceptedPostImage ap = new AcceptedPostImage(postPhoto, text, name, date, a, p.getPostId(), gs.getId());
+                postPanel.add(ap);
             }
         }
             postPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
@@ -420,7 +422,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
             String id = u.getIdString();
-            MembersForAdmin m = new MembersForAdmin(a, name, userPhoto, id, gs.getId());
+            MembersForCreator m = new MembersForCreator(a, name, userPhoto, id, gs.getId());
             membersPanel.add(m);
         }
         membersPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
@@ -428,6 +430,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             membersPanel.repaint();
                ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
         for(UserSearch u : pendingMembers){
+            
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();

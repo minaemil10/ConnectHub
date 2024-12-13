@@ -23,9 +23,11 @@ public class NotificationPanel extends javax.swing.JPanel {
         initComponents();
         this.a=a;
         ArrayList<Notification> notifications =  a.getNotifications();
+        
         for(Notification n : notifications){
             String type = n.getType();
-            switch(type){
+            System.out.println(type);
+            switch (n.getType()) {
                 case "Group Name Changed":
                 case "Group Description Changed":
                 case "Group Photo Changed":

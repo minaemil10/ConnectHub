@@ -39,6 +39,9 @@ public class ManagePosts extends javax.swing.JFrame {
                 managePost.add(gp);
             }
         }
+        managePost.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 100));
+        managePost.revalidate();
+        managePost.repaint();
     }
 
     /**
@@ -55,17 +58,7 @@ public class ManagePosts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout managePostLayout = new javax.swing.GroupLayout(managePost);
-        managePost.setLayout(managePostLayout);
-        managePostLayout.setHorizontalGroup(
-            managePostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 683, Short.MAX_VALUE)
-        );
-        managePostLayout.setVerticalGroup(
-            managePostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
-        );
-
+        managePost.setLayout(new javax.swing.BoxLayout(managePost, javax.swing.BoxLayout.LINE_AXIS));
         ManagePostsPane.setViewportView(managePost);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

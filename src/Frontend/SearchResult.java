@@ -76,7 +76,7 @@ public class SearchResult extends javax.swing.JFrame {
         SearchResultPane = new javax.swing.JScrollPane();
         friendSearch = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout friendSearchLayout = new javax.swing.GroupLayout(friendSearch);
         friendSearch.setLayout(friendSearchLayout);

@@ -26,6 +26,7 @@ public class GroupForMember extends javax.swing.JFrame {
     private AppManager a ;
     public GroupForMember(AppManager a, GroupString gs) {
         initComponents();
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.Y_AXIS));
         this.a = a;
         this.gs = gs;
         String photo = gs.getPhoto();
@@ -42,7 +43,7 @@ public class GroupForMember extends javax.swing.JFrame {
         GroupPhoto.setText("");
         GroupName.setText(gpname);
         GroupDescriptionField.setText(desc);
-        ArrayList<PostString> posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
@@ -77,7 +78,7 @@ public class GroupForMember extends javax.swing.JFrame {
         postPanel = new javax.swing.JPanel();
         refresh = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         GroupPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -107,17 +108,7 @@ public class GroupForMember extends javax.swing.JFrame {
 
         GroupPostsPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout postPanelLayout = new javax.swing.GroupLayout(postPanel);
-        postPanel.setLayout(postPanelLayout);
-        postPanelLayout.setHorizontalGroup(
-            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-        );
-        postPanelLayout.setVerticalGroup(
-            postPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
-        );
-
+        postPanel.setLayout(new javax.swing.BoxLayout(postPanel, javax.swing.BoxLayout.LINE_AXIS));
         GroupPostsPane.setViewportView(postPanel);
 
         refresh.setText("Refresh");
@@ -139,15 +130,19 @@ public class GroupForMember extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(GroupPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(GroupPostsPane)
-                    .addComponent(GroupName)
-                    .addComponent(GroupDescriptionField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LeaveGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refresh))
-                .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(GroupName, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                            .addComponent(GroupDescriptionField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LeaveGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(refresh))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,14 +157,14 @@ public class GroupForMember extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(GroupDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27)
-                        .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CreatePostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(LeaveGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(refresh)))
+                .addGap(18, 18, 18)
+                .addComponent(GroupPostsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -192,7 +187,7 @@ public class GroupForMember extends javax.swing.JFrame {
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
         postPanel.removeAll();
-        ArrayList<PostString> posts = a.getGroupPosts();
+        ArrayList<PostString> posts = a.getAllGroupPost(gs.getId());
         for(PostString p : posts){
             String text = p.getText();
             String postPhoto = p.getPhoto();
