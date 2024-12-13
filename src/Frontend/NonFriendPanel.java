@@ -132,6 +132,8 @@ public class NonFriendPanel extends javax.swing.JPanel {
 
     private void AddFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFriendButtonActionPerformed
         a.sendFriendRequest(id);
+        AddFriendButton.setText("Sent");
+        AddFriendButton.setEnabled(false);
     }//GEN-LAST:event_AddFriendButtonActionPerformed
 
     private void BlockButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlockButton1ActionPerformed

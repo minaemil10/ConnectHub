@@ -914,6 +914,10 @@ temp.addAll(currentUser.getSent());
         }
         return posts;
     }
+    public ArrayList<Notification> getNotifications(){
+        return currentUser.getNotifications();
+    }
+    
     public ArrayList<RelationString> groupSuggest(){
        ArrayList<String>temp=new ArrayList();
        temp.addAll(currentUser.getAllGroupRequests());
@@ -985,4 +989,5 @@ temp.addAll(currentUser.getSent());
     public void unblock(String userID){
         currentUser.unblock(userID);
     }
+    
 }
