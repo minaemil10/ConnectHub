@@ -18,9 +18,10 @@ public class NotificationPanel extends javax.swing.JPanel {
     /**
      * Creates new form NotificationPanel
      */
-    AppManager a;
+    private AppManager a;
     public NotificationPanel(AppManager a) {
         initComponents();
+        this.a=a;
         ArrayList<Notification> notifications =  a.getNotifications();
         for(Notification n : notifications){
             String type = n.getType();
@@ -179,6 +180,7 @@ public class NotificationPanel extends javax.swing.JPanel {
                 case "Friend request":
                     FriendRequest f = new FriendRequest(a, n.getUserId(), n.getName(), n.getProfilePhoto());
                     notificationPanel.add(f);
+                    break;
             }
         }
     }//GEN-LAST:event_refreshActionPerformed

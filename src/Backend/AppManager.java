@@ -106,7 +106,7 @@ public class AppManager {
             if (request.get(i).getSenderID().equalsIgnoreCase(senderID) && request.get(i).getReceiverID().equalsIgnoreCase(currentUser.getUserId())) {
                 currentUser.cancelFriendRequest(senderID);
                 request.get(i).decline();
-
+                
                 removeNotification(request.get(i).getNotificationId());
                 return true;
             }

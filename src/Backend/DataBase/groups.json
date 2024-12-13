@@ -1,19 +1,19 @@
 [
   {
-    "groupName": "Messi lovers",
+    "groupName": "fvnfdsc",
     "groupID": "G1",
-    "description": "M10",
+    "description": "vdcsax",
     "CREATOR_ID": "U1",
     "admins": [],
     "users": [],
     "pendingRequests": [
-      "G1",
-      "G1",
-      "G1",
       "G1"
     ],
     "notifactionsId": {},
-    "posts": [],
+    "posts": [
+      "P-0",
+      "P-1"
+    ],
     "pendingPosts": []
   }
 ]
