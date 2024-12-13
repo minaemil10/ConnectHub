@@ -23,6 +23,7 @@ public class Notification implements DataBaseOBJ{
     private String gpId; 
     
     public Notification(String type, String name, String userId, String profilePhoto) {
+        this.type=type;
         this.name = name;
         this.userId = userId;
         this.profilePhoto = profilePhoto;
@@ -31,6 +32,7 @@ public class Notification implements DataBaseOBJ{
     }
 
     public Notification(String type, String status) {
+        this.type = type;
         this.status = status;
     }
 
@@ -43,10 +45,12 @@ public class Notification implements DataBaseOBJ{
     }
 
     public Notification(String type, String user, Content post) {
+        this.type=type;
         this.user = user;
         this.post = post;
     }
     public Notification(String type, String user, Content post,String gpId ) {
+        this.type=type;
         this.user = user;
         this.post = post;
         this.gpId = gpId;

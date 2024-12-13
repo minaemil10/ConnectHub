@@ -69,6 +69,7 @@ public class GroupForCreator extends javax.swing.JFrame {
         }
         ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
         for(UserSearch u : pendingMembers){
+            
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
@@ -428,6 +429,7 @@ public class GroupForCreator extends javax.swing.JFrame {
             membersPanel.repaint();
                ArrayList<UserSearch> pendingMembers = a.getAllPendingRequestsOfGroup(gs.getId());
         for(UserSearch u : pendingMembers){
+            
             String name= u.getUsernameString();
             String userPhoto = u.getPhotoString();
             String relation = u.getRelationString();
