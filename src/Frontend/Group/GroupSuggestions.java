@@ -73,13 +73,14 @@ public class GroupSuggestions extends javax.swing.JPanel {
             }
         });
 
-        joinGroupButton1.setBackground(new java.awt.Color(0, 153, 255));
-        joinGroupButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        joinGroupButton1.setForeground(new java.awt.Color(255, 255, 255));
-        joinGroupButton1.setText("Join Group");
-        joinGroupButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Join Group");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                joinGroupButton1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+
             }
         });
 
@@ -119,6 +120,13 @@ public class GroupSuggestions extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupButtonActionPerformed
+      new GroupForUserNotMember(a,a.getCroupInfo(id)).setVisible(true);
+    }//GEN-LAST:event_ViewGroupButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         a.joinGroup(id);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
         // TODO add your handling code here:
          GroupString groupString = a.getCroupInfo(id);
          GroupForUserNotMember needJoin = new GroupForUserNotMember(a, groupString);

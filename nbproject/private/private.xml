@@ -3,20 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/Content.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Group/GroupForAdmins.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/NotificationText.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Group/MemberNotification.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Group/ManagePosts.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/DataBase/users.json</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/AppManager.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/PostImage.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Group/GroupForMember.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/Group/GroupPostImage.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/User.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Backend/Notification.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ConnectHub/src/Frontend/NotificationPanel.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/User.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Backend/AppManager.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupForUserNotMember.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/SearchResult.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/NewsfeedWindow.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/MyGroups.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupSuggestions.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/Group/GroupForMember.java</file>
+            <file>file:/C:/Users/beroo/Desktop/Gym%20Membership%20Management%20System/ConnectHub/src/Frontend/MyPosts_Stories.java</file>
+
         </group>
     </open-files>
 </project-private>

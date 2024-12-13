@@ -4,17 +4,37 @@
  */
 package Frontend;
 
+import Backend.AppManager;
+import Backend.Friend_Management.ProfileDetailsBack;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carls
  */
 public class ViewProfile extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewProfile
-     */
-    public ViewProfile() {
-        initComponents();
+    private AppManager a;
+    private String id;
+    public ViewProfile(AppManager a, String id) {
+                initComponents();
+        ProfileDetailsBack detail=a.getProfile(id);
+        if(detail.getBio()==null){
+        BioField.setText("");}else{
+            BioField.setText(detail.getBio());
+        }
+        NameField1.setText(detail.getUserName());
+        ImageIcon imageIcon = new ImageIcon(detail.getProfilePhoto());
+            Image image = imageIcon.getImage().getScaledInstance(
+                90, 
+                90, 
+                Image.SCALE_SMOOTH
+            );
+            PhotoLabel1.setIcon(new ImageIcon(image));
+            PhotoLabel1.setText("");
+//el posts wel stories
+
     }
 
     /**
@@ -37,6 +57,11 @@ public class ViewProfile extends javax.swing.JFrame {
         PhotoLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         NameField1.setEditable(false);
+        NameField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameField1ActionPerformed(evt);
+            }
+        });
 
         BioField.setEditable(false);
 
@@ -82,40 +107,10 @@ public class ViewProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void NameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameField1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewProfile().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BioField;

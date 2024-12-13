@@ -126,13 +126,11 @@ public class BlockedSearch extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTextActionPerformed
 
     private void Unblock(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Unblock
-        a.sendFriendRequest(id);
-        a.blockFriend(id);
-
+a.unblock(id);
     }//GEN-LAST:event_Unblock
 
     private void ViewProfile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProfile
-        // TODO add your handling code here:
+            new ViewProfile(a,id).setVisible(true)  ;
     }//GEN-LAST:event_ViewProfile
 
 
