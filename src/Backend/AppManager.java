@@ -965,9 +965,14 @@ temp.addAll(currentUser.getSent());
         ArrayList<UserSearch> found = new ArrayList();
         for (int i = 0; i < groups.size(); i++) {
             if (key.equalsIgnoreCase(groups.get(i).getGroupName())) {
-                if (currentUser.isMember(groups.get(i).getGroupID())) {
+                 if(groups.get(i).isOwner(currentUser.getUserId())){
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "owner", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                }
+                 else if (currentUser.isMember(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
-                } else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
+                }
+                
+                else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Pending group", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else {
           
