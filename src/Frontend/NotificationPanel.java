@@ -44,6 +44,7 @@ public class NotificationPanel extends javax.swing.JPanel {
                 case "approve post request":
                 case "decline post request":
                 case "Admin added post to Group":
+                    System.out.println(n.getPost());
                     if(n.getPost().getPhoto().equals("No file selected")){
                         PostText pt = new PostText(n.getPost().getText(), n.getUser(), type);
                         notificationPanel.add(pt);

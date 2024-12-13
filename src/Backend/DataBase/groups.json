@@ -1,24 +1,19 @@
 [
   {
-    "groupName": "uhfveijdckslx;\u0027",
+    "groupName": "kora",
     "groupID": "G1",
-    "description": "fhcgdbnslka,x\u0027;",
+    "description": "kk",
     "CREATOR_ID": "U1",
-    "admins": [
-      "U2"
-    ],
+    "admins": [],
     "users": [
-      "U3"
+      "U2"
     ],
     "pendingRequests": [],
     "notifactionsId": {
-      "P-2": "n14",
-      "U2": "n2",
-      "U3": "n3"
+      "U2": "n2"
     },
     "posts": [
-      "P-1",
-      "P-2"
+      "P-0"
     ],
     "pendingPosts": []
   }

@@ -608,8 +608,8 @@ temp.addAll(currentUser.getSent());
             return false;
         } else if (group.checkUser(currentUser.getUserId()).equals("user")) {
             Post post = new Post(photo, currentUser.getUserId(), text);
-            userAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            userAddGroupPost(post.getContentID(), groupId);
             for(User u : Data){
             if(group.checkUser(currentUser.getUserId()) != null && (group.checkUser(currentUser.getUserId()).equals("owner") || group.checkUser(currentUser.getUserId()).equals("admin"))){
                 Notification n = new Notification("New post need to be Approved", currentUser.getUserName(), post,groupId);
@@ -620,8 +620,8 @@ temp.addAll(currentUser.getSent());
             return true;
         } else {
             Post post = new Post(photo, currentUser.getUserId(), text);
-            adminAddGroupPost(post.getContentID(), groupId);
             posts.add(post);
+            adminAddGroupPost(post.getContentID(), groupId);
             for(User u : Data){
               if(group.checkUser(currentUser.getUserId()) != null){
                 Notification n = new Notification("New post added to group", currentUser.getUserName(), post);
@@ -794,8 +794,8 @@ temp.addAll(currentUser.getSent());
             flag = true;
         }
         if(flag){
-         Content post = getPostWithID(postId);
-         Notification  notification = new Notification("Admin added post to Group",currentUser.getUserName(),post );
+         Content post = getPost(postId);
+         Notification  notification = new Notification("Admin added post to Group",currentUser.getUserName(), post );
         for(User u : Data){
                 if(group.checkUser(u.getUserId()) != null){
                     if(!currentUser.getUserId().equals(u.getUserId()))

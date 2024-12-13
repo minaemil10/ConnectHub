@@ -1,74 +1,30 @@
 [
   {
     "userId": "U1",
-    "email": "c@g.com",
-    "userName": "carl",
+    "email": "m@g.com",
+    "userName": "mina",
     "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
-    "DateOfBirth": "13,12,1997",
+    "DateOfBirth": "14,12,1985",
     "status": false,
     "notifications": [
       {
         "type": "Join Group",
-        "userId": "U3",
-        "Id": "n3",
-        "user": "mina",
+        "userId": "U2",
+        "Id": "n2",
+        "user": "carl",
         "gpId": "G1"
       },
       {
         "type": "New post added to group",
-        "Id": "n6",
-        "user": "carl",
+        "Id": "n2",
+        "user": "mina",
         "post": {
           "photo": "No file selected",
           "contentID": "P-0",
           "authorID": "U1",
-          "text": "hgdckl;x\u0027",
-          "timePosted": "13-12-2024T23:22:21"
+          "text": "cmkldmklmvlkdm",
+          "timePosted": "14-12-2024T00:33:55"
         }
-      },
-      {
-        "type": "approve request",
-        "Id": "n9",
-        "status": "Your request was approved to join uhfveijdckslx;\u0027"
-      },
-      {
-        "type": "Admin added post to Group",
-        "Id": "n10",
-        "user": "daniel"
-      },
-      {
-        "type": "New post added to group",
-        "Id": "n11",
-        "user": "daniel",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-1",
-          "authorID": "U2",
-          "text": "f gvuhsdbijkaxl;m",
-          "timePosted": "13-12-2024T23:22:56"
-        }
-      },
-      {
-        "type": "approve post request",
-        "Id": "n1",
-        "user": "daniel"
-      },
-      {
-        "type": "Edit post",
-        "Id": "n2",
-        "user": "daniel Edited this post",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-2",
-          "authorID": "U3",
-          "text": "cg hjkxlvejwcd",
-          "timePosted": "13-12-2024T23:23:20"
-        }
-      },
-      {
-        "type": "Delete post",
-        "Id": "n3",
-        "status": "daniel Deleted a post"
       }
     ],
     "myPosts": [],
@@ -85,117 +41,40 @@
   },
   {
     "userId": "U2",
-    "email": "d@g.com",
-    "userName": "daniel",
+    "email": "c@g.com",
+    "userName": "carl",
     "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
-    "DateOfBirth": "13,12,2011",
+    "DateOfBirth": "14,12,1986",
     "status": false,
     "notifications": [
       {
         "type": "approve request",
-        "Id": "n4",
-        "status": "Your request was approved to join uhfveijdckslx;\u0027"
-      },
-      {
-        "type": "Admin added post to Group",
-        "Id": "n5",
-        "user": "carl"
-      },
-      {
-        "type": "New post added to group",
-        "Id": "n7",
-        "user": "carl",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-0",
-          "authorID": "U1",
-          "text": "hgdckl;x\u0027",
-          "timePosted": "13-12-2024T23:22:21"
-        }
-      },
-      {
-        "type": "New post added to group",
-        "Id": "n12",
-        "user": "daniel",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-1",
-          "authorID": "U2",
-          "text": "f gvuhsdbijkaxl;m",
-          "timePosted": "13-12-2024T23:22:56"
-        }
-      }
-    ],
-    "myPosts": [],
-    "myStories": [],
-    "myGroups": [
-      "G1"
-    ],
-    "groupRequests": [],
-    "groupsLeftByMe": [],
-    "friends": [],
-    "Blocked": [],
-    "received": [],
-    "sent": []
-  },
-  {
-    "userId": "U3",
-    "email": "m@g.com",
-    "userName": "mina",
-    "password": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
-    "DateOfBirth": "13,12,1970",
-    "status": false,
-    "notifications": [
-      {
-        "type": "New post added to group",
-        "Id": "n8",
-        "user": "carl",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-0",
-          "authorID": "U1",
-          "text": "hgdckl;x\u0027",
-          "timePosted": "13-12-2024T23:22:21"
-        }
-      },
-      {
-        "type": "approve request",
-        "Id": "n9",
-        "status": "Your request was approved to join uhfveijdckslx;\u0027"
-      },
-      {
-        "type": "Admin added post to Group",
-        "Id": "n10",
-        "user": "daniel"
-      },
-      {
-        "type": "New post added to group",
-        "Id": "n13",
-        "user": "daniel",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-1",
-          "authorID": "U2",
-          "text": "f gvuhsdbijkaxl;m",
-          "timePosted": "13-12-2024T23:22:56"
-        }
-      },
-      {
-        "type": "Edit post",
-        "Id": "n2",
-        "user": "daniel Edited this post",
-        "post": {
-          "photo": "No file selected",
-          "contentID": "P-2",
-          "authorID": "U3",
-          "text": "cg hjkxlvejwcd",
-          "timePosted": "13-12-2024T23:23:20"
-        }
-      },
-      {
-        "type": "Delete post",
         "Id": "n3",
-        "status": "daniel Deleted a post"
+        "status": "Your request was approved to join kora"
+      },
+      {
+        "type": "Admin added post to Group",
+        "Id": "n1",
+        "user": "mina",
+        "post": {
+          "photo": "No file selected",
+          "contentID": "P-0",
+          "authorID": "U1",
+          "text": "cmkldmklmvlkdm",
+          "timePosted": "14-12-2024T00:33:55"
+        }
+      },
+      {
+        "type": "New post added to group",
+        "Id": "n3",
+        "user": "mina",
+        "post": {
+          "photo": "No file selected",
+          "contentID": "P-0",
+          "authorID": "U1",
+          "text": "cmkldmklmvlkdm",
+          "timePosted": "14-12-2024T00:33:55"
+        }
       }
     ],
     "myPosts": [],
