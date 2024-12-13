@@ -943,13 +943,14 @@ temp.addAll(currentUser.getSent());
     public ArrayList<UserSearch> SearchGroup(String key) {
         ArrayList<UserSearch> found = new ArrayList();
         for (int i = 0; i < groups.size(); i++) {
-            if (key.equalsIgnoreCase(groups.get(i).getGroupID())) {
+            if (key.equalsIgnoreCase(groups.get(i).getGroupName())) {
                 if (currentUser.isMember(groups.get(i).getGroupID())) {
                     found.add(new UserSearch(groups.get(i).getGroupName(), "Member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else if (currentUser.isPendingGroup(groups.get(i).getGroupID())) {
-                    found.add(new UserSearch(groups.get(i).getGroupName(), "Pending", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Pending group", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 } else {
-                    found.add(new UserSearch(groups.get(i).getGroupName(), "No Relation", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
+          
+                    found.add(new UserSearch(groups.get(i).getGroupName(), "Not member", groups.get(i).getGroupID(), groups.get(i).getGroupPhoto()));
                 }
             }
         }
@@ -963,5 +964,8 @@ temp.addAll(currentUser.getSent());
             }
         }
       return null;  
+    }
+    public void unblock(String userID){
+        currentUser.unblock(userID);
     }
 }

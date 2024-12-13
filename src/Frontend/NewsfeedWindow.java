@@ -531,7 +531,10 @@ public class NewsfeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchUserBtnActionPerformed
 
     private void SearchGroupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchGroupButton1ActionPerformed
-        // TODO add your handling code here:
+             String key=SearchField.getText();
+        ArrayList<UserSearch> found=a.SearchGroup(key);
+
+        new SearchResult(a,found).setVisible(true);
     }//GEN-LAST:event_SearchGroupButton1ActionPerformed
     
 

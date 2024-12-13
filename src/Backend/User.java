@@ -279,6 +279,13 @@ public class User implements DataBaseOBJ {
             }
 
         }
+        for (int i = 0; i < sent.size(); i++) {
+             if(sent.get(i).getRelation().equalsIgnoreCase("Block")){
+                sent.remove(i);
+            }
+
+        }
+        
         
     }
     boolean isFriend(String key){
@@ -385,6 +392,14 @@ public boolean isMember(String key){
             }
         }
         return false;
+    }
+    public void unblock(String userID){
+        for(int i=0;i<Blocked.size();i++){
+            if(Blocked.get(i).getrelationWith().equalsIgnoreCase(userID)){
+                Blocked.get(i).setCancel();
+                Blocked.remove(i);
+            }
+        }
     }
 
 }

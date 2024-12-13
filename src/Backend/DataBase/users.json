@@ -15,14 +15,7 @@
     "groupRequests": [],
     "groupsLeftByMe": [],
     "friends": [],
-    "Blocked": [
-      {
-        "relationWith": "U2",
-        "relation": {
-          "relation": "Block"
-        }
-      }
-    ],
+    "Blocked": [],
     "received": [],
     "sent": []
   },
@@ -32,23 +25,18 @@
     "userName": "rober",
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
     "DateOfBirth": "13,12,2004",
-    "status": true,
+    "status": false,
     "notifications": [],
     "myPosts": [],
     "myStories": [],
-    "myGroups": [],
+    "myGroups": [
+      "G1"
+    ],
     "groupRequests": [],
     "groupsLeftByMe": [],
     "friends": [],
     "Blocked": [],
     "received": [],
-    "sent": [
-      {
-        "relationWith": "U1",
-        "relation": {
-          "relation": "Block"
-        }
-      }
-    ]
+    "sent": []
   }
 ]

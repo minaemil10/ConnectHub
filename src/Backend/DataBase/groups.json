@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "groupName": "weee",
+    "groupID": "G1",
+    "CREATOR_ID": "U2",
+    "admins": [],
+    "users": [],
+    "pendingRequests": [],
+    "notifactionsId": {},
+    "posts": [],
+    "pendingPosts": []
+  }
+]

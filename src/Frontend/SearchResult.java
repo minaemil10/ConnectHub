@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.AppManager;
 import Backend.Friend_Management.UserSearch;
+import Frontend.Group.MyGroups;
 import Frontend.Search.BlockedSearch;
 import Frontend.Search.FriendListSearch;
 import Frontend.Search.FriendRequestSearch;
@@ -43,6 +44,14 @@ public class SearchResult extends javax.swing.JFrame {
                     break;
                 case"Pending":
                     friendSearch.add(new FriendRequestSearch(id, name, photo, a));
+                    break;
+                case"Member":
+
+                    friendSearch.add(new MyGroups(a,id,photo,name));
+                    break; 
+                case"Not member":
+
+                    friendSearch.add(new GroupSuggestions(a,name,photo,id));
                     break;
             }
         }
